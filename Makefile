@@ -1,2 +1,2 @@
 all:
-	g++ main.cpp
+	g++ main.cpp node.cpp edge.cpp graph.cpp

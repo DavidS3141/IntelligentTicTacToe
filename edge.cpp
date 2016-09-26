@@ -4,3 +4,7 @@ Edge::Edge()
 {
 
 }
+
+Edge::Edge(int i){
+    id = i;
+}
