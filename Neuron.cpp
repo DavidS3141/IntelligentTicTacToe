@@ -21,6 +21,7 @@ double Neuron::sum(vector<double> x) {
 	for(double cur : x) {
 		sum += cur;
 	}
+	return sum;
 }
 
 void Neuron::feedForward() {
