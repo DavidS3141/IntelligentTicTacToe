@@ -9,7 +9,7 @@
 #include "Synapse.h"
 #include <cmath>
 
-Neuron::Neuron(){
+Neuron::Neuron() : activity(0), delta(0) {
 }
 
 Neuron::~Neuron() {

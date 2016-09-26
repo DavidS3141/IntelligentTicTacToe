@@ -60,7 +60,7 @@ void NeuralNetwork::backProp(vector<double> correctOutput, bool correct) {
 		}
 		else {
 			outputs[neuronIdx]->delta = Neuron::sigmoidPrime(outputs[neuronIdx]->getNetInput()) *
-					(abs(correctOutput[neuronIdx] - outputs[neuronIdx]->getActivity()) - .7);
+					(std::abs(correctOutput[neuronIdx] - outputs[neuronIdx]->getActivity()) - .7);
 		}
 		//}
 	}
@@ -78,6 +78,7 @@ void NeuralNetwork::backProp(vector<double> correctOutput, bool correct) {
 	}
 }
 
-void NeuralNetwork::getMove(Board board, int& row, int& column) {
+void NeuralNetwork::getMove(vector<double> inp, int& row, int& column) {
+	feedForward(inp);
 
 }
