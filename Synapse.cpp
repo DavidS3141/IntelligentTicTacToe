@@ -16,3 +16,6 @@ Synapse::~Synapse() {
 	// TODO Auto-generated destructor stub
 }
 
+double Synapse::getSignal() {
+	return weight*dynamic_cast<Neuron*>(this->in)->activity
+}

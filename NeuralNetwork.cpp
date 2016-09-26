@@ -7,12 +7,12 @@
 
 #include "NeuralNetwork.h"
 
-NeuralNetwork::NeuronalNetwork() {
+NeuralNetwork::NeuralNetwork() {
 	// TODO Auto-generated constructor stub
 
 }
 
-NeuralNetwork::~NeuronalNetwork() {
+NeuralNetwork::~NeuralNetwork() {
 	// TODO Auto-generated destructor stub
 }
 

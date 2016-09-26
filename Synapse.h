@@ -14,6 +14,11 @@ class Synapse: public Edge {
 public:
 	Synapse();
 	virtual ~Synapse();
+
+	double weight;
+	const static double learningRate;
+
+	double getSignal();
 };
 
 #endif /* SYNAPSE_H_ */

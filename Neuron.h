@@ -15,8 +15,10 @@ public:
 	Neuron();
 	virtual ~Neuron();
 
-	double sigmoid(double x) const;
-	double sigmoidPrime(double x) const;
+	static double sigmoid(double x);
+	static double sigmoidPrime(double x);
+
+	double activity;
 };
 
 #endif /* NEURON_H_ */
