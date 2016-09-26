@@ -13,13 +13,11 @@ Graph::Graph(int n, vector<pair<int, int> > edgesVec){
         nodes.push_back(new Node(i));
     }
     for (int i=0; i<edgesVec.size(); i++){
-        edges.push_back(new Edge(i));
+        edges.push_back(new Edge(i, nodes[edgesVec[i].first], nodes[edgesVec[i].second] ) );
     }
 
-    //fill in information
+    //child and partent information
     for (int i=0; i<edgesVec.size(); i++){
-        edges[i]->in = nodes[edgesVec[i].first];
-        edges[i]->out = nodes[edgesVec[i].second];
         nodes[edgesVec[i].first]->childs.push_back(edges[i]);
         nodes[edgesVec[i].second]->parents.push_back(edges[i]);
     }

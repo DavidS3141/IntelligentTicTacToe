@@ -1,10 +1,7 @@
 #include "edge.h"
 
-Edge::Edge()
-{
-
-}
-
-Edge::Edge(int i){
-    id = i;
+Edge::Edge(int i, Node *in_, Node *out_) {
+	id = i;
+	in = in_;
+	out = out_;
 }
