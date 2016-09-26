@@ -6,8 +6,8 @@
 using std::vector;
 
 typedef vector<vector<short>> Board;
-typedef tuple<short, short, short> Move;
-typedef pair<Board, Move> State;
+typedef std::tuple<short, short, short> Move;
+typedef std::pair<Board, Move> State;
 const short cross = 1;
 const short circle = 2;
 
@@ -23,4 +23,4 @@ const std::vector<std::vector<std::vector<short>>> winningPositions = {
 const Board empytBoard = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
 };
 
-#endif CONSTANTS_H
+#endif //CONSTANTS_H

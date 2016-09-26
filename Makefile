@@ -6,5 +6,6 @@ all:
 		NeuralNetwork.cpp \
 		Neuron.cpp \
 		node.cpp \
+		runner.cpp \
 		Synapse.cpp \
 		tictactoe.cpp \
