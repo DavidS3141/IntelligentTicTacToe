@@ -78,7 +78,15 @@ void NeuralNetwork::backProp(vector<double> correctOutput, bool correct) {
 	}
 }
 
-void NeuralNetwork::getMove(vector<double> inp, int& row, int& column) {
+vector<double> NeuralNetwork::getOutput(vector<double> inp) {
 	feedForward(inp);
+	vector<double> output;
+	for(int i=0; i<outputs.size(); i++) {
+		output.push_back(outputs[i]->getActivity());
+	}
+	return output;
+}
 
+Move NeuralNetwork::getMove(Board board) {
+	return getMoveNode(getOutput(getNodeBoard(board)));
 }
