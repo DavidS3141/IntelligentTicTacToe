@@ -7,6 +7,7 @@ class TicTacToe {
   int makeMove(int row, int column, int player);
   Board getBoard();
   int gameEnded();
+  bool boardFull();
 
 private:
   Board board;

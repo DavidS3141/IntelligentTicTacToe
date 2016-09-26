@@ -19,5 +19,17 @@ int TicTacToe::gameEnded() {
     if (board[final[0][0]][final[0][1]] == board[final[1][0]][final[1][1]] &&
         board[final[1][0]][final[1][1]] == board[final[2][0]][final[2][1]])
       return board[final[0][0]][final[0][1]];
+    else if (boardFull())
+      return -1;
   return 0;
+}
+
+bool TicTacToe::boardFull() {
+  for (auto row : board) {
+    for (auto field : row) {
+      if (field == 0)
+        return false;
+    }
+  }
+  return true;
 }
