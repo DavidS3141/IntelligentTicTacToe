@@ -1,18 +1,18 @@
 /*
- * NeuronalNetwork.cpp
+ * NeuralNetwork.cpp
  *
  *  Created on: 26.09.2016
  *      Author: David
  */
 
-#include "NeuronalNetwork.h"
+#include "NeuralNetwork.h"
 
-NeuronalNetwork::NeuronalNetwork() {
+NeuralNetwork::NeuronalNetwork() {
 	// TODO Auto-generated constructor stub
 
 }
 
-NeuronalNetwork::~NeuronalNetwork() {
+NeuralNetwork::~NeuronalNetwork() {
 	// TODO Auto-generated destructor stub
 }
 
