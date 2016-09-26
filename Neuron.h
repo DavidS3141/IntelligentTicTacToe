@@ -25,6 +25,14 @@ public:
 	static double sigmoid(double x);
 	static double sigmoidPrime(double x);
 
+	double getActivity() const {
+		return activity;
+	}
+
+	void setActivity(double activity) {
+		this->activity = activity;
+	}
+
 	double activity;
 };
 

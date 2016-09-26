@@ -8,6 +8,8 @@
 #include "NeuralNetwork.h"
 #include "Neuron.h"
 
+#define nodes neurons;
+
 NeuralNetwork::NeuronalNetwork() {
 	super();
 }
@@ -16,33 +18,40 @@ NeuralNetwork::~NeuronalNetwork() {
 
 }
 
-void NeuralNetwork::feedForward(vector<double> input) {
-	for(int neuronId=0; neuronId < input.size(); neuronId++) {
-		neurons[neuronId]->setActivity(input[neuronId]);
+void NeuralNetwork::feedForward(vector<double> inp) {
+	for(int neuronIdx=0; neuronIdx < inp.size(); neuronIdx++) {
+		inputs[neuronIdx]->setActivity(inp[neuronIdx]);
 	}
-	for (int neuronId=input.size(); neuronId < neurons.size(); neuronId++) {
-		neurons[neuronId]->feedForward();
+	for(int neuronIdx=0; neuronIdx < hidden.size(); neuronIdx++) {
+		hidden[neuronIdx]->feedForward();
 	}
+	for(int neuronIdx=0; neuronIdx < outputs.size(); neuronIdx++) {
+		outputs[neuronIdx]->feedForward();
+	}
+	/*for (int neuronId=input.size(); neuronId < neurons.size(); neuronId++) {
+		((Neuron*)neurons[neuronId])->feedForward();
+	}*/
 }
 
 void NeuralNetwork::backProp(vector<double> correctOutput) {
-	for(int neuronId = neurons.size()-1; neuronId >= 0; neuronId--) {
-		double* deltas = new double[neurons.size()];
-		if(neuronId >= outputNeurons) {
-			deltas[neuronId] = sigmoidPrime(neurons[neuronId]->getNetInput()) *
-					(correctOutput[neuronId-outputNeurons] - neurons[neuronId]->getActivity());
+	for(int neuronIdx = outputs.size()-1; neuronIdx >= 0; neuronIdx--) {
+		//double* deltas = new double[neurons.size()];
+		//if(neuronIdx >= outputNeurons) {
+		outputs[neuronIdx]->delta = sigmoidPrime(outputs[neuronIdx]->getNetInput()) *
+				(correctOutput[neuronIdx] - outputs[neuronIdx]->getActivity());
 
-		}
-		else {
-			double tempSum = 0;
-			for(Synapse* curOut : neurons[neuronId]->outSynapses) {
-				tempSum += curOut->weight * deltas[curOut->out->getId()];
-			}
-			deltas[neuronId] = sigmoidPrime(neurons[neuronId]->getNetInput()) *
-					tempSum;
-		}
+		//}
 	}
-	for(Synapse* cur : synapses) {
-		cur->weight += cur->learningRate * cur->in->getActivity() * deltas[cur->out->getId()];
+	for(int neuronIdx = hidden.size()-1; neuronIdx >= 0; neuronIdx--) {
+		double tempSum = 0;
+		for(Synapse* curOut : hidden[neuronIdx]->childs) {
+			tempSum += curOut->weight * curOut->out->delta;
+		}
+		hidden[neuronIdx]->delta = sigmoidPrime(hidden[neuronIdx]->getNetInput()) *
+				tempSum;
+		//}
+	}
+	for(Synapse* cur : edges) {
+		cur->weight += cur->learningRate * cur->in->getActivity() * cur->out->delta;
 	}
 }

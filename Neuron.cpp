@@ -32,7 +32,7 @@ void Neuron::feedForward() {
 
 double Neuron::getNetInput() {
 	vector<double> inp;
-	for(Synapse* input : inputs) {
+	for(Synapse* input : parents) {
 		inp.push_back(input->getSignal());
 	}
 	return sum(inp);
