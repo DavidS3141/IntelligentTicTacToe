@@ -9,10 +9,11 @@ using namespace std;
 class Node
 {
 public:
-    Node(int i);
+    Node();
+
+    static int counter; //writes id
 
     int id;
-
     vector<Edge*> childs;
     vector<Edge*> parents;
 };
