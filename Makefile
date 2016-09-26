@@ -1,4 +1,6 @@
 all:
-	g++ main.cpp
-	g++ node.cpp
-	g++ edge.cpp
+	g++ -std=c++14 \
+		edge.cpp \
+		Main.cpp \
+		node.cpp \
+		tictactoe.cpp \
