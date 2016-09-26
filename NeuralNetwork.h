@@ -8,10 +8,17 @@
 #ifndef NEURALNETWORK_H_
 #define NEURALNETWORK_H_
 
+#include <vector>;
+
+using namespace std;
+
 class NeuralNetwork : public Graph {
 public:
 	NeuralNetwork();
 	virtual ~NeuralNetwork();
+
+	void feedForward(vector<double> input);
+	void backProp(vector<double> correctOutput);
 };
 
 #endif /* NEURALNETWORK_H_ */
