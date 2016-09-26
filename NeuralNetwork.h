@@ -9,6 +9,7 @@
 #define NEURALNETWORK_H_
 
 #include <vector>;
+#include "graph.h"
 
 using namespace std;
 

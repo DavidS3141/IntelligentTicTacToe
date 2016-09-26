@@ -7,6 +7,8 @@
 
 #include "Neuron.h"
 
+#include <cmath>
+
 Neuron::Neuron() {
 	// TODO Auto-generated constructor stub
 
@@ -34,4 +36,12 @@ double Neuron::getNetInput() {
 		inp.push_back(input->getSignal());
 	}
 	return sum(inp);
+}
+
+double Neuron::sigmoid(double x) {
+	return x/(1.+std::abs(x));
+}
+
+double Neuron::sigmoidPrime(double x) {
+	return std::pow(1.+std::abs(x),-2);
 }

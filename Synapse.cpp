@@ -7,6 +7,9 @@
 
 #include "Synapse.h"
 
+#include "node.h"
+#include "Neuron.h"
+
 Synapse::Synapse() {
 	// TODO Auto-generated constructor stub
 
@@ -16,3 +19,6 @@ Synapse::~Synapse() {
 	// TODO Auto-generated destructor stub
 }
 
+double Synapse::getSignal() {
+	return weight*((Neuron*) in)->activity;
+}

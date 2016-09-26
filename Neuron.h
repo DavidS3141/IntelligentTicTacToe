@@ -18,11 +18,14 @@ public:
 	virtual ~Neuron();
 
 	double sum(vector<double> x) const;
-	double sigmoid(double x) const;
-	double sigmoidPrime(double x) const;
 
 	void feedForward();
 	double getNetInput();
+
+	static double sigmoid(double x);
+	static double sigmoidPrime(double x);
+
+	double activity;
 };
 
 #endif /* NEURON_H_ */

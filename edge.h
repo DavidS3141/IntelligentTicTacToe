@@ -1,12 +1,15 @@
 #ifndef EDGE_H
 #define EDGE_H
 
-#include "node.h"
+class Node;
 
 class Edge
 {
 public:
     Edge();
+    Edge(int i);
+
+    int id;
 
     Node* in;
     Node* out;

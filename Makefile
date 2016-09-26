@@ -1,2 +1,2 @@
 all:
-	g++ edge.cpp Main.cpp NeuralNetwork.cpp Neuron.cpp node.cpp Synapse.cpp
+	g++ edge.cpp Main.cpp NeuralNetwork.cpp graph.cpp Neuron.cpp node.cpp Synapse.cpp
