@@ -12,29 +12,25 @@
 #include <vector>
 
 using namespace std;
-class Neuron: public Node {
+class Neuron : public Node {
 public:
-	Neuron();
-	virtual ~Neuron();
+  Neuron();
+  virtual ~Neuron();
 
-	static double sum(vector<double> x);
+  static double sum(vector<double> x);
 
-	void feedForward();
-	double getNetInput();
+  void feedForward();
+  double getNetInput();
 
-	static double sigmoid(double x);
-	static double sigmoidPrime(double x);
+  static double sigmoid(double x);
+  static double sigmoidPrime(double x);
 
-	double getActivity() const {
-		return activity;
-	}
+  double getActivity() const { return activity; }
 
-	void setActivity(double activity) {
-		this->activity = activity;
-	}
+  void setActivity(double activity) { this->activity = activity; }
 
-	double activity;
-	double delta;
+  double activity;
+  double delta;
 };
 
 #endif /* NEURON_H_ */

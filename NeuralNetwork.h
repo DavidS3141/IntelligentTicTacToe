@@ -24,7 +24,7 @@ public:
 	void feedForward(vector<double> input);
 	void backProp(vector<double> correctOutput, bool correct);
 
-	void getMove(Board board, int& row, int& column);
+	void getMove(Board board, short& row, short& column);
 
 	vector<Neuron*> inputs;
 	vector<Neuron*> hidden;
