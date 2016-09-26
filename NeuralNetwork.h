@@ -10,6 +10,7 @@
 
 #include <vector>
 #include "graph.h"
+#include "constants.h"
 
 class Neuron;
 class Synapse;
@@ -21,7 +22,9 @@ public:
 	virtual ~NeuralNetwork();
 
 	void feedForward(vector<double> input);
-	void backProp(vector<double> correctOutput);
+	void backProp(vector<double> correctOutput, bool correct);
+
+	void getMove(Board board, int& row, int& column);
 
 	vector<Neuron*> inputs;
 	vector<Neuron*> hidden;

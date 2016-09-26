@@ -50,13 +50,18 @@ void NeuralNetwork::feedForward(vector<double> inp) {
 	}*/
 }
 
-void NeuralNetwork::backProp(vector<double> correctOutput) {
+void NeuralNetwork::backProp(vector<double> correctOutput, bool correct) {
 	for(int neuronIdx = outputs.size()-1; neuronIdx >= 0; neuronIdx--) {
 		//double* deltas = new double[neurons.size()];
 		//if(neuronIdx >= outputNeurons) {
-		outputs[neuronIdx]->delta = Neuron::sigmoidPrime(outputs[neuronIdx]->getNetInput()) *
-				(correctOutput[neuronIdx] - outputs[neuronIdx]->getActivity());
-
+		if(correct) {
+			outputs[neuronIdx]->delta = Neuron::sigmoidPrime(outputs[neuronIdx]->getNetInput()) *
+					(correctOutput[neuronIdx] - outputs[neuronIdx]->getActivity());
+		}
+		else {
+			outputs[neuronIdx]->delta = Neuron::sigmoidPrime(outputs[neuronIdx]->getNetInput()) *
+					(abs(correctOutput[neuronIdx] - outputs[neuronIdx]->getActivity()) - .7);
+		}
 		//}
 	}
 	for(int neuronIdx = hidden.size()-1; neuronIdx >= 0; neuronIdx--) {
@@ -71,4 +76,8 @@ void NeuralNetwork::backProp(vector<double> correctOutput) {
 	for(Synapse* cur : synapses) {
 		cur->weight += /*cur->learningRate*/Synapse::learningRate * ((Neuron*)cur->in)->getActivity() * ((Neuron*)cur->out)->delta;
 	}
+}
+
+void NeuralNetwork::getMove(Board board, int& row, int& column) {
+
 }
