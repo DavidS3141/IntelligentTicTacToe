@@ -9,10 +9,9 @@
 
 #include "node.h"
 #include "Neuron.h"
+#include <cstdlib>
 
-Synapse::Synapse() {
-	// TODO Auto-generated constructor stub
-
+Synapse::Synapse(int id, Neuron* in, Neuron* out): Edge(id,in,out), weight(2.*((double)std::rand()/RAND_MAX)-1.) {
 }
 
 Synapse::~Synapse() {

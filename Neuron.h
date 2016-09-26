@@ -12,13 +12,14 @@
 
 class Neuron: public Node {
 public:
-	Neuron();
+	Neuron(int id);
 	virtual ~Neuron();
 
 	static double sigmoid(double x);
 	static double sigmoidPrime(double x);
 
 	double activity;
+	double delta;
 };
 
 #endif /* NEURON_H_ */

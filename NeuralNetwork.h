@@ -10,10 +10,19 @@
 
 #include "graph.h"
 
+class Neuron;
+class Synapse;
+
 class NeuralNetwork : public Graph {
 public:
-	NeuralNetwork();
+	NeuralNetwork(int inNodes, int outNodes, int hiddenNodes);
 	virtual ~NeuralNetwork();
+
+	vector<Neuron*> inputs;
+	vector<Neuron*> hidden;
+	vector<Neuron*> outputs;
+	vector<Synapse*> synapses;
+
 };
 
 #endif /* NEURALNETWORK_H_ */

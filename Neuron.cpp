@@ -9,7 +9,8 @@
 
 #include <cmath>
 
-Neuron::Neuron() {
+Neuron::Neuron(int id) :
+		Node(id) {
 	// TODO Auto-generated constructor stub
 
 }
@@ -19,9 +20,9 @@ Neuron::~Neuron() {
 }
 
 double Neuron::sigmoid(double x) {
-	return x/(1.+std::abs(x));
+	return x / (1. + std::abs(x));
 }
 
 double Neuron::sigmoidPrime(double x) {
-	return std::pow(1.+std::abs(x),-2);
+	return std::pow(1. + std::abs(x), -2);
 }

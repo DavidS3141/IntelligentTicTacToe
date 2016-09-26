@@ -10,9 +10,11 @@
 
 #include "edge.h"
 
+class Neuron;
+
 class Synapse: public Edge {
 public:
-	Synapse();
+	Synapse(int id, Neuron* in, Neuron* out);
 	virtual ~Synapse();
 
 	double weight;
