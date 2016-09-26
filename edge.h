@@ -6,10 +6,11 @@ class Node;
 class Edge
 {
 public:
-    Edge(int i, Node* in_, Node* out_);
+    Edge(Node* in_, Node* out_);
+
+    static int counter; //writes id
 
     int id;
-
     Node* in;
     Node* out;
 };

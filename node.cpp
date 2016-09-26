@@ -1,5 +1,8 @@
 #include "node.h"
 
-Node::Node(int i){
-	id = i;
+int Node::counter = 0;
+
+Node::Node(){
+    id = counter;
+    counter++;
 }
