@@ -14,7 +14,7 @@ class Neuron;
 
 class Synapse: public Edge {
 public:
-	Synapse(int id, Neuron* in, Neuron* out);
+	Synapse(Neuron* in, Neuron* out);
 	virtual ~Synapse();
 
 	double weight;

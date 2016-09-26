@@ -9,10 +9,7 @@
 
 #include <cmath>
 
-Neuron::Neuron(int id) :
-		Node(id) {
-	// TODO Auto-generated constructor stub
-
+Neuron::Neuron(){
 }
 
 Neuron::~Neuron() {

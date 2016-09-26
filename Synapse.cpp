@@ -11,7 +11,7 @@
 #include "Neuron.h"
 #include <cstdlib>
 
-Synapse::Synapse(int id, Neuron* in, Neuron* out): Edge(id,in,out), weight(2.*((double)std::rand()/RAND_MAX)-1.) {
+Synapse::Synapse(Neuron* in, Neuron* out): Edge(in,out), weight(2.*((double)std::rand()/RAND_MAX)-1.) {
 }
 
 Synapse::~Synapse() {

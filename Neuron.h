@@ -12,7 +12,7 @@
 
 class Neuron: public Node {
 public:
-	Neuron(int id);
+	Neuron();
 	virtual ~Neuron();
 
 	static double sigmoid(double x);
