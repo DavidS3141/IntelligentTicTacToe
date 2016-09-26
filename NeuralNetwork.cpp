@@ -40,7 +40,7 @@ NeuralNetwork::NeuralNetwork(int inNodes, int outNodes, int hiddenNodes){
 		}
 }
 
-NeuralNetwork::~NeuronalNetwork() {
+NeuralNetwork::~NeuralNetwork() {
 
 }
 
@@ -63,21 +63,21 @@ void NeuralNetwork::backProp(vector<double> correctOutput) {
 	for(int neuronIdx = outputs.size()-1; neuronIdx >= 0; neuronIdx--) {
 		//double* deltas = new double[neurons.size()];
 		//if(neuronIdx >= outputNeurons) {
-		outputs[neuronIdx]->delta = sigmoidPrime(outputs[neuronIdx]->getNetInput()) *
+		outputs[neuronIdx]->delta = Neuron::sigmoidPrime(outputs[neuronIdx]->getNetInput()) *
 				(correctOutput[neuronIdx] - outputs[neuronIdx]->getActivity());
 
 		//}
 	}
 	for(int neuronIdx = hidden.size()-1; neuronIdx >= 0; neuronIdx--) {
 		double tempSum = 0;
-		for(Synapse* curOut : hidden[neuronIdx]->childs) {
-			tempSum += curOut->weight * curOut->out->delta;
+		for(Edge* curOut : hidden[neuronIdx]->childs) {
+			tempSum += ((Synapse*)curOut)->weight * ((Neuron*)curOut->out)->delta;
 		}
-		hidden[neuronIdx]->delta = sigmoidPrime(hidden[neuronIdx]->getNetInput()) *
+		hidden[neuronIdx]->delta = Neuron::sigmoidPrime(hidden[neuronIdx]->getNetInput()) *
 				tempSum;
 		//}
 	}
 	for(Synapse* cur : synapses) {
-		cur->weight += cur->learningRate * cur->in->getActivity() * cur->out->delta;
+		cur->weight += /*cur->learningRate*/Synapse::learningRate * ((Neuron*)cur->in)->getActivity() * ((Neuron*)cur->out)->delta;
 	}
 }

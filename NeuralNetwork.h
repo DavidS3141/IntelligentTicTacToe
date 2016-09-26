@@ -8,7 +8,7 @@
 #ifndef NEURALNETWORK_H_
 #define NEURALNETWORK_H_
 
-#include <vector>;
+#include <vector>
 #include "graph.h"
 
 class Neuron;

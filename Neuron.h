@@ -17,7 +17,7 @@ public:
 	Neuron(int id);
 	virtual ~Neuron();
 
-	double sum(vector<double> x) const;
+	static double sum(vector<double> x);
 
 	void feedForward();
 	double getNetInput();
