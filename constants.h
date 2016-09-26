@@ -39,7 +39,10 @@ const char printSymbol(int i) {
 
 void printMove(Board &b, Move &m) {
 	Board bEnd = b;
-	bEnd[std::get<0>(m)][std::get<1>(m)] = std::get<2>(m);
+	if (bEnd[std::get<0>(m)][std::get<1>(m)] != 0)
+		bEnd[std::get<0>(m)][std::get<1>(m)] = -1;
+	else
+		bEnd[std::get<0>(m)][std::get<1>(m)] = std::get<2>(m);
 	cout << printSymbol(b[0][0]) << printSymbol(b[0][1]) << printSymbol(b[0][2])
 			<< "    " << printSymbol(bEnd[0][0]) << printSymbol(bEnd[0][1])
 			<< printSymbol(bEnd[0][2]) << endl;
