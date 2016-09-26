@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "NeuralNetwork.h"
+#include "runner.h"
 
 using namespace std;
 
@@ -11,7 +12,6 @@ int main() {
 		cin >> numSims;
 		for(int i=0;i<numSims;++i){
 			Runner run(nn);
-			run.runSimulation();
 			vector<State> goodies=run.getGoodStates();
 			for(auto state : goodies){
 				nn->feedForward(getNodeBoard(state.first));
