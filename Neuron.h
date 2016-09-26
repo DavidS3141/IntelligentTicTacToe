@@ -14,7 +14,7 @@
 using namespace std;
 class Neuron: public Node {
 public:
-	Neuron(int id);
+	Neuron();
 	virtual ~Neuron();
 
 	static double sum(vector<double> x);

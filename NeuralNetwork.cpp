@@ -11,33 +11,24 @@
 
 NeuralNetwork::NeuralNetwork(int inNodes, int outNodes, int hiddenNodes){
 	for(int i=0;i<inNodes;++i)
-		inputs.push_back(new Neuron(i));
+		inputs.push_back(new Neuron());
 	for(int i=0;i<hiddenNodes;++i)
-		hidden.push_back(new Neuron(i+inNodes));
+		hidden.push_back(new Neuron());
 	for(int i=0;i<outNodes;++i)
-		outputs.push_back(new Neuron(i+inNodes+hiddenNodes));
+		outputs.push_back(new Neuron());
 
-	int counter=0;
 	for(int i=0;i<inNodes;++i)
-		for(int j=0;j<hiddenNodes;++j){
-			synapses.push_back(new Synapse(counter,inputs[i],hidden[j]));
-			++counter;
-		}
+		for(int j=0;j<hiddenNodes;++j)
+			synapses.push_back(new Synapse(inputs[i],hidden[j]));
 	for(int i=0;i<inNodes;++i)
-		for(int j=0;j<outNodes;++j){
-			synapses.push_back(new Synapse(counter,inputs[i],outputs[j]));
-			++counter;
-		}
+		for(int j=0;j<outNodes;++j)
+			synapses.push_back(new Synapse(inputs[i],outputs[j]));
 	for(int i=0;i<hiddenNodes;++i)
-		for(int j=0;j<outNodes;++j){
-			synapses.push_back(new Synapse(counter,hidden[i],outputs[j]));
-			++counter;
-		}
+		for(int j=0;j<outNodes;++j)
+			synapses.push_back(new Synapse(hidden[i],outputs[j]));
 	for(int i=0;i<hiddenNodes;++i)
-		for(int j=i+1;j<hiddenNodes;++j){
-			synapses.push_back(new Synapse(counter,hidden[i],hidden[j]));
-			++counter;
-		}
+		for(int j=i+1;j<hiddenNodes;++j)
+			synapses.push_back(new Synapse(hidden[i],hidden[j]));
 }
 
 NeuralNetwork::~NeuralNetwork() {
