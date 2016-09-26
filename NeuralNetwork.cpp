@@ -7,11 +7,37 @@
 
 #include "NeuralNetwork.h"
 #include "Neuron.h"
+#include "Synapse.h"
 
-#define nodes neurons;
+NeuralNetwork::NeuralNetwork(int inNodes, int outNodes, int hiddenNodes){
+	for(int i=0;i<inNodes;++i)
+		inputs.push_back(new Neuron(i));
+	for(int i=0;i<hiddenNodes;++i)
+		hidden.push_back(new Neuron(i+inNodes));
+	for(int i=0;i<outNodes;++i)
+		outputs.push_back(new Neuron(i+inNodes+hiddenNodes));
 
-NeuralNetwork::NeuronalNetwork() {
-	super();
+	int counter=0;
+	for(int i=0;i<inNodes;++i)
+		for(int j=0;j<hiddenNodes;++j){
+			synapses.push_back(new Synapse(counter,inputs[i],hidden[j]));
+			++counter;
+		}
+	for(int i=0;i<inNodes;++i)
+		for(int j=0;j<outNodes;++j){
+			synapses.push_back(new Synapse(counter,inputs[i],outputs[j]));
+			++counter;
+		}
+	for(int i=0;i<hiddenNodes;++i)
+		for(int j=0;j<outNodes;++j){
+			synapses.push_back(new Synapse(counter,hidden[i],outputs[j]));
+			++counter;
+		}
+	for(int i=0;i<hiddenNodes;++i)
+		for(int j=i+1;j<hiddenNodes;++j){
+			synapses.push_back(new Synapse(counter,hidden[i],hidden[j]));
+			++counter;
+		}
 }
 
 NeuralNetwork::~NeuronalNetwork() {
@@ -51,7 +77,7 @@ void NeuralNetwork::backProp(vector<double> correctOutput) {
 				tempSum;
 		//}
 	}
-	for(Synapse* cur : edges) {
+	for(Synapse* cur : synapses) {
 		cur->weight += cur->learningRate * cur->in->getActivity() * cur->out->delta;
 	}
 }

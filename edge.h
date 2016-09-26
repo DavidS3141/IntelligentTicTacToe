@@ -6,8 +6,7 @@ class Node;
 class Edge
 {
 public:
-    Edge();
-    Edge(int i);
+    Edge(int i, Node* in_, Node* out_);
 
     int id;
 

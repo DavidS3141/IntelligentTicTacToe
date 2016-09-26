@@ -11,15 +11,23 @@
 #include <vector>;
 #include "graph.h"
 
-using namespace std;
+class Neuron;
+class Synapse;
 
+using namespace std;
 class NeuralNetwork : public Graph {
 public:
-	NeuralNetwork();
+	NeuralNetwork(int inNodes, int outNodes, int hiddenNodes);
 	virtual ~NeuralNetwork();
 
 	void feedForward(vector<double> input);
 	void backProp(vector<double> correctOutput);
+
+	vector<Neuron*> inputs;
+	vector<Neuron*> hidden;
+	vector<Neuron*> outputs;
+	vector<Synapse*> synapses;
+
 };
 
 #endif /* NEURALNETWORK_H_ */

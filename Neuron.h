@@ -14,7 +14,7 @@
 using namespace std;
 class Neuron: public Node {
 public:
-	Neuron();
+	Neuron(int id);
 	virtual ~Neuron();
 
 	double sum(vector<double> x) const;
@@ -34,6 +34,7 @@ public:
 	}
 
 	double activity;
+	double delta;
 };
 
 #endif /* NEURON_H_ */
