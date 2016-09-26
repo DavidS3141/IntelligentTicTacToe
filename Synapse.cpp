@@ -7,6 +7,9 @@
 
 #include "Synapse.h"
 
+#include "node.h"
+#include "Neuron.h"
+
 Synapse::Synapse() {
 	// TODO Auto-generated constructor stub
 
@@ -17,5 +20,5 @@ Synapse::~Synapse() {
 }
 
 double Synapse::getSignal() {
-	return weight*dynamic_cast<Neuron*>(this->in)->activity
+	return weight*((Neuron*) in)->activity;
 }

@@ -8,6 +8,8 @@
 #ifndef NEURALNETWORK_H_
 #define NEURALNETWORK_H_
 
+#include "graph.h"
+
 class NeuralNetwork : public Graph {
 public:
 	NeuralNetwork();
