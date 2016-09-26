@@ -7,8 +7,8 @@ using std::vector;
 using namespace std;
 
 typedef vector<vector<short>> Board;
-typedef tuple<short, short, short> Move;
-typedef pair<Board, Move> State;
+typedef std::tuple<short, short, short> Move;
+typedef std::pair<Board, Move> State;
 const short cross = 1;
 const short circle = 2;
 
@@ -47,4 +47,4 @@ void printMove(Board &b, Move &m){
 
 };
 
-#endif CONSTANTS_H
+#endif //CONSTANTS_H

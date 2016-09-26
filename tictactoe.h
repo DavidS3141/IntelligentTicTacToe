@@ -2,13 +2,16 @@
 #include <iostream>
 
 class TicTacToe {
-  TicTacToe() : board(constants::empytBoard){};
+public:
+	TicTacToe() :
+			board(constants::empytBoard) {
+	}
 
-  int makeMove(int row, int column, int player);
-  Board getBoard(int player);
-  int gameEnded();
-  bool boardFull();
+	int makeMove(int row, int column, int player);
+	Board getBoard(int player);
+	int gameEnded();
+	bool boardFull();
 
 private:
-  Board board;
+	Board board;
 };
