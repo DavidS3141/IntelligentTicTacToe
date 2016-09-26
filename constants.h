@@ -1,9 +1,15 @@
+#ifndef CONSTANTS_H
+#define CONSTANTS_H
+
 #include <vector>
+
 using std::vector;
 
 typedef vector<vector<short>> Board;
-const char cross = 1;
-const char circle = 2;
+typedef tuple<short, short, short> Move;
+typedef pair<Board, Move> State;
+const short cross = 1;
+const short circle = 2;
 
 namespace constants {
 
@@ -16,3 +22,5 @@ const std::vector<std::vector<std::vector<short>>> winningPositions = {
 
 const Board empytBoard = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
 };
+
+#endif CONSTANTS_H

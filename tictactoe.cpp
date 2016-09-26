@@ -1,7 +1,21 @@
 #include "tictactoe.h"
 #include <stdexcept>
 
-Board TicTacToe::getBoard() { return board; }
+Board TicTacToe::getBoard(int player) {
+  if (player == circle) {
+    Board tmp = board;
+    for (vector<double> &row : board) {
+      for (double &field : row) {
+        if (field == circle)
+          field = cross;
+        else if (field == cross)
+          field = circle;
+      }
+    }
+    return tmp;
+  }
+  return board;
+}
 
 int TicTacToe::makeMove(int row, int column, int player) {
   if (!(player == cross || player == circle))
