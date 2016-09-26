@@ -1,1 +1,2 @@
-g++ main.cpp
+all:
+	g++ main.cpp
