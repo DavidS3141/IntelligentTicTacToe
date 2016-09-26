@@ -23,4 +23,20 @@ const std::vector<std::vector<std::vector<short>>> winningPositions = {
 const Board empytBoard = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
 };
 
-#endif //CONSTANTS_H
+vector<double> getNodeBoard(Board board) {
+  vector<double> ret = vector<double>(27, 0.0);
+  for (unsigned i = 0; i < 3; i++) {
+    for (unsigned j = 0; j < 3; j++) {
+      ret[i * 9 + j * 3 + board[i][j]] = 1.0;
+    }
+  }
+  return ret;
+}
+
+vector<double> getNodeMove(Move move) {
+  vector<double> ret = vector<double>(9, 0);
+  ret[std::get<0>(move) * 3 + std::get<1>(move)] = 1.0;
+  return ret;
+}
+
+#endif // CONSTANTS_H
