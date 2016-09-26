@@ -73,4 +73,25 @@ vector<double> getNodeMove(Move move) {
 	return ret;
 }
 
+Board getBoardNode(vector<double> nodes) {
+	Board ret = constants::empytBoard;
+	for (unsigned i = 0; i < 3; i++) {
+		for (unsigned j = 0; j < 3; j++) {
+			ret[i][j] = static_cast<short>(nodes[i * 9 + j * 3 + 1]
+					+ nodes[i * 9 + j * 3 + 2]);
+		}
+	}
+	return ret;
+}
+
+Move getMoveNode(vector<double> nodes) {
+	Move ret = std::make_tuple(0, 0, 0);
+	for (int i = 0; i < 9; i++) {
+		if (nodes[i] == 1.0) {
+			std::get<1>(ret) = i % 3;
+			std::get<0>(ret) = i / 3;
+		}
+	}
+	return ret;
+}
 #endif // CONSTANTS_H
