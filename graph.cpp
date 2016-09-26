@@ -10,10 +10,10 @@ Graph::Graph()
 Graph::Graph(int n, vector<pair<int, int> > edgesVec){
     //init edges and nodes
     for (int i=0; i<n; i++){
-        nodes.push_back(new Node(i));
+        nodes.push_back(new Node);
     }
     for (int i=0; i<edgesVec.size(); i++){
-        edges.push_back(new Edge(i, nodes[edgesVec[i].first], nodes[edgesVec[i].second] ) );
+        edges.push_back(new Edge(nodes[edgesVec[i].first], nodes[edgesVec[i].second] ) );
     }
 
     //child and partent information
