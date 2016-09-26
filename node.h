@@ -1,16 +1,17 @@
 #ifndef NODE_H
 #define NODE_H
 
-#include <Vector>
 using namespace std;
+
+#include <vector>
 
 class Node
 {
 public:
     Node();
 
-    Vector childs;
-    Vector parents;
+    vector<Edge*> childs;
+    vector<Edge*> parents;
 };
 
 #endif // NODE_H
