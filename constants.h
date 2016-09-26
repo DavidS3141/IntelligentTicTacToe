@@ -23,28 +23,30 @@ const std::vector<std::vector<std::vector<short>>> winningPositions = {
 
 const Board empytBoard = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
 
-const string printSymbol(int i){
-    switch (i){
-        case 0:
-            return " ";
-        case 1:
-            return "x";
-        case 2:
-            return "o";
-    }
+const string printSymbol(int i) {
+  switch (i) {
+  case 0:
+    return " ";
+  case 1:
+    return "x";
+  case 2:
+    return "o";
+  }
 }
 
-void printMove(Board &b, Move &m){
-    Board bEnd = b;
-    bEnd[std::get<0>(m)][std::get<1>(m)]=std::get<2>(m);
-    cout << printSymbol(b[0][0]) << printSymbol(b[0][1]) << printSymbol(b[0][2]) << "    "
-        << printSymbol(bEnd[0][0]) << printSymbol(bEnd[0][1]) << printSymbol(bEnd[0][2]) << endl;
-    cout << printSymbol(b[1][0]) << printSymbol(b[1][1]) << printSymbol(b[1][2]) << " -> "
-        << printSymbol(bEnd[1][0]) << printSymbol(bEnd[1][1]) << printSymbol(bEnd[1][2]) << endl;
-    cout << printSymbol(b[2][0]) << printSymbol(b[2][1]) << printSymbol(b[2][2]) << " -> "
-        << printSymbol(bEnd[2][0]) << printSymbol(bEnd[2][1]) << printSymbol(bEnd[2][2]) << endl;
+void printMove(Board &b, Move &m) {
+  Board bEnd = b;
+  bEnd[std::get<0>(m)][std::get<1>(m)] = std::get<2>(m);
+  cout << printSymbol(b[0][0]) << printSymbol(b[0][1]) << printSymbol(b[0][2])
+       << "    " << printSymbol(bEnd[0][0]) << printSymbol(bEnd[0][1])
+       << printSymbol(bEnd[0][2]) << endl;
+  cout << printSymbol(b[1][0]) << printSymbol(b[1][1]) << printSymbol(b[1][2])
+       << " -> " << printSymbol(bEnd[1][0]) << printSymbol(bEnd[1][1])
+       << printSymbol(bEnd[1][2]) << endl;
+  cout << printSymbol(b[2][0]) << printSymbol(b[2][1]) << printSymbol(b[2][2])
+       << " -> " << printSymbol(bEnd[2][0]) << printSymbol(bEnd[2][1])
+       << printSymbol(bEnd[2][2]) << endl;
 }
-
 };
 
 vector<double> getNodeBoard(Board board) {
@@ -63,4 +65,23 @@ vector<double> getNodeMove(Move move) {
   return ret;
 }
 
+Board getBoardNode(vector<double> nodes) {
+  Board ret = constants::empytBoard;
+  for (unsigned i = 0; i < 3; i++) {
+    for (unsigned j = 0; j < 3; j++) {
+      ret[i][j] = static_cast<short>(nodes[i * 9 + j * 3 + 1] +
+                                     nodes[i * 9 + j * 3 + 2]);
+    }
+  }
+}
+
+Move getMoveNode(vector<double> nodes) {
+  Move ret == std::make_tuple(0, 0, 0);
+  for (int i = 0; i < 9; i++) {
+    if (nodes[i] == 1.0) {
+      std::get<1>(ret) = i % 3;
+      std::get<0>(ret) = i / 3;
+    }
+  }
+}
 #endif // CONSTANTS_H
