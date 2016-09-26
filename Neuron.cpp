@@ -6,7 +6,7 @@
  */
 
 #include "Neuron.h"
-
+#include "Synapse.h"
 #include <cmath>
 
 Neuron::Neuron(int id) :
@@ -17,6 +17,26 @@ Neuron::Neuron(int id) :
 
 Neuron::~Neuron() {
 	// TODO Auto-generated destructor stub
+}
+
+double Neuron::sum(vector<double> x) {
+	double sum = 0;
+	for(double cur : x) {
+		sum += cur;
+	}
+}
+
+void Neuron::feedForward() {
+	double propagation = this->getNetInput();
+	this->activity = sigmoid(propagation);
+}
+
+double Neuron::getNetInput() {
+	vector<double> inp;
+	for(Edge* input : parents) {
+		inp.push_back(((Synapse*)input)->getSignal());
+	}
+	return sum(inp);
 }
 
 double Neuron::sigmoid(double x) {

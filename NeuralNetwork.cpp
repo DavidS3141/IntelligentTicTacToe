@@ -6,7 +6,6 @@
  */
 
 #include "NeuralNetwork.h"
-
 #include "Neuron.h"
 #include "Synapse.h"
 
@@ -42,6 +41,43 @@ NeuralNetwork::NeuralNetwork(int inNodes, int outNodes, int hiddenNodes){
 }
 
 NeuralNetwork::~NeuralNetwork() {
-	// TODO Auto-generated destructor stub
+
 }
 
+void NeuralNetwork::feedForward(vector<double> inp) {
+	for(int neuronIdx=0; neuronIdx < inp.size(); neuronIdx++) {
+		inputs[neuronIdx]->setActivity(inp[neuronIdx]);
+	}
+	for(int neuronIdx=0; neuronIdx < hidden.size(); neuronIdx++) {
+		hidden[neuronIdx]->feedForward();
+	}
+	for(int neuronIdx=0; neuronIdx < outputs.size(); neuronIdx++) {
+		outputs[neuronIdx]->feedForward();
+	}
+	/*for (int neuronId=input.size(); neuronId < neurons.size(); neuronId++) {
+		((Neuron*)neurons[neuronId])->feedForward();
+	}*/
+}
+
+void NeuralNetwork::backProp(vector<double> correctOutput) {
+	for(int neuronIdx = outputs.size()-1; neuronIdx >= 0; neuronIdx--) {
+		//double* deltas = new double[neurons.size()];
+		//if(neuronIdx >= outputNeurons) {
+		outputs[neuronIdx]->delta = Neuron::sigmoidPrime(outputs[neuronIdx]->getNetInput()) *
+				(correctOutput[neuronIdx] - outputs[neuronIdx]->getActivity());
+
+		//}
+	}
+	for(int neuronIdx = hidden.size()-1; neuronIdx >= 0; neuronIdx--) {
+		double tempSum = 0;
+		for(Edge* curOut : hidden[neuronIdx]->childs) {
+			tempSum += ((Synapse*)curOut)->weight * ((Neuron*)curOut->out)->delta;
+		}
+		hidden[neuronIdx]->delta = Neuron::sigmoidPrime(hidden[neuronIdx]->getNetInput()) *
+				tempSum;
+		//}
+	}
+	for(Synapse* cur : synapses) {
+		cur->weight += /*cur->learningRate*/Synapse::learningRate * ((Neuron*)cur->in)->getActivity() * ((Neuron*)cur->out)->delta;
+	}
+}
