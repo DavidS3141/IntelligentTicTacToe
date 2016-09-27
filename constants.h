@@ -3,6 +3,8 @@
 
 #include <vector>
 #include <iostream>
+#include <tuple>
+#include <utility>
 
 using std::vector;
 using namespace std;
