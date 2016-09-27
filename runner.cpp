@@ -6,15 +6,16 @@ Runner::Runner(NeuralNetwork *n) :
 }
 
 void Runner::dump() const {
+	cout << "Last good move:" << endl;
+	vector<State> goodies = getGoodStates();
+	constants::printMove(goodies[goodies.size() - 1].first,
+			goodies[goodies.size() - 1].second);
+
 	cout << "Last bad move:" << endl;
 	vector<State> baddies = getBadStates();
 	constants::printMove(baddies[baddies.size() - 1].first,
 			baddies[baddies.size() - 1].second);
 
-	cout << "Last good move:" << endl;
-	vector<State> goodies = getGoodStates();
-	constants::printMove(goodies[goodies.size() - 1].first,
-			goodies[goodies.size() - 1].second);
 	cout << endl;
 }
 

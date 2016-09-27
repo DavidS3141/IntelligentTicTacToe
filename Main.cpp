@@ -10,7 +10,7 @@ using namespace std;
 int main() {
 	int randomMode;
 	cout << "Interesting seeds:" << endl;
-	cout << "1474978835" << endl;
+	cout << "1474978835" << endl << "1474979433" << endl;
 	cout << "Type '-1' for random mode or type seed for random engine:" << endl;
 	cin >> randomMode;
 	if (randomMode < 0) {
@@ -28,7 +28,7 @@ int main() {
 		cout << "|                    |" << endl << " ";
 		int progressCounter = 0;
 		for (int i = 0; i < numSims; ++i) {
-			while ((i+1) * 20 > numSims * progressCounter) {
+			while ((i + 1) * 20 > numSims * progressCounter) {
 				cout << "#" << flush;
 				++progressCounter;
 			}
@@ -46,6 +46,14 @@ int main() {
 			if (i == numSims - 1) {
 				cout << endl;
 				run.dump();
+				vector<double> out = nn->getOutput();
+				for (int i = 0; i < 3; ++i) {
+					for (int j = 0; j < 3; ++j) {
+						int idx = i * 3 + j;
+						cout << out[idx] << "\t";
+					}
+					cout << endl;
+				}
 			}
 		}
 	}
