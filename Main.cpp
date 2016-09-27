@@ -2,6 +2,7 @@
 
 #include "NeuralNetwork.h"
 #include "runner.h"
+#include "Synapse.h"
 #include <cstdlib>
 #include <ctime>
 
@@ -9,8 +10,6 @@ using namespace std;
 
 int main() {
 	int randomMode;
-	cout << "Interesting seeds:" << endl;
-	cout << "1474978835" << endl << "1474979433" << endl;
 	cout << "Type '-1' for random mode or type seed for random engine:" << endl;
 	cin >> randomMode;
 	if (randomMode < 0) {
@@ -21,6 +20,9 @@ int main() {
 		srand(randomMode);
 	NeuralNetwork* nn = new NeuralNetwork(27, 9, 150);
 	while (true) {
+		cout << "Learning Rate:" << endl;
+		cin >> Synapse::learningRate;
+		cout << "Number of Games:" << endl;
 		int numSims;
 		cin >> numSims;
 		if (numSims <= 0)
