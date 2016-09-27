@@ -34,11 +34,11 @@ int TicTacToe::makeMove(int row, int column, int player) {
 }
 
 int TicTacToe::gameEnded() {
-	int player;
 	for (auto final : constants::winningPositions)
-		if (board[final[0][0]][final[0][1]] == board[final[1][0]][final[1][1]]
-				&& board[final[1][0]][final[1][1]]
+		if ((board[final[0][0]][final[0][1]] == board[final[1][0]][final[1][1]])
+				&& (board[final[1][0]][final[1][1]]
 						== board[final[2][0]][final[2][1]])
+				&& board[final[1][0]][final[1][1]] != 0)
 			return board[final[0][0]][final[0][1]];
 		else if (boardFull())
 			return -1;

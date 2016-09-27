@@ -19,7 +19,7 @@ int main() {
 		srand(seed);
 	} else
 		srand(randomMode);
-	NeuralNetwork* nn = new NeuralNetwork(27, 9, 100);
+	NeuralNetwork* nn = new NeuralNetwork(27, 9, 150);
 	while (true) {
 		int numSims;
 		cin >> numSims;
