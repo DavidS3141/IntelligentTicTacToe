@@ -12,7 +12,7 @@ void Runner::dump() const {
 			baddies[baddies.size() - 1].second);
 
 	cout << "Last good move:" << endl;
-	vector<State> goodies = getBadStates();
+	vector<State> goodies = getGoodStates();
 	constants::printMove(goodies[goodies.size() - 1].first,
 			goodies[goodies.size() - 1].second);
 	cout << endl;

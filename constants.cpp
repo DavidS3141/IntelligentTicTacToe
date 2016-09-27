@@ -53,6 +53,7 @@ vector<double> getNodeMove(Move move) {
 	return ret;
 }
 
+/*	not needed
 Board getBoardNode(vector<double> nodes) {
 	Board ret = constants::empytBoard;
 	for (unsigned i = 0; i < 3; i++) {
@@ -63,11 +64,14 @@ Board getBoardNode(vector<double> nodes) {
 	}
 	return ret;
 }
+*/
 
 Move getMoveNode(vector<double> nodes) {
 	Move ret = std::make_tuple(0, 0, 0);
-	for (int i = 0; i < 9; i++) {
-		if (nodes[i] == 1.0) {
+	double max = -1.;
+	for (int i = 0; i < 9; ++i) {
+		if (nodes[i] > max) {
+			max = nodes[i];
 			std::get<1>(ret) = i % 3;
 			std::get<0>(ret) = i / 3;
 		}

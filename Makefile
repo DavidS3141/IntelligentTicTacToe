@@ -1,5 +1,5 @@
 all:
-	g++ -std=c++14 \
+	g++ -std=c++14 -g \
 		constants.cpp \
 		edge.cpp \
 		graph.cpp \

@@ -10,9 +10,15 @@ int main() {
 	while (true) {
 		int numSims;
 		cin >> numSims;
-		if(numSims==0)
+		if(numSims<=0)
 			break;
+		cout << "|                    |" << endl << " ";
+		int progressCounter = 1;
 		for (int i = 0; i < numSims; ++i) {
+			while(i*20 >= (numSims-1)*progressCounter){
+				cout << "#" << flush;
+				++progressCounter;
+			}
 			Runner run(nn);
 			vector<State> goodies = run.getGoodStates();
 			for (auto state : goodies) {
@@ -24,8 +30,10 @@ int main() {
 				nn->feedForward(getNodeBoard(state.first));
 				nn->backProp(getNodeMove(state.second), false); //TODO check with Marvin if correct parameter
 			}
-			if(i==numSims-1)
+			if(i==numSims-1){
+				cout << endl;
 				run.dump();
+			}
 		}
 	}
 	return 0;
