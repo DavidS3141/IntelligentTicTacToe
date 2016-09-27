@@ -11,8 +11,10 @@ class Runner {
 public:
 	Runner(NeuralNetwork *);
 
-	vector<State> getBadStates();
-	vector<State> getGoodStates();
+	vector<State> getBadStates() const;
+	vector<State> getGoodStates() const;
+
+	void dump() const;
 
 private:
 	short endState;

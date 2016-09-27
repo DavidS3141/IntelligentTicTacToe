@@ -6,6 +6,9 @@
  */
 
 #include "NeuralNetwork.h"
+
+#include <cmath>
+
 #include "Neuron.h"
 #include "Synapse.h"
 
