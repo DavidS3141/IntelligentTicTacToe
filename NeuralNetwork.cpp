@@ -11,6 +11,7 @@
 
 #include "Neuron.h"
 #include "Synapse.h"
+#include "constants.h"
 
 NeuralNetwork::NeuralNetwork(int inNodes, int outNodes, int hiddenNodes) {
 	for (int i = 0; i < inNodes; ++i)
@@ -62,9 +63,8 @@ void NeuralNetwork::backProp(vector<double> correctOutput, bool correct) {
 		} else {
 			outputs[neuronIdx]->delta = Neuron::sigmoidPrime(
 					outputs[neuronIdx]->getNetInput())
-					* (std::abs(
-							correctOutput[neuronIdx]
-									- outputs[neuronIdx]->getActivity()) - .7);
+					* (correctOutput[neuronIdx]
+							- outputs[neuronIdx]->getActivity() - sgn(correctOutput[neuronIdx] - outputs[neuronIdx]->getActivity()));
 		}
 		//}
 	}

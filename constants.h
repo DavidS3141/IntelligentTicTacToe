@@ -28,6 +28,10 @@ struct Move {
 	}
 };
 
+template <typename T> int sgn(T val) {
+    return (T(0) < val) - (val < T(0));
+}
+
 namespace constants {
 
 const std::vector<std::vector<std::vector<int>>>winningPositions = {
