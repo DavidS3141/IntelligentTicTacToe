@@ -17,6 +17,8 @@ class Synapse;
 
 using namespace std;
 class NeuralNetwork : public Graph {
+private:
+	Neuron* bias;
 public:
 	NeuralNetwork(int inNodes, int outNodes, int hiddenNodes);
 	virtual ~NeuralNetwork();

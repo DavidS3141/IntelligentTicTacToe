@@ -13,7 +13,10 @@
 #include "Synapse.h"
 #include "constants.h"
 
-NeuralNetwork::NeuralNetwork(int inNodes, int outNodes, int hiddenNodes) {
+NeuralNetwork::NeuralNetwork(int inNodes, int outNodes, int hiddenNodes) :
+		bias(new Neuron()) {
+	bias->setActivity(1.0);
+
 	for (int i = 0; i < inNodes; ++i)
 		inputs.push_back(new Neuron());
 	for (int i = 0; i < hiddenNodes; ++i)
@@ -33,6 +36,10 @@ NeuralNetwork::NeuralNetwork(int inNodes, int outNodes, int hiddenNodes) {
 	for (int i = 0; i < hiddenNodes; ++i)
 		for (int j = i + 1; j < hiddenNodes; ++j)
 			synapses.push_back(new Synapse(hidden[i], hidden[j]));
+	for (int i = 0; i < hiddenNodes; ++i)
+		synapses.push_back(new Synapse(bias, hidden[i]));
+	for (int i = 0; i < outNodes; ++i)
+		synapses.push_back(new Synapse(bias, outputs[i]));
 }
 
 NeuralNetwork::~NeuralNetwork() {
@@ -61,10 +68,13 @@ void NeuralNetwork::backProp(vector<double> correctOutput, bool correct) {
 					* (correctOutput[neuronIdx]
 							- outputs[neuronIdx]->getActivity());
 		} else {
-			outputs[neuronIdx]->delta = Neuron::sigmoidPrime(
-					outputs[neuronIdx]->getNetInput())
-					* (correctOutput[neuronIdx]
-							- outputs[neuronIdx]->getActivity() - sgn(correctOutput[neuronIdx] - outputs[neuronIdx]->getActivity()));
+			outputs[neuronIdx]->delta =
+					Neuron::sigmoidPrime(outputs[neuronIdx]->getNetInput())
+							* (correctOutput[neuronIdx]
+									- outputs[neuronIdx]->getActivity()
+									- sgn(
+											correctOutput[neuronIdx]
+													- outputs[neuronIdx]->getActivity()));
 		}
 		//}
 	}
