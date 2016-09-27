@@ -22,10 +22,10 @@ const char constants::printSymbol(int i) {
 
 void constants::printMove(Board &b, Move &m) {
 	Board bEnd = b;
-	if (bEnd[std::get<0>(m)][std::get<1>(m)] != 0)
-		bEnd[std::get<0>(m)][std::get<1>(m)] = -1;
+	if (bEnd[m.row][m.column] != 0)
+		bEnd[m.row][m.column]  = -1;
 	else
-		bEnd[std::get<0>(m)][std::get<1>(m)] = std::get<2>(m);
+		bEnd[m.row][m.column]  = m.player;
 	cout << printSymbol(b[0][0]) << printSymbol(b[0][1]) << printSymbol(b[0][2])
 			<< "    " << printSymbol(bEnd[0][0]) << printSymbol(bEnd[0][1])
 			<< printSymbol(bEnd[0][2]) << endl;
@@ -49,7 +49,7 @@ vector<double> getNodeBoard(Board board) {
 
 vector<double> getNodeMove(Move move) {
 	vector<double> ret = vector<double>(9, 0);
-	ret[std::get<0>(move) * 3 + std::get<1>(move)] = 1.0;
+	ret[move.row * 3 + move.column] = 1.0;
 	return ret;
 }
 
@@ -65,11 +65,11 @@ Board getBoardNode(vector<double> nodes) {
 }
 
 Move getMoveNode(vector<double> nodes) {
-	Move ret = std::make_tuple(0, 0, 0);
+	Move ret(0, 0, 0);
 	for (int i = 0; i < 9; i++) {
 		if (nodes[i] == 1.0) {
-			std::get<1>(ret) = i % 3;
-			std::get<0>(ret) = i / 3;
+			ret.row = i / 3;
+			ret.column = i % 3;
 		}
 	}
 	return ret;

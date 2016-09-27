@@ -4,14 +4,24 @@
 #include <vector>
 #include <iostream>
 
+struct Move;
+
 using std::vector;
 using namespace std;
 
 typedef vector<vector<short>> Board;
-typedef std::tuple<short, short, short> Move;
+//typedef std::tuple<short, short, short> Move;
 typedef std::pair<Board, Move> State;
 const short cross = 1;
 const short circle = 2;
+
+struct Move {
+	short row, column;
+	short player;
+
+	Move() { }
+	Move(short row, short column, short player) : row(row), column(column), player(player) { }
+};
 
 namespace constants {
 
