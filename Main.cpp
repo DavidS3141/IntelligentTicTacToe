@@ -2,10 +2,13 @@
 
 #include "NeuralNetwork.h"
 #include "runner.h"
+#include <cstdlib>
+#include <time.h>
 
 using namespace std;
 
 int main() {
+	//srand (time(NULL));
 	NeuralNetwork* nn = new NeuralNetwork(27, 9, 100);
 	while (true) {
 		int numSims;

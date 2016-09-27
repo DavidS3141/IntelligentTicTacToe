@@ -76,5 +76,6 @@ Move getMoveNode(vector<double> nodes) {
 			std::get<0>(ret) = i / 3;
 		}
 	}
+	//std::cout << max << endl;
 	return ret;
 }

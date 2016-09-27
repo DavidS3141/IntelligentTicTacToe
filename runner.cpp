@@ -24,6 +24,7 @@ void Runner::runSimulation() {
 	short state = 0;
 	while (!state) {
 		move = network->getMove(game.getBoard(player));
+		//std::get<2>(move) = player; // whoopsie
 		moves.push_back(
 				std::make_tuple(std::get<0>(move), std::get<1>(move), player));
 		state = game.makeMove(std::get<0>(move), std::get<1>(move), player);

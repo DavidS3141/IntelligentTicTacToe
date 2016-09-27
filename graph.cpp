@@ -17,8 +17,8 @@ Graph::Graph(int n, vector<pair<int, int> > edgesVec){
     }
 
     //child and partent information
-    for (int i=0; i<edgesVec.size(); i++){
+    /*for (int i=0; i<edgesVec.size(); i++){
         nodes[edgesVec[i].first]->childs.push_back(edges[i]);
         nodes[edgesVec[i].second]->parents.push_back(edges[i]);
-    }
+    }*/
 }
