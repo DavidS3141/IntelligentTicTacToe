@@ -3,12 +3,18 @@
 #include "NeuralNetwork.h"
 #include "runner.h"
 #include <cstdlib>
-#include <time.h>
+#include <ctime>
 
 using namespace std;
 
 int main() {
-	//srand (time(NULL));
+	int randomMode;
+	cout << "Type '-1' for random mode or type seed for random engine:" << endl;
+	cin >> randomMode;
+	if(randomMode < 0)
+		srand (time(NULL));
+	else
+		srand(randomMode);
 	NeuralNetwork* nn = new NeuralNetwork(27, 9, 100);
 	while (true) {
 		int numSims;
