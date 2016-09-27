@@ -42,6 +42,47 @@ NeuralNetwork::NeuralNetwork(int inNodes, int outNodes, int hiddenNodes) :
 		synapses.push_back(new Synapse(bias, outputs[i]));
 }
 
+NeuralNetwork::NeuralNetwork(int inNodes, int outNodes, int layers,
+		int layerNodes) :
+		bias(new Neuron()) {
+	bias->setActivity(1.0);
+
+	std::vector<Neuron*> prevLayer;
+	std::vector<Neuron*> curLayer;
+
+	for (int i = 0; i < inNodes; ++i) {
+		inputs.push_back(new Neuron());
+		curLayer.push_back(inputs.back());
+	}
+
+	for (int l = 0; l < layers; ++l) {
+		prevLayer.clear();
+		prevLayer = curLayer;
+		curLayer.clear();
+
+		for (int i = 0; i < layerNodes; ++i) {
+			hidden.push_back(new Neuron());
+			curLayer.push_back(hidden.back());
+		}
+
+		for (int i = 0; i < prevLayer.size(); ++i)
+			for (int j = 0; j < layerNodes; ++j)
+				synapses.push_back(new Synapse(prevLayer[i], curLayer[j]));
+	}
+
+	for (int i = 0; i < outNodes; ++i)
+		outputs.push_back(new Neuron());
+
+	for (int i = 0; i < curLayer.size(); ++i)
+		for (int j = 0; j < outNodes; ++j)
+			synapses.push_back(new Synapse(curLayer[i], outputs[j]));
+
+	for (int i = 0; i < hidden.size(); ++i)
+		synapses.push_back(new Synapse(bias, hidden[i]));
+	for (int i = 0; i < outNodes; ++i)
+		synapses.push_back(new Synapse(bias, outputs[i]));
+}
+
 NeuralNetwork::~NeuralNetwork() {
 
 }
