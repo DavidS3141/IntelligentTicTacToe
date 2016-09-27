@@ -17,6 +17,8 @@ class Synapse;
 
 using namespace std;
 class NeuralNetwork : public Graph {
+private:
+	Neuron* bias;
 public:
 	NeuralNetwork(int inNodes, int outNodes, int hiddenNodes);
 	virtual ~NeuralNetwork();
@@ -24,7 +26,8 @@ public:
 	void feedForward(vector<double> input);
 	void backProp(vector<double> correctOutput, bool correct);
 
-	vector<double> getOutput(vector<double> input);
+	vector<double> getOutput() const;
+	vector<double> evalInput(vector<double> input);
 	Move getMove(Board board);
 
 	vector<Neuron*> inputs;

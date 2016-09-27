@@ -1,11 +1,10 @@
-#include "constants.h"
 #include <iostream>
+
+#include "constants.h"
 
 class TicTacToe {
 public:
-	TicTacToe() :
-			board(constants::empytBoard) {
-	}
+	TicTacToe();
 
 	int makeMove(int row, int column, int player);
 	Board getBoard(int player);
