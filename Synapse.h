@@ -18,7 +18,7 @@ public:
 	virtual ~Synapse();
 
 	double weight;
-	static const double learningRate;
+	static double learningRate;
 
 	double getSignal();
 };
