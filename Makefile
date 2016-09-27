@@ -1,5 +1,6 @@
 all:
 	g++ -std=c++14 \
+		constants.cpp \
 		edge.cpp \
 		graph.cpp \
 		Main.cpp \

@@ -11,7 +11,7 @@
 #include "Neuron.h"
 #include <cstdlib>
 
-double Synapse::learningRate = 0.5;
+const double Synapse::learningRate = 0.5;
 
 Synapse::Synapse(Neuron* in, Neuron* out): Edge(in,out), weight(2.*((double)std::rand()/RAND_MAX)-1.) {
 }

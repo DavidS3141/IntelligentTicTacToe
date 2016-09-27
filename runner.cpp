@@ -26,7 +26,7 @@ void Runner::runSimulation() {
 		move = network->getMove(game.getBoard(player));
 		moves.push_back(
 				std::make_tuple(std::get<0>(move), std::get<1>(move), player));
-		state = game.makeMove(row, column, player);
+		state = game.makeMove(std::get<0>(move), std::get<1>(move), player);
 		player = (player % 2) + 1;
 	}
 	endState = state;
