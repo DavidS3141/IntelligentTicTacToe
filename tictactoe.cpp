@@ -1,11 +1,17 @@
 #include "tictactoe.h"
+
 #include <stdexcept>
+#include "constants.h"
+
+TicTacToe::TicTacToe() :
+		board(constants::empytBoard) {
+}
 
 Board TicTacToe::getBoard(int player) {
 	if (player == circle) {
 		Board tmp = board;
-		for (vector<short> &row : board) {
-			for (short &field : row) {
+		for (vector<int> &row : tmp) {
+			for (int &field : row) {
 				if (field == circle)
 					field = cross;
 				else if (field == cross)
@@ -28,7 +34,7 @@ int TicTacToe::makeMove(int row, int column, int player) {
 }
 
 int TicTacToe::gameEnded() {
-	short player;
+	int player;
 	for (auto final : constants::winningPositions)
 		if (board[final[0][0]][final[0][1]] == board[final[1][0]][final[1][1]]
 				&& board[final[1][0]][final[1][1]]

@@ -9,22 +9,26 @@ using namespace std;
 
 int main() {
 	int randomMode;
+	cout << "Interesting seeds:" << endl;
+	cout << "1474978835" << endl;
 	cout << "Type '-1' for random mode or type seed for random engine:" << endl;
 	cin >> randomMode;
-	if(randomMode < 0)
-		srand (time(NULL));
-	else
+	if (randomMode < 0) {
+		unsigned seed = time(NULL);
+		cout << "Seed is:" << seed << endl;
+		srand(seed);
+	} else
 		srand(randomMode);
 	NeuralNetwork* nn = new NeuralNetwork(27, 9, 100);
 	while (true) {
 		int numSims;
 		cin >> numSims;
-		if(numSims<=0)
+		if (numSims <= 0)
 			break;
 		cout << "|                    |" << endl << " ";
-		int progressCounter = 1;
+		int progressCounter = 0;
 		for (int i = 0; i < numSims; ++i) {
-			while(i*20 >= (numSims-1)*progressCounter){
+			while ((i+1) * 20 > numSims * progressCounter) {
 				cout << "#" << flush;
 				++progressCounter;
 			}
@@ -39,7 +43,7 @@ int main() {
 				nn->feedForward(getNodeBoard(state.first));
 				nn->backProp(getNodeMove(state.second), false); //TODO check with Marvin if correct parameter
 			}
-			if(i==numSims-1){
+			if (i == numSims - 1) {
 				cout << endl;
 				run.dump();
 			}
