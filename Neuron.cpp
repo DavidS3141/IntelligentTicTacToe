@@ -9,16 +9,16 @@
 #include "Synapse.h"
 #include <cmath>
 
-Neuron::Neuron() : activity(0), delta(0) {
+Neuron::Neuron() :
+		activity(0), delta(0) {
 }
 
 Neuron::~Neuron() {
-	// TODO Auto-generated destructor stub
 }
 
 double Neuron::sum(vector<double> x) {
 	double sum = 0;
-	for(double cur : x) {
+	for (double cur : x) {
 		sum += cur;
 	}
 	return sum;
@@ -31,16 +31,16 @@ void Neuron::feedForward() {
 
 double Neuron::getNetInput() {
 	vector<double> inp;
-	for(Edge* input : parents) {
-		inp.push_back(((Synapse*)input)->getSignal());
+	for (Edge* input : parents) {
+		inp.push_back(((Synapse*) input)->getSignal());
 	}
 	return sum(inp);
 }
 
 double Neuron::sigmoid(double x) {
-	return (x / (1. + std::abs(x)))*0.5+0.5;
+	return (x / (1. + std::abs(x))) * 0.5 + 0.5;
 }
 
 double Neuron::sigmoidPrime(double x) {
-	return std::pow(1. + std::abs(x), -2)/2.;
+	return std::pow(1. + std::abs(x), -2) / 2.;
 }

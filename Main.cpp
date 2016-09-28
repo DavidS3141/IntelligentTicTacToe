@@ -18,7 +18,8 @@ int main() {
 		srand(seed);
 	} else
 		srand(randomMode);
-	NeuralNetwork* nn = new NeuralNetwork(27, 9, 30);
+	//NeuralNetwork* nn = new NeuralNetwork(27, 9, 30);
+	NeuralNetwork* nn = new NeuralNetwork(27,9,1,54);
 	while (true) {
 		cout << "Learning Rate:" << endl;
 		cin >> Synapse::learningRate;
