@@ -1,19 +1,35 @@
 #include "runner.h"
 
-Runner::Runner(NeuralNetwork *n) :
-		network(n) {
+#include "ai.h"
+#include "human.h"
+
+Runner::Runner(NeuralNetwork *n, bool player1Human, bool player2Human) {
+	if (player1Human)
+		p1 = new Human();
+	else
+		p1 = new AI(n);
+	if (player2Human)
+		p2 = new Human();
+	else
+		p2 = new AI(n);
+
 	runSimulation();
+}
+
+Runner::~Runner() {
+	delete p1;
+	delete p2;
 }
 
 void Runner::dump() const {
 	cout << "Last good move:" << endl;
 	vector<State> goodies = getGoodStates();
-	constants::printMove(goodies[goodies.size() - 1].first,
+	printMove(goodies[goodies.size() - 1].first,
 			goodies[goodies.size() - 1].second);
 
 	cout << "Last bad move:" << endl;
 	vector<State> baddies = getBadStates();
-	constants::printMove(baddies[baddies.size() - 1].first,
+	printMove(baddies[baddies.size() - 1].first,
 			baddies[baddies.size() - 1].second);
 
 	cout << endl;
@@ -24,7 +40,10 @@ void Runner::runSimulation() {
 	Move move;
 	int state = 0;
 	while (!state) {
-		move = network->getMove(game.getBoard(player));
+		if(player==1)
+			move = p1->getMove(game.getBoard(player));
+		else
+			move = p2->getMove(game.getBoard(player));
 		move.player = player;
 		moves.push_back(move);
 		state = game.makeMove(move.row, move.column, move.player);

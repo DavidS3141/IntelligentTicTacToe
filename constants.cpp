@@ -7,11 +7,11 @@
 
 #include "constants.h"
 /*
-template <typename T> int sgn(T val) {
-    return (T(0) < val) - (val < T(0));
-}
-*/
-const char constants::printSymbol(int i) {
+ template <typename T> int sgn(T val) {
+ return (T(0) < val) - (val < T(0));
+ }
+ */
+const char printSymbol(int i) {
 	switch (i) {
 	case 0:
 		return ' ';
@@ -24,7 +24,7 @@ const char constants::printSymbol(int i) {
 	}
 }
 
-void constants::printMove(Board &b, Move &m) {
+void printMove(Board &b, Move &m) {
 	Board bEnd = b;
 	/*
 	 if (bEnd[m.row][m.column] != 0)
@@ -89,4 +89,15 @@ Move getMoveNode(vector<double> nodes) {
 	}
 	//std::cout << max << endl;
 	return ret;
+}
+
+void printBoard(Board &b) {
+	cout << " --- " << "    " << " --- " << endl;
+	cout << "|" << printSymbol(b[0][0]) << printSymbol(b[0][1])
+			<< printSymbol(b[0][2]) << "|" << endl;
+	cout << "|" << printSymbol(b[1][0]) << printSymbol(b[1][1])
+			<< printSymbol(b[1][2]) << "|" << endl;
+	cout << "|" << printSymbol(b[2][0]) << printSymbol(b[2][1])
+			<< printSymbol(b[2][2]) << "|" << endl;
+	cout << " --- " << endl;
 }
