@@ -4,7 +4,7 @@
 #include "constants.h"
 
 TicTacToe::TicTacToe() :
-		board(constants::empytBoard) {
+		board(empytBoard) {
 }
 
 Board TicTacToe::getBoard(int player) {
@@ -34,7 +34,7 @@ int TicTacToe::makeMove(int row, int column, int player) {
 }
 
 int TicTacToe::gameEnded() {
-	for (auto final : constants::winningPositions)
+	for (auto final : winningPositions)
 		if ((board[final[0][0]][final[0][1]] == board[final[1][0]][final[1][1]])
 				&& (board[final[1][0]][final[1][1]]
 						== board[final[2][0]][final[2][1]])

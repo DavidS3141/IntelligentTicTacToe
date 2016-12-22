@@ -28,11 +28,9 @@ struct Move {
 	}
 };
 
-template <typename T> int sgn(T val) {
-    return (T(0) < val) - (val < T(0));
+template<typename T> int sgn(T val) {
+	return (T(0) < val) - (val < T(0));
 }
-
-namespace constants {
 
 const std::vector<std::vector<std::vector<int>>>winningPositions = {
 	{	{	0, 0}, {1, 0}, {2, 0}}, { {0, 1}, {1, 1}, {2, 1}},
@@ -46,12 +44,11 @@ const Board empytBoard = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } };
 const char printSymbol(int i);
 void printMove(Board &b, Move &m);
 
-}
-;
-
 vector<double> getNodeBoard(Board board);
 vector<double> getNodeMove(Move move);
 Board getBoardNode(vector<double> nodes);
 Move getMoveNode(vector<double> nodes);
+
+void printBoard(Board &b);
 
 #endif // CONSTANTS_H

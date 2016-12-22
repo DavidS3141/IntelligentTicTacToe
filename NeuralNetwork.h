@@ -21,6 +21,7 @@ private:
 	Neuron* bias;
 public:
 	NeuralNetwork(int inNodes, int outNodes, int hiddenNodes);
+	NeuralNetwork(int inNodes, int outNodes, int layers, int layerNodes);
 	virtual ~NeuralNetwork();
 
 	void feedForward(vector<double> input);
