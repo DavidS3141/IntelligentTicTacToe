@@ -19,8 +19,12 @@ int main() {
 	} else
 		srand(randomMode);
 	//NeuralNetwork* nn = new NeuralNetwork(27, 9, 30);
-	NeuralNetwork* nn = new NeuralNetwork(27,9,1,54);
+	NeuralNetwork* nn = new NeuralNetwork(27, 9, 1, 54);
 	while (true) {
+		cout << "Human Player (y/n):" << endl;
+		char c;
+		cin >> c;
+		bool human=(c=='y');
 		cout << "Learning Rate:" << endl;
 		cin >> Synapse::learningRate;
 		cout << "Number of Games:" << endl;
@@ -35,7 +39,7 @@ int main() {
 				cout << "#" << flush;
 				++progressCounter;
 			}
-			Runner run(nn);
+			Runner run(nn, false, human);
 			vector<State> goodies = run.getGoodStates();
 			for (auto state : goodies) {
 				nn->feedForward(getNodeBoard(state.first));
