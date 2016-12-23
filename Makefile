@@ -5,6 +5,7 @@ all:
 		edge.cpp \
 		graph.cpp \
 		human.cpp \
+		logicPlayer.cpp \
 		Main.cpp \
 		NeuralNetwork.cpp \
 		Neuron.cpp \

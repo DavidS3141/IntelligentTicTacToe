@@ -1,10 +1,13 @@
+#include <cstdlib>
+#include <ctime>
 #include <iostream>
 
+#include "ai.h"
+#include "human.h"
+#include "logicPlayer.h"
 #include "NeuralNetwork.h"
 #include "runner.h"
 #include "Synapse.h"
-#include <cstdlib>
-#include <ctime>
 
 using namespace std;
 
@@ -19,12 +22,23 @@ int main() {
 	} else
 		srand(randomMode);
 	//NeuralNetwork* nn = new NeuralNetwork(27, 9, 30);
-	NeuralNetwork* nn = new NeuralNetwork(27, 9, 1, 54);
+	NeuralNetwork* nn = new NeuralNetwork(27, 9, 3, 54);
+	Player* ai = new AI(nn);
 	while (true) {
-		cout << "Human Player (y/n):" << endl;
+		cout << "Human Player (h), Logic Player (l) or against itself (t):"
+				<< endl;
 		char c;
 		cin >> c;
-		bool human=(c=='y');
+		bool human = (c == 'h');
+		bool logic = (c == 'l');
+		bool train = (c == 't');
+		Player* p2 = 0;
+		if (human)
+			p2 = new Human();
+		else if (logic)
+			p2 = new LogicPlayer();
+		else
+			p2 = new AI(nn);
 		cout << "Learning Rate:" << endl;
 		cin >> Synapse::learningRate;
 		cout << "Number of Games:" << endl;
@@ -39,7 +53,7 @@ int main() {
 				cout << "#" << flush;
 				++progressCounter;
 			}
-			Runner run(nn, false, human);
+			Runner run(ai, p2);
 			vector<State> goodies = run.getGoodStates();
 			for (auto state : goodies) {
 				nn->feedForward(getNodeBoard(state.first));
@@ -63,6 +77,7 @@ int main() {
 				}
 			}
 		}
+		delete p2;
 	}
 	return 0;
 }
