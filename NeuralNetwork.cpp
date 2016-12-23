@@ -99,25 +99,12 @@ void NeuralNetwork::feedForward(vector<double> inp) {
 	}
 }
 
-void NeuralNetwork::backProp(vector<double> correctOutput, bool correct) {
+void NeuralNetwork::simpleBackProp(vector<double> correctOutput, double scale) {
 	for (int neuronIdx = outputs.size() - 1; neuronIdx >= 0; neuronIdx--) {
-		//double* deltas = new double[neurons.size()];
-		//if(neuronIdx >= outputNeurons) {
-		if (correct) {
-			outputs[neuronIdx]->delta = Neuron::sigmoidPrime(
-					outputs[neuronIdx]->getNetInput())
-					* (correctOutput[neuronIdx]
-							- outputs[neuronIdx]->getActivity());
-		} else {
-			outputs[neuronIdx]->delta =
-					Neuron::sigmoidPrime(outputs[neuronIdx]->getNetInput())
-							* (correctOutput[neuronIdx]
-									- outputs[neuronIdx]->getActivity()
-									- sgn(
-											correctOutput[neuronIdx]
-													- outputs[neuronIdx]->getActivity()));
-		}
-		//}
+		outputs[neuronIdx]->delta =
+				Neuron::sigmoidPrime(outputs[neuronIdx]->getNetInput())
+						* (correctOutput[neuronIdx]
+								- outputs[neuronIdx]->getActivity());
 	}
 	for (int neuronIdx = hidden.size() - 1; neuronIdx >= 0; neuronIdx--) {
 		double tempSum = 0;
@@ -127,12 +114,29 @@ void NeuralNetwork::backProp(vector<double> correctOutput, bool correct) {
 		}
 		hidden[neuronIdx]->delta = Neuron::sigmoidPrime(
 				hidden[neuronIdx]->getNetInput()) * tempSum;
-		//}
 	}
 	for (Synapse* cur : synapses) {
-		cur->weight += /*cur->learningRate*/Synapse::learningRate
+		cur->weightChange += scale * Synapse::learningRate
 				* ((Neuron*) cur->in)->getActivity()
 				* ((Neuron*) cur->out)->delta;
+	}
+}
+
+void NeuralNetwork::backProp(vector<vector<double> > inputs,
+		vector<vector<double> > correctOutputs, vector<double> scaling) {
+	for (Synapse* cur : synapses)
+		cur->weightChange = 0.;
+#ifdef DEBUG
+	assert(inputs.size()==correctOutputs.size());
+	assert(inputs.size()==scaling.size());
+#endif
+	for (unsigned i = 0; i < inputs.size(); ++i) {
+		feedForward(inputs[i]);
+		simpleBackProp(correctOutputs[i], scaling[i]);
+	}
+	for (Synapse* cur : synapses) {
+		cur->weight += cur->weightChange;
+		cur->weightChange = 0.;
 	}
 }
 

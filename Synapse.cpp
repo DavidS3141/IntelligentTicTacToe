@@ -15,7 +15,8 @@
 double Synapse::learningRate = 0.2;
 
 Synapse::Synapse(Neuron* in, Neuron* out) :
-		Edge(in, out), weight(2. * ((double) std::rand() / RAND_MAX) - 1.) {
+		Edge(in, out), weight(2. * ((double) std::rand() / RAND_MAX) - 1.), weightChange(
+				0.) {
 }
 
 Synapse::~Synapse() {

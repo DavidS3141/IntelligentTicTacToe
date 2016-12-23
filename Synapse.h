@@ -18,6 +18,7 @@ public:
 	virtual ~Synapse();
 
 	double weight;
+	double weightChange;
 	static double learningRate;
 
 	double getSignal();

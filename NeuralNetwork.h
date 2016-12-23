@@ -16,16 +16,15 @@ class Neuron;
 class Synapse;
 
 using namespace std;
-class NeuralNetwork : public Graph {
-private:
-	Neuron* bias;
+class NeuralNetwork: public Graph {
 public:
 	NeuralNetwork(int inNodes, int outNodes, int hiddenNodes);
 	NeuralNetwork(int inNodes, int outNodes, int layers, int layerNodes);
 	virtual ~NeuralNetwork();
 
 	void feedForward(vector<double> input);
-	void backProp(vector<double> correctOutput, bool correct);
+	void backProp(vector<vector<double> > inputs,
+			vector<vector<double> > correctOutputs, vector<double> scaling);
 
 	vector<double> getOutput() const;
 	vector<double> evalInput(vector<double> input);
@@ -36,6 +35,10 @@ public:
 	vector<Neuron*> outputs;
 	vector<Synapse*> synapses;
 
+private:
+	void simpleBackProp(vector<double> correctOutputs, double scale = 1.0);
+
+	Neuron* bias;
 };
 
 #endif /* NEURALNETWORK_H_ */

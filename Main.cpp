@@ -54,16 +54,39 @@ int main() {
 				++progressCounter;
 			}
 			Runner run(ai, p2);
+			// training session
+			vector<vector<double> > inputs;
+			vector<vector<double> > corrections;
+			vector<double> scaling;
 			vector<State> goodies = run.getGoodStates();
-			for (auto state : goodies) {
-				nn->feedForward(getNodeBoard(state.first));
-				nn->backProp(getNodeMove(state.second), true); //TODO check with Marvin if correct parameter
+			double scale = 1.;
+			double factor = 0.1;
+			for (auto sit = goodies.rbegin(); sit != goodies.rend(); ++sit) {
+				inputs.push_back(getNodeBoard(sit->first));
+				corrections.push_back(getNodeMove(sit->second));
+				scaling.push_back(scale);
+				scale *= factor;
 			}
 			vector<State> baddies = run.getBadStates();
-			for (auto state : baddies) {
-				nn->feedForward(getNodeBoard(state.first));
-				nn->backProp(getNodeMove(state.second), false); //TODO check with Marvin if correct parameter
+			scale = 1.;
+			for (auto sit = baddies.rbegin(); sit != baddies.rend(); ++sit) {
+				inputs.push_back(getNodeBoard(sit->first));
+				nn->feedForward(inputs.back());
+				vector<double> outs = nn->getOutput();
+				vector<double> multiply = getNodeMove(sit->second, true);
+				double sum = 0;
+				for (unsigned j = 0; j < outs.size(); ++j) {
+					multiply[j] *= outs[j];
+					sum += multiply[j];
+				}
+				for (unsigned j = 0; j < outs.size(); ++j)
+					multiply[j] /= sum;
+				corrections.push_back(multiply);
+				scaling.push_back(scale);
+				scale *= factor;
 			}
+			nn->backProp(inputs, corrections, scaling);
+			//end training session
 			if (i == numSims - 1) {
 				cout << endl;
 				run.dump();
