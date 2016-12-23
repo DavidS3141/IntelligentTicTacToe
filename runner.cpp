@@ -3,22 +3,9 @@
 #include "ai.h"
 #include "human.h"
 
-Runner::Runner(NeuralNetwork *n, bool player1Human, bool player2Human) {
-	if (player1Human)
-		p1 = new Human();
-	else
-		p1 = new AI(n);
-	if (player2Human)
-		p2 = new Human();
-	else
-		p2 = new AI(n);
-
+Runner::Runner(Player* player1, Player* player2) :
+		p1(player1), p2(player2) {
 	runSimulation();
-}
-
-Runner::~Runner() {
-	delete p1;
-	delete p2;
 }
 
 void Runner::dump() const {
@@ -40,7 +27,7 @@ void Runner::runSimulation() {
 	Move move;
 	int state = 0;
 	while (!state) {
-		if(player==1)
+		if (player == 1)
 			move = p1->getMove(game.getBoard(player));
 		else
 			move = p2->getMove(game.getBoard(player));

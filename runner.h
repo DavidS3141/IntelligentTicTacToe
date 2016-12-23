@@ -11,8 +11,7 @@
 class Runner {
 
 public:
-	Runner(NeuralNetwork *, bool, bool);
-	~Runner();
+	Runner(Player*, Player*);
 
 	vector<State> getBadStates() const;
 	vector<State> getGoodStates() const;
