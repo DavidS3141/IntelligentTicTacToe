@@ -44,7 +44,7 @@ const char printSymbol(int i);
 void printMove(Board &b, Move &m);
 
 vector<double> getNodeBoard(Board board);
-vector<double> getNodeMove(Move move);
+vector<double> getNodeMove(Move move, bool reverse = false);
 Board getBoardNode(vector<double> nodes);
 Move getMoveNode(vector<double> nodes);
 
