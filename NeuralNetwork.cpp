@@ -8,6 +8,9 @@
 #include "NeuralNetwork.h"
 
 #include <cmath>
+#include <cstring>
+#include <iomanip>
+#include <fstream>
 
 #include "Neuron.h"
 #include "Synapse.h"
@@ -151,4 +154,57 @@ vector<double> NeuralNetwork::getOutput() const {
 		output.push_back(outputs[i]->getActivity());
 	}
 	return output;
+}
+
+void NeuralNetwork::saveNetwork(string s) const {
+	/* file format:
+	 * 1. line: inputs, hiddens, outputs (numbering goes from 1 to (inputs+hiddens+outputs), 0 is bias)
+	 * following lines: matrix representation of Synapse weights
+	 *
+	 * format of floating numbers: +-x.xe+-xx, in total always 8 chars (+- is only one of them)
+	 */
+	ofstream os(s);
+	os << inputs.size() << " ; " << hidden.size() << " ; " << outputs.size()
+			<< endl;
+	os << setprecision(1) << fixed << scientific;
+	for (unsigned row = 0;
+			row <= inputs.size() + hidden.size() + outputs.size(); ++row) {
+		Neuron* start = getNeuron(row);
+		for (unsigned col = 0;
+				col <= inputs.size() + hidden.size() + outputs.size(); ++col) {
+			bool found = false;
+			for (unsigned i = 0; i < start->childs.size(); ++i) {
+				if (start->childs[i]->out->id == col) {
+					found = true;
+					if (synapses[start->childs[i]->id]->weight > 0)
+						os << "+";
+					os << synapses[start->childs[i]->id]->weight;
+				}
+			}
+			if (!found)
+				os << string(8, ' ');
+			if (col < inputs.size() + hidden.size() + outputs.size())
+				os << " ; ";
+			else
+				os << endl;
+		}
+	}
+}
+
+Neuron* NeuralNetwork::getNeuron(unsigned idx) const {
+	if (idx == 0)
+		return bias;
+	idx -= 1;
+	if (idx < inputs.size())
+		return inputs[idx];
+	idx -= inputs.size();
+	if (idx < hidden.size())
+		return hidden[idx];
+	idx -= hidden.size();
+	if (idx < outputs.size())
+		return outputs[idx];
+#ifdef DEBUG
+	assert(true);
+#endif
+	return bias;
 }

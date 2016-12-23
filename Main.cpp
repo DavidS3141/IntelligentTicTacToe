@@ -63,6 +63,8 @@ int main() {
 				}
 			}
 		}
+
+		nn->saveNetwork("network.nn");
 	}
 	return 0;
 }
