@@ -15,8 +15,13 @@
 class Neuron;
 class Synapse;
 
-using namespace std;
-class NeuralNetwork: public Graph {
+using std::vector;
+
+class NeuralNetwork : public Graph {
+private:
+	Neuron* getNeuron(unsigned idx) const;
+
+	Neuron* bias;
 public:
 	NeuralNetwork(int inNodes, int outNodes, int hiddenNodes);
 	NeuralNetwork(int inNodes, int outNodes, int layers, int layerNodes);
@@ -30,6 +35,8 @@ public:
 	vector<double> evalInput(vector<double> input);
 	Move getMove(Board board);
 	Move getProbableMove(Board board);
+
+	void saveNetwork(string s) const;
 
 	vector<Neuron*> inputs;
 	vector<Neuron*> hidden;

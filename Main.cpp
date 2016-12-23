@@ -124,7 +124,7 @@ int main() {
 				}
 			}
 		}
-		delete p2;
+		nn->saveNetwork("network.nn");
 	}
 	winSeries.close();
 	return 0;
