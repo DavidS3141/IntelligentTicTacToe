@@ -78,6 +78,7 @@ int main() {
 			}
 		}
 		delete p2;
+		nn->saveNetwork("network.nn");
 	}
 	return 0;
 }
