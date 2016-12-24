@@ -2,6 +2,9 @@
 .DS_Store
 a.out.dSYM*
 
+# Neural Network
+*.txt
+
 # Eclipse
 *.cproject
 *.project

@@ -8,6 +8,14 @@ Runner::Runner(Player* player1, Player* player2) :
 	runSimulation();
 }
 
+bool Runner::isDraw() const {
+	return (endState == -1);
+}
+
+int Runner::getWinner() const {
+	return endState;
+}
+
 void Runner::dump() const {
 	cout << "Last good move:" << endl;
 	vector<State> goodies = getGoodStates();

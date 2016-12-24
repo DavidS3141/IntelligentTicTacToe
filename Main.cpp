@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include <fstream>
 
 #include "ai.h"
 #include "human.h"
@@ -9,7 +10,10 @@
 #include "runner.h"
 #include "Synapse.h"
 
-using namespace std;
+using std::ofstream;
+using std::cout;
+using std::cin;
+using std::endl;
 
 int main() {
 	int randomMode;
@@ -24,6 +28,7 @@ int main() {
 	//NeuralNetwork* nn = new NeuralNetwork(27, 9, 30);
 	NeuralNetwork* nn = new NeuralNetwork(27, 9, 3, 54);
 	Player* ai = new AI(nn);
+	ofstream winSeries("winSeries.txt");
 	while (true) {
 		cout << "Human Player (h), Logic Player (l) or against itself (t):"
 				<< endl;
@@ -54,6 +59,8 @@ int main() {
 				++progressCounter;
 			}
 			Runner run(ai, p2);
+			if (logic)
+				winSeries << run.getWinner() << endl;
 			// training session
 			vector<vector<double> > inputs;
 			vector<vector<double> > corrections;
@@ -102,5 +109,6 @@ int main() {
 		}
 		delete p2;
 	}
+	winSeries.close();
 	return 0;
 }
