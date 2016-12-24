@@ -189,6 +189,7 @@ void NeuralNetwork::saveNetwork(string s) const {
 				os << endl;
 		}
 	}
+	os.close();
 }
 
 Neuron* NeuralNetwork::getNeuron(unsigned idx) const {
