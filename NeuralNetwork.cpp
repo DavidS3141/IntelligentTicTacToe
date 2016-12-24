@@ -149,6 +149,10 @@ Move NeuralNetwork::getMove(Board board) {
 	return getMoveNode(evalInput(getNodeBoard(board)));
 }
 
+Move NeuralNetwork::getProbableMove(Board board) {
+	return getProbableMoveFromNode(evalInput(getNodeBoard(board)));
+}
+
 vector<double> NeuralNetwork::getOutput() const {
 	vector<double> output;
 	for (int i = 0; i < outputs.size(); i++) {

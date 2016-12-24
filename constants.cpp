@@ -97,6 +97,36 @@ Move getMoveNode(vector<double> nodes) {
 	return ret;
 }
 
+Move getProbableMoveFromNode(vector<double> nodes) {
+	Move ret(0, 0, 0);
+	double sum = 0.;
+	for (unsigned i = 0; i < nodes.size(); ++i)
+		sum += nodes[i];
+	double randomNum = ((double) std::rand() / RAND_MAX) * sum;
+	sum = 0;
+	for (unsigned i = 0; i < nodes.size(); ++i) {
+		if (randomNum < sum + nodes[i]) {
+			ret.row = i / 3;
+			ret.column = i % 3;
+			return ret;
+		} else
+			sum += nodes[i];
+	}
+#ifdef DEBUG
+	assert(true);
+#endif
+	return ret;
+}
+
+vector<double>& norm(vector<double>& v) {
+	double sum = 0.;
+	for (unsigned i = 0; i < v.size(); ++i)
+		sum += v[i];
+	for (unsigned i = 0; i < v.size(); ++i)
+		v[i] /= sum;
+	return v;
+}
+
 void printBoard(Board &b) {
 	cout << " --- " << "    " << " --- " << endl;
 	cout << "|" << printSymbol(b[0][0]) << printSymbol(b[0][1])

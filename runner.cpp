@@ -48,16 +48,11 @@ void Runner::runSimulation() {
 }
 
 vector<State> Runner::getGoodStates() const {
-	vector<State> states = std::vector<State>();
+	vector<State> states;
 	TicTacToe pseudoGame;
 	for (auto move : moves) {
 		if (move.player == endState
 				|| (endState == -1 && move.player == circle)) {
-			/*
-			 states.push_back(
-			 std::make_pair(pseudoGame.getBoard(move.player),
-			 move));
-			 */
 			states.push_back(
 					std::make_pair(pseudoGame.getBoard(move.player),
 							Move(move.row, move.column, cross)));
@@ -68,16 +63,11 @@ vector<State> Runner::getGoodStates() const {
 }
 
 vector<State> Runner::getBadStates() const {
-	vector<State> states = std::vector<State>();
+	vector<State> states;
 	TicTacToe pseudoGame;
 	for (auto move : moves) {
 		if ((move.player != endState && endState != -1)
 				|| (endState == -1 && move.player == cross)) {
-			/*
-			 states.push_back(
-			 std::make_pair(pseudoGame.getBoard(move.player),
-			 move));
-			 */
 			states.push_back(
 					std::make_pair(pseudoGame.getBoard(move.player),
 							Move(move.row, move.column, cross)));

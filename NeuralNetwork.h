@@ -29,6 +29,7 @@ public:
 	vector<double> getOutput() const;
 	vector<double> evalInput(vector<double> input);
 	Move getMove(Board board);
+	Move getProbableMove(Board board);
 
 	vector<Neuron*> inputs;
 	vector<Neuron*> hidden;

@@ -10,7 +10,6 @@
 #include "node.h"
 #include "Neuron.h"
 #include <cstdlib>
-#include <iostream>
 
 double Synapse::learningRate = 0.2;
 
@@ -23,6 +22,5 @@ Synapse::~Synapse() {
 }
 
 double Synapse::getSignal() {
-	//std::cout << ((Neuron*) in)->activity << std::endl;
 	return weight * ((Neuron*) in)->activity;
 }

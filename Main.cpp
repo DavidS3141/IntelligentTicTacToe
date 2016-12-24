@@ -78,17 +78,34 @@ int main() {
 			scale = 1.;
 			for (auto sit = baddies.rbegin(); sit != baddies.rend(); ++sit) {
 				inputs.push_back(getNodeBoard(sit->first));
-				nn->feedForward(inputs.back());
-				vector<double> outs = nn->getOutput();
-				vector<double> multiply = getNodeMove(sit->second, true);
-				double sum = 0;
-				for (unsigned j = 0; j < outs.size(); ++j) {
-					multiply[j] *= outs[j];
-					sum += multiply[j];
+				vector<double> outs = nn->evalInput(inputs.back());
+				vector<double> correct;
+				if (!run.isDraw()) {
+					vector<double> multiply = getNodeMove(sit->second, true);
+					for (unsigned j = 0; j < outs.size(); ++j)
+						multiply[j] *= outs[j];
+					correct = multiply;
+				} else {
+					vector<double> target = getNodeMove(sit->second);
+					double max = 0.;
+					double targetval = 0.;
+					for (unsigned j = 0; j < outs.size(); ++j) {
+						if (outs[j] > max)
+							max = outs[j];
+						targetval += outs[j] * target[j];
+					}
+					if (max == 0.)
+						correct = target;
+					else {
+						for (unsigned j = 0; j < outs.size(); ++j) {
+							correct.push_back(
+									outs[j]
+											+ (targetval - outs[j]) * outs[j]
+													* targetval / max / max);
+						}
+					}
 				}
-				for (unsigned j = 0; j < outs.size(); ++j)
-					multiply[j] /= sum;
-				corrections.push_back(multiply);
+				corrections.push_back(norm(correct));
 				scaling.push_back(scale);
 				scale *= factor;
 			}

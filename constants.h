@@ -47,6 +47,8 @@ vector<double> getNodeBoard(Board board);
 vector<double> getNodeMove(Move move, bool reverse = false);
 Board getBoardNode(vector<double> nodes);
 Move getMoveNode(vector<double> nodes);
+Move getProbableMoveFromNode(vector<double> nodes);
+vector<double>& norm(vector<double>& v);
 
 void printBoard(Board &b);
 

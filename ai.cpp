@@ -14,5 +14,5 @@ AI::AI(NeuralNetwork * const network_) :
 }
 
 Move AI::getMove(Board board) {
-	return network->getMove(board);
+	return network->getProbableMove(board);
 }
