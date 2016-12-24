@@ -4,6 +4,7 @@ a.out.dSYM*
 
 # Neural Network
 *.txt
+*.nn
 
 # Eclipse
 *.cproject
