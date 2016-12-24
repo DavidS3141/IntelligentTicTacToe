@@ -2,6 +2,10 @@
 .DS_Store
 a.out.dSYM*
 
+# Neural Network
+*.nn
+IntelligentTicTacToe
+
 # Eclipse
 *.cproject
 *.project
