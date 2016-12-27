@@ -5,13 +5,16 @@
 #include "ai.h"
 #include "human.h"
 #include "logicPlayer.h"
-#include "NeuralNetwork.h"
+#include "neuralNetwork.h"
 #include "runner.h"
-#include "Synapse.h"
+#include "synapse.h"
 
 using namespace std;
 
+//TODO organize includes, const
+
 int main() {
+	//set random seed
 	int randomMode;
 	cout << "Type '-1' for random mode or type seed for random engine:" << endl;
 	cin >> randomMode;
@@ -21,9 +24,41 @@ int main() {
 		srand(seed);
 	} else
 		srand(randomMode);
-	//NeuralNetwork* nn = new NeuralNetwork(27, 9, 30);
-	//NeuralNetwork* nn = new NeuralNetwork(27, 9, 3, 54);
-	NeuralNetwork* nn = new NeuralNetwork("network.nn");
+
+	//construct neural network
+	cout
+			<< "Network: completely connected (c), layered (l) or load from file (f):"
+			<< endl;
+	char c;
+	cin >> c;
+	NeuralNetwork* nn;
+	switch (c) {
+	case 'c':
+		cout << "How many hidden neurons?" << endl;
+		unsigned hiddenNodes;
+		cin >> hiddenNodes;
+		nn = new NeuralNetwork(27, 9, hiddenNodes);
+		break;
+	case 'l':
+		cout << "Neurons per Layer:" << endl;
+		unsigned layerNodes;
+		cin >> layerNodes;
+		cout << "Layers:" << endl;
+		unsigned layers;
+		cin >> layers;
+		nn = new NeuralNetwork(27, 9, layers, layerNodes);
+		break;
+	case 'f':
+		cout << "Filename:" << endl;
+		{
+			string file;
+			cin >> file;
+			nn = new NeuralNetwork(file);
+		}
+		break;
+	default:
+		return 0;
+	}
 
 	Player* ai = new AI(nn);
 	while (true) {
@@ -31,23 +66,27 @@ int main() {
 				<< endl;
 		char c;
 		cin >> c;
-		bool human = (c == 'h');
-		bool logic = (c == 'l');
-		bool train = (c == 't');
 		Player* p2 = 0;
-		if (human)
+		switch (c) {
+		case 'h':
 			p2 = new Human();
-		else if (logic)
+			break;
+		case 'l':
 			p2 = new LogicPlayer();
-		else
+			break;
+		case 't':
 			p2 = new AI(nn);
+			break;
+		default:
+			return 0;
+		}
 		cout << "Learning Rate:" << endl;
 		cin >> Synapse::learningRate;
 		cout << "Number of Games:" << endl;
 		int numSims;
 		cin >> numSims;
 		if (numSims <= 0)
-			break;
+			return 0;
 		cout << "|                    |" << endl << " ";
 		int progressCounter = 0;
 		for (int i = 0; i < numSims; ++i) {
@@ -59,12 +98,12 @@ int main() {
 			vector<State> goodies = run.getGoodStates();
 			for (auto state : goodies) {
 				nn->feedForward(getNodeBoard(state.first));
-				nn->backProp(getNodeMove(state.second), true); //TODO check with Marvin if correct parameter
+				nn->backProp(getNodeMove(state.second), true);
 			}
 			vector<State> baddies = run.getBadStates();
 			for (auto state : baddies) {
 				nn->feedForward(getNodeBoard(state.first));
-				nn->backProp(getNodeMove(state.second), false); //TODO check with Marvin if correct parameter
+				nn->backProp(getNodeMove(state.second), false);
 			}
 			if (i == numSims - 1) {
 				cout << endl;

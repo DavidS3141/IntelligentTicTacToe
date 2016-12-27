@@ -5,12 +5,12 @@
  *      Author: David
  */
 
-#include "Synapse.h"
+#include "synapse.h"
 
 #include "node.h"
-#include "Neuron.h"
 #include <cstdlib>
 #include <iostream>
+#include "neuron.h"
 
 double Synapse::learningRate = 0.2;
 

@@ -16,6 +16,8 @@ typedef std::pair<Board, Move> State;
 const int cross = 1;
 const int circle = 2;
 
+const unsigned DECIMALS = 4;
+
 struct Move {
 	int row, column;
 	int player;

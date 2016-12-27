@@ -1,12 +1,12 @@
 #ifndef RUNNER_H
 #define RUNNER_H
 
-#include "NeuralNetwork.h"
 #include "TicTacToe.h"
 #include "constants.h"
 #include "player.h"
 
 #include <vector>
+#include "neuralNetwork.h"
 
 class Runner {
 
