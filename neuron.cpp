@@ -10,11 +10,11 @@
 #include <cmath>
 #include "synapse.h"
 
-Neuron::Neuron() :
-		activity(0), delta(0) {
-}
+unsigned Neuron::counter = 0;
 
-Neuron::~Neuron() {
+Neuron::Neuron() :
+		activity(0), delta(0), id(counter) {
+	counter++;
 }
 
 double Neuron::sum(vector<double> x) {
@@ -32,8 +32,8 @@ void Neuron::feedForward() {
 
 double Neuron::getNetInput() {
 	vector<double> inp;
-	for (Edge* input : parents) {
-		inp.push_back(((Synapse*) input)->getSignal());
+	for (SynapsePtr input : parents) {
+		inp.push_back(input->getSignal());
 	}
 	return sum(inp);
 }

@@ -7,20 +7,22 @@
 
 #include "synapse.h"
 
-#include "node.h"
 #include <cstdlib>
 #include "neuron.h"
 
 double Synapse::learningRate = 0.2;
+unsigned Synapse::counter = 0;
 
-Synapse::Synapse(Neuron* in, Neuron* out) :
-		Edge(in, out), weight(2. * ((double) std::rand() / RAND_MAX) - 1.), weightChange(
-				0.) {
-}
-
-Synapse::~Synapse() {
+Synapse::Synapse(NeuronPtr in_, NeuronPtr out_) :
+		weight(2. * ((double) std::rand() / RAND_MAX) - 1.) {
+	in = in_;
+	out = out_;
+	in->addChild(SynapsePtr(this));
+	out->addParent(SynapsePtr(this));
+	id = counter;
+	counter++;
 }
 
 double Synapse::getSignal() {
-	return weight * ((Neuron*) in)->activity;
+	return weight * in->activity;
 }
