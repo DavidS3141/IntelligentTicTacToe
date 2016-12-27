@@ -14,16 +14,18 @@
 using std::vector;
 
 class Neuron;
-class Synapse;
 typedef std::shared_ptr<Neuron> NeuronPtr;
+class Synapse;
 typedef std::shared_ptr<Synapse> SynapsePtr;
 
 class NeuralNetwork {
 public:
 	NeuralNetwork(string s);
-	NeuralNetwork(int inNodes, int outNodes, int hiddenNodes);
-	NeuralNetwork(int inNodes, int outNodes, int layers, int layerNodes);
-	virtual ~NeuralNetwork();
+	NeuralNetwork(unsigned inNodes, unsigned outNodes, unsigned hiddenNodes);
+	NeuralNetwork(unsigned inNodes, unsigned outNodes, unsigned layers,
+			unsigned layerNodes);
+
+	void saveNetwork(string s) const;
 
 	void feedForward(vector<double> input);
 	void backProp(vector<double> correctOutput, bool correct);
@@ -31,8 +33,6 @@ public:
 	vector<double> getOutput() const;
 	vector<double> evalInput(vector<double> input);
 	Move getMove(Board board);
-
-	void saveNetwork(string s) const;
 
 	vector<NeuronPtr> inputs;
 	vector<NeuronPtr> hidden;

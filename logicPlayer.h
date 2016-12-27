@@ -13,7 +13,6 @@
 class LogicPlayer: public Player {
 public:
 	LogicPlayer();
-
 	Move getMove(Board);
 
 private:

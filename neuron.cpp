@@ -45,3 +45,27 @@ double Neuron::sigmoid(double x) {
 double Neuron::sigmoidPrime(double x) {
 	return std::pow(1. + std::abs(x), -2) / 2.;
 }
+
+double Neuron::getActivity() const {
+	return activity;
+}
+
+void Neuron::setActivity(double activity) {
+	this->activity = activity;
+}
+
+const vector<SynapsePtr>& Neuron::getChilds() const {
+	return childs;
+}
+
+void Neuron::addChild(SynapsePtr syn) {
+	childs.push_back(syn);
+}
+
+void Neuron::addParent(SynapsePtr syn) {
+	parents.push_back(syn);
+}
+
+unsigned Neuron::getID() const {
+	return id;
+}
