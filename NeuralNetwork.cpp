@@ -16,6 +16,45 @@
 #include "Synapse.h"
 #include "constants.h"
 
+NeuralNetwork::NeuralNetwork(string s) :
+		bias(new Neuron()) {
+	bias->setActivity(1.0);
+
+	ifstream ifs(s);
+	unsigned inNodes, hiddenNodes, outNodes;
+	ifs >> inNodes >> s >> hiddenNodes >> s >> outNodes;
+	getline(ifs, s);
+
+	for (unsigned i = 0; i < inNodes; ++i)
+		inputs.push_back(new Neuron());
+	for (unsigned i = 0; i < hiddenNodes; ++i)
+		hidden.push_back(new Neuron());
+	for (unsigned i = 0; i < outNodes; ++i)
+		outputs.push_back(new Neuron());
+
+	for (unsigned start = 0; start <= inNodes + hiddenNodes + outNodes;
+			++start) {
+		getline(ifs, s);
+		vector<string> vs;
+		split(s, ';', vs);
+#ifdef DEBUG
+		assert(vs.size()==1+inNodes+hiddenNodes+outNodes);
+#endif
+		for (unsigned end = 0; end < vs.size(); ++end) {
+			string part = vs[end].substr(1, 8);
+			if (part[0] != ' ') {
+				double flt = atof(part.data());
+				Neuron* startN = getNeuron(start);
+				Neuron* endN = getNeuron(end);
+				synapses.push_back(new Synapse(startN, endN));
+				synapses.back()->weight = flt;
+			}
+		}
+	}
+
+	ifs.close();
+}
+
 NeuralNetwork::NeuralNetwork(int inNodes, int outNodes, int hiddenNodes) :
 		bias(new Neuron()) {
 	bias->setActivity(1.0);

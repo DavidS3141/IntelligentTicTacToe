@@ -8,8 +8,9 @@
 #ifndef NEURALNETWORK_H_
 #define NEURALNETWORK_H_
 
-#include <vector>
 #include "graph.h"
+
+#include <vector>
 #include "constants.h"
 
 class Neuron;
@@ -17,12 +18,9 @@ class Synapse;
 
 using std::vector;
 
-class NeuralNetwork : public Graph {
-private:
-	Neuron* getNeuron(unsigned idx) const;
-
-	Neuron* bias;
+class NeuralNetwork: public Graph {
 public:
+	NeuralNetwork(string s);
 	NeuralNetwork(int inNodes, int outNodes, int hiddenNodes);
 	NeuralNetwork(int inNodes, int outNodes, int layers, int layerNodes);
 	virtual ~NeuralNetwork();
@@ -45,6 +43,7 @@ public:
 
 private:
 	void simpleBackProp(vector<double> correctOutputs, double scale = 1.0);
+	Neuron* getNeuron(unsigned idx) const;
 
 	Neuron* bias;
 };

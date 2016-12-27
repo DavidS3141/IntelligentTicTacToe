@@ -52,4 +52,6 @@ vector<double>& norm(vector<double>& v);
 
 void printBoard(Board &b);
 
+void split(const std::string &s, char delim, std::vector<std::string> &elems);
+
 #endif // CONSTANTS_H

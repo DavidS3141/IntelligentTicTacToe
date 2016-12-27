@@ -6,6 +6,9 @@
  */
 
 #include "constants.h"
+
+#include <sstream>
+
 /*
  template <typename T> int sgn(T val) {
  return (T(0) < val) - (val < T(0));
@@ -136,4 +139,13 @@ void printBoard(Board &b) {
 	cout << "|" << printSymbol(b[2][0]) << printSymbol(b[2][1])
 			<< printSymbol(b[2][2]) << "|" << endl;
 	cout << " --- " << endl;
+}
+
+void split(const std::string &s, char delim, std::vector<std::string> &elems) {
+	std::stringstream ss;
+	ss.str(s);
+	std::string item;
+	while (std::getline(ss, item, delim)) {
+		elems.push_back(item);
+	}
 }
