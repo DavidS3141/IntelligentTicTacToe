@@ -15,6 +15,9 @@ class Runner {
 public:
 	Runner(PlayerPtr, PlayerPtr);
 
+	bool isDraw() const;
+	int getWinner() const;
+
 	vector<State> getBadStates() const;
 	vector<State> getGoodStates() const;
 

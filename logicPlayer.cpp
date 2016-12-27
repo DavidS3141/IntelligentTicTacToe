@@ -10,6 +10,18 @@
 LogicPlayer::LogicPlayer() {
 }
 
+int LogicPlayer::converter(int x) {
+	switch (x) {
+	case (0):
+		return 0;
+	case (1):
+		return 1;
+	case (2):
+		return -1;
+	}
+	return 0;
+}
+
 Move LogicPlayer::getMove(Board board) {
 	int loosePosition = -1;
 	int winPosition = -1;
@@ -63,16 +75,4 @@ Move LogicPlayer::getMove(Board board) {
 			if (board[r][c] == 0)
 				return Move(r, c, 1);
 	return Move(1, 1, 1);
-}
-
-int LogicPlayer::converter(int x) {
-	switch (x) {
-	case (0):
-		return 0;
-	case (1):
-		return 1;
-	case (2):
-		return -1;
-	}
-	return 0;
 }
