@@ -20,35 +20,18 @@ public:
 
 	static double sum(vector<double> x);
 
-	void addChild(SynapsePtr syn) {
-		childs.push_back(syn);
-	}
-
-	void addParent(SynapsePtr syn) {
-		parents.push_back(syn);
-	}
-
 	void feedForward();
 	double getNetInput();
 
 	static double sigmoid(double x);
 	static double sigmoidPrime(double x);
 
-	double getActivity() const {
-		return activity;
-	}
-
-	void setActivity(double activity) {
-		this->activity = activity;
-	}
-
-	const vector<SynapsePtr>& getChilds() const {
-		return childs;
-	}
-
-	unsigned getID() const {
-		return id;
-	}
+	double getActivity() const;
+	void setActivity(double activity);
+	const vector<SynapsePtr>& getChilds() const;
+	void addChild(SynapsePtr syn);
+	void addParent(SynapsePtr syn);
+	unsigned getID() const;
 
 	double activity;
 	double delta;

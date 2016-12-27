@@ -3,7 +3,7 @@
 #include "ai.h"
 #include "human.h"
 
-Runner::Runner(Player* player1, Player* player2) :
+Runner::Runner(PlayerPtr player1, PlayerPtr player2) :
 		p1(player1), p2(player2) {
 	runSimulation();
 }

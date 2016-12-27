@@ -35,13 +35,13 @@ int main() {
 			<< endl;
 	char c;
 	cin >> c;
-	NeuralNetwork* nn;
+	shared_ptr<NeuralNetwork> nn;
 	switch (c) {
 	case 'c':
 		cout << "How many hidden neurons?" << endl;
 		unsigned hiddenNodes;
 		cin >> hiddenNodes;
-		nn = new NeuralNetwork(27, 9, hiddenNodes);
+		nn = shared_ptr<NeuralNetwork>(new NeuralNetwork(27, 9, hiddenNodes));
 		break;
 	case 'l':
 		cout << "Neurons per Layer:" << endl;
@@ -50,37 +50,39 @@ int main() {
 		cout << "Layers:" << endl;
 		unsigned layers;
 		cin >> layers;
-		nn = new NeuralNetwork(27, 9, layers, layerNodes);
+		nn = shared_ptr<NeuralNetwork>(
+				new NeuralNetwork(27, 9, layers, layerNodes));
 		break;
 	case 'f':
 		cout << "Filename:" << endl;
 		{
 			string file;
 			cin >> file;
-			nn = new NeuralNetwork(file);
+			nn = shared_ptr<NeuralNetwork>(new NeuralNetwork(file));
 		}
 		break;
 	default:
 		return 0;
 	}
 
-	Player* ai = new AI(nn);
+	shared_ptr<Player> ai(new AI(nn));
 	ofstream winSeries("winSeries.txt");
+
 	while (true) {
 		cout << "Human Player (h), Logic Player (l) or against itself (t):"
 				<< endl;
 		char c;
 		cin >> c;
-		Player* p2 = 0;
+		PlayerPtr p2 = 0;
 		switch (c) {
 		case 'h':
-			p2 = new Human();
+			p2 = PlayerPtr(new Human());
 			break;
 		case 'l':
-			p2 = new LogicPlayer();
+			p2 = PlayerPtr(new LogicPlayer());
 			break;
 		case 't':
-			p2 = new AI(nn);
+			p2 = PlayerPtr(new AI(nn));
 			break;
 		default:
 			return 0;

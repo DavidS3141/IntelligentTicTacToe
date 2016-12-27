@@ -28,6 +28,9 @@ struct Move {
 	Move(int row, int column, int player) :
 			row(row), column(column), player(player) {
 	}
+	Move(int row, int col) :
+			row(row), column(col) {
+	}
 };
 
 template<typename T> int sgn(T val) {

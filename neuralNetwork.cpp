@@ -54,90 +54,87 @@ NeuralNetwork::NeuralNetwork(string s) :
 	ifs.close();
 }
 
-NeuralNetwork::NeuralNetwork(int inNodes, int outNodes, int hiddenNodes) :
+NeuralNetwork::NeuralNetwork(unsigned inNodes, unsigned outNodes,
+		unsigned hiddenNodes) :
 		bias(new Neuron()) {
 	bias->setActivity(1.0);
 
-	for (int i = 0; i < inNodes; ++i)
+	for (unsigned i = 0; i < inNodes; ++i)
 		inputs.push_back(NeuronPtr(new Neuron()));
-	for (int i = 0; i < hiddenNodes; ++i)
+	for (unsigned i = 0; i < hiddenNodes; ++i)
 		hidden.push_back(NeuronPtr(new Neuron()));
-	for (int i = 0; i < outNodes; ++i)
+	for (unsigned i = 0; i < outNodes; ++i)
 		outputs.push_back(NeuronPtr(new Neuron()));
 
-	for (int i = 0; i < inNodes; ++i)
-		for (int j = 0; j < hiddenNodes; ++j)
+	for (unsigned i = 0; i < inNodes; ++i)
+		for (unsigned j = 0; j < hiddenNodes; ++j)
 			synapses.push_back(SynapsePtr(new Synapse(inputs[i], hidden[j])));
-	for (int i = 0; i < inNodes; ++i)
-		for (int j = 0; j < outNodes; ++j)
+	for (unsigned i = 0; i < inNodes; ++i)
+		for (unsigned j = 0; j < outNodes; ++j)
 			synapses.push_back(SynapsePtr(new Synapse(inputs[i], outputs[j])));
-	for (int i = 0; i < hiddenNodes; ++i)
-		for (int j = 0; j < outNodes; ++j)
+	for (unsigned i = 0; i < hiddenNodes; ++i)
+		for (unsigned j = 0; j < outNodes; ++j)
 			synapses.push_back(SynapsePtr(new Synapse(hidden[i], outputs[j])));
-	for (int i = 0; i < hiddenNodes; ++i)
-		for (int j = i + 1; j < hiddenNodes; ++j)
+	for (unsigned i = 0; i < hiddenNodes; ++i)
+		for (unsigned j = i + 1; j < hiddenNodes; ++j)
 			synapses.push_back(SynapsePtr(new Synapse(hidden[i], hidden[j])));
-	for (int i = 0; i < hiddenNodes; ++i)
+	for (unsigned i = 0; i < hiddenNodes; ++i)
 		synapses.push_back(SynapsePtr(new Synapse(bias, hidden[i])));
-	for (int i = 0; i < outNodes; ++i)
+	for (unsigned i = 0; i < outNodes; ++i)
 		synapses.push_back(SynapsePtr(new Synapse(bias, outputs[i])));
 }
 
-NeuralNetwork::NeuralNetwork(int inNodes, int outNodes, int layers,
-		int layerNodes) :
+NeuralNetwork::NeuralNetwork(unsigned inNodes, unsigned outNodes,
+		unsigned layers, unsigned layerNodes) :
 		bias(new Neuron()) {
 	bias->setActivity(1.0);
 
 	std::vector<NeuronPtr> prevLayer;
 	std::vector<NeuronPtr> curLayer;
 
-	for (int i = 0; i < inNodes; ++i) {
+	for (unsigned i = 0; i < inNodes; ++i) {
 		inputs.push_back(NeuronPtr(new Neuron()));
 		curLayer.push_back(inputs.back());
 	}
 
-	for (int l = 0; l < layers; ++l) {
+	for (unsigned l = 0; l < layers; ++l) {
 		prevLayer.clear();
 		prevLayer = curLayer;
 		curLayer.clear();
 
-		for (int i = 0; i < layerNodes; ++i) {
+		for (unsigned i = 0; i < layerNodes; ++i) {
 			hidden.push_back(NeuronPtr(new Neuron()));
 			curLayer.push_back(hidden.back());
 		}
 
-		for (int i = 0; i < prevLayer.size(); ++i)
-			for (int j = 0; j < layerNodes; ++j)
+		for (unsigned i = 0; i < prevLayer.size(); ++i)
+			for (unsigned j = 0; j < layerNodes; ++j)
 				synapses.push_back(
 						SynapsePtr(new Synapse(prevLayer[i], curLayer[j])));
 	}
 
-	for (int i = 0; i < outNodes; ++i)
+	for (unsigned i = 0; i < outNodes; ++i)
 		outputs.push_back(NeuronPtr(new Neuron()));
 
-	for (int i = 0; i < curLayer.size(); ++i)
-		for (int j = 0; j < outNodes; ++j)
+	for (unsigned i = 0; i < curLayer.size(); ++i)
+		for (unsigned j = 0; j < outNodes; ++j)
 			synapses.push_back(
 					SynapsePtr(new Synapse(curLayer[i], outputs[j])));
 
-	for (int i = 0; i < hidden.size(); ++i)
+	for (unsigned i = 0; i < hidden.size(); ++i)
 		synapses.push_back(SynapsePtr(new Synapse(bias, hidden[i])));
-	for (int i = 0; i < outNodes; ++i)
+	for (unsigned i = 0; i < outNodes; ++i)
 		synapses.push_back(SynapsePtr(new Synapse(bias, outputs[i])));
 }
 
-NeuralNetwork::~NeuralNetwork() {
-
-}
-
 void NeuralNetwork::feedForward(vector<double> inp) {
-	for (int neuronIdx = 0; neuronIdx < inp.size(); neuronIdx++) {
+	for (unsigned neuronIdx = 0; neuronIdx < inp.size(); neuronIdx++) {
 		inputs[neuronIdx]->setActivity(inp[neuronIdx]);
 	}
-	for (int neuronIdx = 0; neuronIdx < hidden.size(); neuronIdx++) {
+	for (unsigned neuronIdx = 0; neuronIdx < hidden.size(); neuronIdx++) {
 		hidden[neuronIdx]->feedForward();
 	}
-	for (int neuronIdx = 0; neuronIdx < outputs.size(); neuronIdx++) {
+	for (unsigned neuronIdx = 0; neuronIdx < outputs.size(); neuronIdx++) {
 		outputs[neuronIdx]->feedForward();
 	}
 }
@@ -149,7 +146,7 @@ void NeuralNetwork::simpleBackProp(vector<double> correctOutput, double scale) {
 						* (correctOutput[neuronIdx]
 								- outputs[neuronIdx]->getActivity());
 	}
-	for (int neuronIdx = hidden.size() - 1; neuronIdx >= 0; neuronIdx--) {
+	for (int neuronIdx = hidden.size() - 1; neuronIdx >= 0; --neuronIdx) {
 		double tempSum = 0;
 		for (SynapsePtr curOut : hidden[neuronIdx]->getChilds()) {
 			tempSum += curOut->weight * curOut->getOut()->delta;
@@ -158,8 +155,8 @@ void NeuralNetwork::simpleBackProp(vector<double> correctOutput, double scale) {
 				hidden[neuronIdx]->getNetInput()) * tempSum;
 	}
 	for (SynapsePtr cur : synapses) {
-		cur->weight += /*cur->learningRate*/Synapse::learningRate
-				* cur->getIn()->getActivity() * cur->getOut()->delta;
+		cur->weight += Synapse::learningRate * cur->getIn()->getActivity()
+				* cur->getOut()->delta;
 	}
 }
 
@@ -196,7 +193,7 @@ Move NeuralNetwork::getProbableMove(Board board) {
 
 vector<double> NeuralNetwork::getOutput() const {
 	vector<double> output;
-	for (int i = 0; i < outputs.size(); i++) {
+	for (unsigned i = 0; i < outputs.size(); i++) {
 		output.push_back(outputs[i]->getActivity());
 	}
 	return output;

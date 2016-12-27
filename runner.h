@@ -1,17 +1,19 @@
 #ifndef RUNNER_H
 #define RUNNER_H
 
-#include "TicTacToe.h"
-#include "constants.h"
-#include "player.h"
-
 #include <vector>
+
+#include "constants.h"
 #include "neuralNetwork.h"
+#include "player.h"
+#include "TicTacToe.h"
+
+typedef shared_ptr<Player> PlayerPtr;
 
 class Runner {
 
 public:
-	Runner(Player*, Player*);
+	Runner(PlayerPtr, PlayerPtr);
 
 	bool isDraw() const;
 	int getWinner() const;
@@ -22,11 +24,12 @@ public:
 	void dump() const;
 
 private:
+	void runSimulation();
+
 	short endState;
 	TicTacToe game;
-	std::vector<Move> moves;
-	Player* p1;
-	Player* p2;
-	void runSimulation();
+	vector<Move> moves;
+	PlayerPtr p1;
+	PlayerPtr p2;
 };
 #endif
