@@ -8,29 +8,57 @@
 #ifndef NEURON_H_
 #define NEURON_H_
 
-#include "node.h"
 #include <vector>
+using std::vector;
 
-using namespace std;
-class Neuron : public Node {
+class Synapse;
+typedef std::shared_ptr<Synapse> SynapsePtr;
+
+class Neuron {
 public:
-  Neuron();
-  virtual ~Neuron();
+	Neuron();
 
-  static double sum(vector<double> x);
+	static double sum(vector<double> x);
 
-  void feedForward();
-  double getNetInput();
+	void addChild(SynapsePtr syn) {
+		childs.push_back(syn);
+	}
 
-  static double sigmoid(double x);
-  static double sigmoidPrime(double x);
+	void addParent(SynapsePtr syn) {
+		parents.push_back(syn);
+	}
 
-  double getActivity() const { return activity; }
+	void feedForward();
+	double getNetInput();
 
-  void setActivity(double activity) { this->activity = activity; }
+	static double sigmoid(double x);
+	static double sigmoidPrime(double x);
 
-  double activity;
-  double delta;
+	double getActivity() const {
+		return activity;
+	}
+
+	void setActivity(double activity) {
+		this->activity = activity;
+	}
+
+	const vector<SynapsePtr>& getChilds() const {
+		return childs;
+	}
+
+	unsigned getID() const {
+		return id;
+	}
+
+	double activity;
+	double delta;
+
+private:
+	static unsigned counter; //writes id
+
+	unsigned id;
+	vector<SynapsePtr> childs;
+	vector<SynapsePtr> parents;
 };
 
 #endif /* NEURON_H_ */

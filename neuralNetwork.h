@@ -8,17 +8,17 @@
 #ifndef NEURALNETWORK_H_
 #define NEURALNETWORK_H_
 
-#include "graph.h"
+#include "constants.h"
 
 #include <vector>
-#include "constants.h"
+using std::vector;
 
 class Neuron;
 class Synapse;
+typedef std::shared_ptr<Neuron> NeuronPtr;
+typedef std::shared_ptr<Synapse> SynapsePtr;
 
-using std::vector;
-
-class NeuralNetwork: public Graph {
+class NeuralNetwork {
 public:
 	NeuralNetwork(string s);
 	NeuralNetwork(int inNodes, int outNodes, int hiddenNodes);
@@ -34,15 +34,15 @@ public:
 
 	void saveNetwork(string s) const;
 
-	vector<Neuron*> inputs;
-	vector<Neuron*> hidden;
-	vector<Neuron*> outputs;
-	vector<Synapse*> synapses;
+	vector<NeuronPtr> inputs;
+	vector<NeuronPtr> hidden;
+	vector<NeuronPtr> outputs;
+	vector<SynapsePtr> synapses;
 
 private:
-	Neuron* getNeuron(unsigned idx) const;
+	NeuronPtr getNeuron(unsigned idx) const;
 
-	Neuron* bias;
+	NeuronPtr bias;
 };
 
 #endif /* NEURALNETWORK_H_ */

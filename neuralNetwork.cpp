@@ -26,11 +26,11 @@ NeuralNetwork::NeuralNetwork(string s) :
 	getline(ifs, s);
 
 	for (unsigned i = 0; i < inNodes; ++i)
-		inputs.push_back(new Neuron());
+		inputs.push_back(NeuronPtr(new Neuron()));
 	for (unsigned i = 0; i < hiddenNodes; ++i)
-		hidden.push_back(new Neuron());
+		hidden.push_back(NeuronPtr(new Neuron()));
 	for (unsigned i = 0; i < outNodes; ++i)
-		outputs.push_back(new Neuron());
+		outputs.push_back(NeuronPtr(new Neuron()));
 
 	for (unsigned start = 0; start <= inNodes + hiddenNodes + outNodes;
 			++start) {
@@ -43,9 +43,9 @@ NeuralNetwork::NeuralNetwork(string s) :
 		for (unsigned end = 0; end < vs.size(); ++end) {
 			if (vs[end][2] != ' ') {
 				double flt = atof(vs[end].data());
-				Neuron* startN = getNeuron(start);
-				Neuron* endN = getNeuron(end);
-				synapses.push_back(new Synapse(startN, endN));
+				NeuronPtr startN = getNeuron(start);
+				NeuronPtr endN = getNeuron(end);
+				synapses.push_back(SynapsePtr(new Synapse(startN, endN)));
 				synapses.back()->weight = flt;
 			}
 		}
@@ -59,28 +59,28 @@ NeuralNetwork::NeuralNetwork(int inNodes, int outNodes, int hiddenNodes) :
 	bias->setActivity(1.0);
 
 	for (int i = 0; i < inNodes; ++i)
-		inputs.push_back(new Neuron());
+		inputs.push_back(NeuronPtr(new Neuron()));
 	for (int i = 0; i < hiddenNodes; ++i)
-		hidden.push_back(new Neuron());
+		hidden.push_back(NeuronPtr(new Neuron()));
 	for (int i = 0; i < outNodes; ++i)
-		outputs.push_back(new Neuron());
+		outputs.push_back(NeuronPtr(new Neuron()));
 
 	for (int i = 0; i < inNodes; ++i)
 		for (int j = 0; j < hiddenNodes; ++j)
-			synapses.push_back(new Synapse(inputs[i], hidden[j]));
+			synapses.push_back(SynapsePtr(new Synapse(inputs[i], hidden[j])));
 	for (int i = 0; i < inNodes; ++i)
 		for (int j = 0; j < outNodes; ++j)
-			synapses.push_back(new Synapse(inputs[i], outputs[j]));
+			synapses.push_back(SynapsePtr(new Synapse(inputs[i], outputs[j])));
 	for (int i = 0; i < hiddenNodes; ++i)
 		for (int j = 0; j < outNodes; ++j)
-			synapses.push_back(new Synapse(hidden[i], outputs[j]));
+			synapses.push_back(SynapsePtr(new Synapse(hidden[i], outputs[j])));
 	for (int i = 0; i < hiddenNodes; ++i)
 		for (int j = i + 1; j < hiddenNodes; ++j)
-			synapses.push_back(new Synapse(hidden[i], hidden[j]));
+			synapses.push_back(SynapsePtr(new Synapse(hidden[i], hidden[j])));
 	for (int i = 0; i < hiddenNodes; ++i)
-		synapses.push_back(new Synapse(bias, hidden[i]));
+		synapses.push_back(SynapsePtr(new Synapse(bias, hidden[i])));
 	for (int i = 0; i < outNodes; ++i)
-		synapses.push_back(new Synapse(bias, outputs[i]));
+		synapses.push_back(SynapsePtr(new Synapse(bias, outputs[i])));
 }
 
 NeuralNetwork::NeuralNetwork(int inNodes, int outNodes, int layers,
@@ -88,11 +88,11 @@ NeuralNetwork::NeuralNetwork(int inNodes, int outNodes, int layers,
 		bias(new Neuron()) {
 	bias->setActivity(1.0);
 
-	std::vector<Neuron*> prevLayer;
-	std::vector<Neuron*> curLayer;
+	std::vector<NeuronPtr> prevLayer;
+	std::vector<NeuronPtr> curLayer;
 
 	for (int i = 0; i < inNodes; ++i) {
-		inputs.push_back(new Neuron());
+		inputs.push_back(NeuronPtr(new Neuron()));
 		curLayer.push_back(inputs.back());
 	}
 
@@ -102,26 +102,28 @@ NeuralNetwork::NeuralNetwork(int inNodes, int outNodes, int layers,
 		curLayer.clear();
 
 		for (int i = 0; i < layerNodes; ++i) {
-			hidden.push_back(new Neuron());
+			hidden.push_back(NeuronPtr(new Neuron()));
 			curLayer.push_back(hidden.back());
 		}
 
 		for (int i = 0; i < prevLayer.size(); ++i)
 			for (int j = 0; j < layerNodes; ++j)
-				synapses.push_back(new Synapse(prevLayer[i], curLayer[j]));
+				synapses.push_back(
+						SynapsePtr(new Synapse(prevLayer[i], curLayer[j])));
 	}
 
 	for (int i = 0; i < outNodes; ++i)
-		outputs.push_back(new Neuron());
+		outputs.push_back(NeuronPtr(new Neuron()));
 
 	for (int i = 0; i < curLayer.size(); ++i)
 		for (int j = 0; j < outNodes; ++j)
-			synapses.push_back(new Synapse(curLayer[i], outputs[j]));
+			synapses.push_back(
+					SynapsePtr(new Synapse(curLayer[i], outputs[j])));
 
 	for (int i = 0; i < hidden.size(); ++i)
-		synapses.push_back(new Synapse(bias, hidden[i]));
+		synapses.push_back(SynapsePtr(new Synapse(bias, hidden[i])));
 	for (int i = 0; i < outNodes; ++i)
-		synapses.push_back(new Synapse(bias, outputs[i]));
+		synapses.push_back(SynapsePtr(new Synapse(bias, outputs[i])));
 }
 
 NeuralNetwork::~NeuralNetwork() {
@@ -162,18 +164,16 @@ void NeuralNetwork::backProp(vector<double> correctOutput, bool correct) {
 	}
 	for (int neuronIdx = hidden.size() - 1; neuronIdx >= 0; neuronIdx--) {
 		double tempSum = 0;
-		for (Edge* curOut : hidden[neuronIdx]->childs) {
-			tempSum += ((Synapse*) curOut)->weight
-					* ((Neuron*) curOut->out)->delta;
+		for (SynapsePtr curOut : hidden[neuronIdx]->getChilds()) {
+			tempSum += curOut->weight * curOut->getOut()->delta;
 		}
 		hidden[neuronIdx]->delta = Neuron::sigmoidPrime(
 				hidden[neuronIdx]->getNetInput()) * tempSum;
 		//}
 	}
-	for (Synapse* cur : synapses) {
+	for (SynapsePtr cur : synapses) {
 		cur->weight += /*cur->learningRate*/Synapse::learningRate
-				* ((Neuron*) cur->in)->getActivity()
-				* ((Neuron*) cur->out)->delta;
+				* cur->getIn()->getActivity() * cur->getOut()->delta;
 	}
 }
 
@@ -207,16 +207,16 @@ void NeuralNetwork::saveNetwork(string s) const {
 	os << setprecision(DECIMALS) << fixed << scientific;
 	for (unsigned row = 0;
 			row <= inputs.size() + hidden.size() + outputs.size(); ++row) {
-		Neuron* start = getNeuron(row);
+		NeuronPtr start = getNeuron(row);
 		for (unsigned col = 0;
 				col <= inputs.size() + hidden.size() + outputs.size(); ++col) {
 			bool found = false;
-			for (unsigned i = 0; i < start->childs.size(); ++i) {
-				if (start->childs[i]->out->id == col) {
+			for (unsigned i = 0; i < start->getChilds().size(); ++i) {
+				if (start->getChilds()[i]->getOut()->getID() == col) {
 					found = true;
-					if (synapses[start->childs[i]->id]->weight > 0)
+					if (synapses[start->getChilds()[i]->getID()]->weight > 0)
 						os << "+";
-					os << synapses[start->childs[i]->id]->weight;
+					os << synapses[start->getChilds()[i]->getID()]->weight;
 				}
 			}
 			if (!found)
@@ -230,7 +230,7 @@ void NeuralNetwork::saveNetwork(string s) const {
 	os.close();
 }
 
-Neuron* NeuralNetwork::getNeuron(unsigned idx) const {
+NeuronPtr NeuralNetwork::getNeuron(unsigned idx) const {
 	if (idx == 0)
 		return bias;
 	idx -= 1;
