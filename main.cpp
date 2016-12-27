@@ -62,6 +62,8 @@ int main() {
 	}
 
 	shared_ptr<Player> ai(new AI(nn));
+	ofstream winSeries("winSeries.txt");
+
 	while (true) {
 		cout << "Human Player (h), Logic Player (l) or against itself (t):"
 				<< endl;
@@ -96,6 +98,8 @@ int main() {
 				++progressCounter;
 			}
 			Runner run(ai, p2);
+			if (logic)
+				winSeries << run.getWinner() << endl;
 			vector<State> goodies = run.getGoodStates();
 			for (auto state : goodies) {
 				nn->feedForward(getNodeBoard(state.first));
@@ -121,5 +125,6 @@ int main() {
 		}
 		nn->saveNetwork("network.nn");
 	}
+	winSeries.close();
 	return 0;
 }

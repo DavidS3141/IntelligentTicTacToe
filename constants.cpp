@@ -61,10 +61,16 @@ vector<double> getNodeBoard(Board board) {
 	return ret;
 }
 
-vector<double> getNodeMove(Move move) {
-	vector<double> ret = vector<double>(9, 0);
-	ret[move.row * 3 + move.column] = 1.0;
-	return ret;
+vector<double> getNodeMove(Move move, bool reverse) {
+	if (reverse) {
+		vector<double> ret = vector<double>(9, 1.);
+		ret[move.row * 3 + move.column] = 0.0;
+		return ret;
+	} else {
+		vector<double> ret = vector<double>(9, 0);
+		ret[move.row * 3 + move.column] = 1.0;
+		return ret;
+	}
 }
 
 /*	not needed
