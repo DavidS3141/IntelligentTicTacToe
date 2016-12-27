@@ -7,9 +7,9 @@
 
 #include "ai.h"
 
-#include "NeuralNetwork.h"
+#include "neuralNetwork.h"
 
-AI::AI(NeuralNetwork * const network_) :
+AI::AI(const NeuralNetworkPtr network_) :
 		network(network_) {
 }
 

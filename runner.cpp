@@ -3,7 +3,7 @@
 #include "ai.h"
 #include "human.h"
 
-Runner::Runner(Player* player1, Player* player2) :
+Runner::Runner(PlayerPtr player1, PlayerPtr player2) :
 		p1(player1), p2(player2) {
 	runSimulation();
 }
@@ -45,11 +45,6 @@ vector<State> Runner::getGoodStates() const {
 	for (auto move : moves) {
 		if (move.player == endState
 				|| (endState == -1 && move.player == circle)) {
-			/*
-			 states.push_back(
-			 std::make_pair(pseudoGame.getBoard(move.player),
-			 move));
-			 */
 			states.push_back(
 					std::make_pair(pseudoGame.getBoard(move.player),
 							Move(move.row, move.column, cross)));
@@ -65,11 +60,6 @@ vector<State> Runner::getBadStates() const {
 	for (auto move : moves) {
 		if ((move.player != endState && endState != -1)
 				|| (endState == -1 && move.player == cross)) {
-			/*
-			 states.push_back(
-			 std::make_pair(pseudoGame.getBoard(move.player),
-			 move));
-			 */
 			states.push_back(
 					std::make_pair(pseudoGame.getBoard(move.player),
 							Move(move.row, move.column, cross)));

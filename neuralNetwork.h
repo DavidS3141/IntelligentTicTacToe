@@ -8,19 +8,24 @@
 #ifndef NEURALNETWORK_H_
 #define NEURALNETWORK_H_
 
-#include <vector>
-#include "graph.h"
 #include "constants.h"
 
-class Neuron;
-class Synapse;
+#include <vector>
+using std::vector;
 
-using namespace std;
-class NeuralNetwork: public Graph {
+class Neuron;
+typedef std::shared_ptr<Neuron> NeuronPtr;
+class Synapse;
+typedef std::shared_ptr<Synapse> SynapsePtr;
+
+class NeuralNetwork {
 public:
-	NeuralNetwork(int inNodes, int outNodes, int hiddenNodes);
-	NeuralNetwork(int inNodes, int outNodes, int layers, int layerNodes);
-	virtual ~NeuralNetwork();
+	NeuralNetwork(string s);
+	NeuralNetwork(unsigned inNodes, unsigned outNodes, unsigned hiddenNodes);
+	NeuralNetwork(unsigned inNodes, unsigned outNodes, unsigned layers,
+			unsigned layerNodes);
+
+	void saveNetwork(string s) const;
 
 	void feedForward(vector<double> input);
 	void backProp(vector<vector<double> > inputs,
@@ -30,15 +35,16 @@ public:
 	vector<double> evalInput(vector<double> input);
 	Move getMove(Board board);
 
-	vector<Neuron*> inputs;
-	vector<Neuron*> hidden;
-	vector<Neuron*> outputs;
-	vector<Synapse*> synapses;
+	vector<NeuronPtr> inputs;
+	vector<NeuronPtr> hidden;
+	vector<NeuronPtr> outputs;
+	vector<SynapsePtr> synapses;
 
 private:
 	void simpleBackProp(vector<double> correctOutputs, double scale = 1.0);
+	NeuronPtr getNeuron(unsigned idx) const;
 
-	Neuron* bias;
+	NeuronPtr bias;
 };
 
 #endif /* NEURALNETWORK_H_ */

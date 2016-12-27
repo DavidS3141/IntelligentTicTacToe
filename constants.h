@@ -16,6 +16,8 @@ typedef std::pair<Board, Move> State;
 const int cross = 1;
 const int circle = 2;
 
+const unsigned DECIMALS = 4;
+
 struct Move {
 	int row, column;
 	int player;
@@ -25,6 +27,9 @@ struct Move {
 	}
 	Move(int row, int column, int player) :
 			row(row), column(column), player(player) {
+	}
+	Move(int row, int col) :
+			row(row), column(col) {
 	}
 };
 
@@ -49,5 +54,7 @@ Board getBoardNode(vector<double> nodes);
 Move getMoveNode(vector<double> nodes);
 
 void printBoard(Board &b);
+
+void split(const std::string &s, char delim, std::vector<std::string> &elems);
 
 #endif // CONSTANTS_H
