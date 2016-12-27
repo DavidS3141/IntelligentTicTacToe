@@ -22,7 +22,9 @@ int main() {
 	} else
 		srand(randomMode);
 	//NeuralNetwork* nn = new NeuralNetwork(27, 9, 30);
-	NeuralNetwork* nn = new NeuralNetwork(27, 9, 3, 54);
+	//NeuralNetwork* nn = new NeuralNetwork(27, 9, 3, 54);
+	NeuralNetwork* nn = new NeuralNetwork("network.nn");
+
 	Player* ai = new AI(nn);
 	while (true) {
 		cout << "Human Player (h), Logic Player (l) or against itself (t):"
