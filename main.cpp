@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <ctime>
+#include <fstream>
 #include <iostream>
 
 #include "ai.h"
@@ -102,10 +103,12 @@ int main() {
 			Runner run(ai, p2);
 			if (logic)
 				winSeries << run.getWinner() << endl;
+
 			// training session
 			vector<vector<double> > inputs;
 			vector<vector<double> > corrections;
 			vector<double> scaling;
+
 			vector<State> goodies = run.getGoodStates();
 			double scale = 1.;
 			double factor = 0.1;
