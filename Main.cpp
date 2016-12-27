@@ -19,12 +19,13 @@ int main() {
 	} else
 		srand(randomMode);
 	//NeuralNetwork* nn = new NeuralNetwork(27, 9, 30);
-	NeuralNetwork* nn = new NeuralNetwork(27, 9, 1, 54);
+	//NeuralNetwork* nn = new NeuralNetwork(27, 9, 1, 54);
+	NeuralNetwork* nn = new NeuralNetwork("network.nn");
 	while (true) {
 		cout << "Human Player (y/n):" << endl;
 		char c;
 		cin >> c;
-		bool human=(c=='y');
+		bool human = (c == 'y');
 		cout << "Learning Rate:" << endl;
 		cin >> Synapse::learningRate;
 		cout << "Number of Games:" << endl;

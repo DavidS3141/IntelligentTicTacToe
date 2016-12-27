@@ -32,12 +32,11 @@ template<typename T> int sgn(T val) {
 	return (T(0) < val) - (val < T(0));
 }
 
-const std::vector<std::vector<std::vector<int>>>winningPositions = {
-	{	{	0, 0}, {1, 0}, {2, 0}}, { {0, 1}, {1, 1}, {2, 1}},
-	{	{	0, 2}, {1, 2}, {2, 2}}, { {0, 0}, {0, 1}, {0, 2}},
-	{	{	1, 0}, {1, 1}, {1, 2}}, { {2, 0}, {2, 1}, {2, 2}},
-	{	{	0, 0}, {1, 1}, {2, 2}}, { {0, 2}, {1, 1}, {2, 0}},
-};
+const std::vector<std::vector<std::vector<int> > > winningPositions = { {
+		{ 0, 0 }, { 1, 0 }, { 2, 0 } }, { { 0, 1 }, { 1, 1 }, { 2, 1 } }, { { 0,
+		2 }, { 1, 2 }, { 2, 2 } }, { { 0, 0 }, { 0, 1 }, { 0, 2 } }, { { 1, 0 },
+		{ 1, 1 }, { 1, 2 } }, { { 2, 0 }, { 2, 1 }, { 2, 2 } }, { { 0, 0 }, { 1,
+		1 }, { 2, 2 } }, { { 0, 2 }, { 1, 1 }, { 2, 0 } }, };
 
 const Board empytBoard = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } };
 
@@ -50,5 +49,7 @@ Board getBoardNode(vector<double> nodes);
 Move getMoveNode(vector<double> nodes);
 
 void printBoard(Board &b);
+
+void split(const std::string &s, char delim, std::vector<std::string> &elems);
 
 #endif // CONSTANTS_H
