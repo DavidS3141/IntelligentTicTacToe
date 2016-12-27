@@ -62,17 +62,21 @@ int main() {
 	}
 
 	shared_ptr<Player> ai(new AI(nn));
+	ofstream winSeries("winSeries.txt");
+
 	while (true) {
 		cout << "Human Player (h), Logic Player (l) or against itself (t):"
 				<< endl;
 		char c;
 		cin >> c;
+		bool logic = false;
 		PlayerPtr p2 = 0;
 		switch (c) {
 		case 'h':
 			p2 = PlayerPtr(new Human());
 			break;
 		case 'l':
+			logic = true;
 			p2 = PlayerPtr(new LogicPlayer());
 			break;
 		case 't':
@@ -96,6 +100,8 @@ int main() {
 				++progressCounter;
 			}
 			Runner run(ai, p2);
+			if (logic)
+				winSeries << run.getWinner() << endl;
 			// training session
 			vector<vector<double> > inputs;
 			vector<vector<double> > corrections;
@@ -144,5 +150,6 @@ int main() {
 		}
 		nn->saveNetwork("network.nn");
 	}
+	winSeries.close();
 	return 0;
 }

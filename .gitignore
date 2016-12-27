@@ -5,6 +5,7 @@ a.out.dSYM*
 # Neural Network
 *.nn
 IntelligentTicTacToe
+*.txt
 
 # Eclipse
 *.cproject
