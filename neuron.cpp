@@ -5,9 +5,10 @@
  *      Author: David
  */
 
-#include "Neuron.h"
-#include "Synapse.h"
+#include "neuron.h"
+
 #include <cmath>
+#include "synapse.h"
 
 Neuron::Neuron() :
 		activity(0), delta(0) {

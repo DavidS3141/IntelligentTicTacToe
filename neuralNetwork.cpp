@@ -5,16 +5,16 @@
  *      Author: David
  */
 
-#include "NeuralNetwork.h"
+#include "neuralNetwork.h"
 
 #include <cmath>
 #include <cstring>
 #include <iomanip>
 #include <fstream>
 
-#include "Neuron.h"
-#include "Synapse.h"
 #include "constants.h"
+#include "neuron.h"
+#include "synapse.h"
 
 NeuralNetwork::NeuralNetwork(string s) :
 		bias(new Neuron()) {
@@ -41,9 +41,8 @@ NeuralNetwork::NeuralNetwork(string s) :
 		assert(vs.size()==1+inNodes+hiddenNodes+outNodes);
 #endif
 		for (unsigned end = 0; end < vs.size(); ++end) {
-			string part = vs[end].substr(1, 8);
-			if (part[0] != ' ') {
-				double flt = atof(part.data());
+			if (vs[end][2] != ' ') {
+				double flt = atof(vs[end].data());
 				Neuron* startN = getNeuron(start);
 				Neuron* endN = getNeuron(end);
 				synapses.push_back(new Synapse(startN, endN));
@@ -208,12 +207,12 @@ void NeuralNetwork::saveNetwork(string s) const {
 	 * 1. line: inputs, hiddens, outputs (numbering goes from 1 to (inputs+hiddens+outputs), 0 is bias)
 	 * following lines: matrix representation of Synapse weights
 	 *
-	 * format of floating numbers: +-x.xe+-xx, in total always 8 chars (+- is only one of them)
+	 * format of floating numbers: (+-)x.(DECIMALS)e(+-)xx, in total always 7+DECIMALS chars (+- is only one of them)
 	 */
 	ofstream os(s);
 	os << inputs.size() << " ; " << hidden.size() << " ; " << outputs.size()
 			<< endl;
-	os << setprecision(1) << fixed << scientific;
+	os << setprecision(DECIMALS) << fixed << scientific;
 	for (unsigned row = 0;
 			row <= inputs.size() + hidden.size() + outputs.size(); ++row) {
 		Neuron* start = getNeuron(row);
@@ -229,7 +228,7 @@ void NeuralNetwork::saveNetwork(string s) const {
 				}
 			}
 			if (!found)
-				os << string(8, ' ');
+				os << string(DECIMALS + 7, ' ');
 			if (col < inputs.size() + hidden.size() + outputs.size())
 				os << " ; ";
 			else
