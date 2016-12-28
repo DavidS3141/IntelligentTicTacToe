@@ -71,6 +71,7 @@ int main() {
 		char c;
 		cin >> c;
 		bool logic = false;
+		bool train = false;
 		PlayerPtr p2 = 0;
 		switch (c) {
 		case 'h':
@@ -81,6 +82,7 @@ int main() {
 			p2 = PlayerPtr(new LogicPlayer());
 			break;
 		case 't':
+			train = true;
 			p2 = PlayerPtr(new AI(nn));
 			break;
 		default:
@@ -101,8 +103,23 @@ int main() {
 				++progressCounter;
 			}
 			Runner run(ai, p2);
-			if (logic)
-				winSeries << run.getWinner() << endl;
+			if (logic) {
+				switch (run.getWinner()) {
+				case 1:
+					winSeries << 1 << endl;
+					break;
+				case 2:
+					winSeries << 0 << endl;
+					break;
+				case -1:
+					winSeries << 0.5 << endl;
+					break;
+				default:
+					winSeries << -100 << endl;
+				}
+			} else if (train) {
+				winSeries << run.getMoves().size() / 9. << endl;
+			}
 			vector<State> goodies = run.getGoodStates();
 			for (auto state : goodies) {
 				nn->feedForward(getNodeBoard(state.first));

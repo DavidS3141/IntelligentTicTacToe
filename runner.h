@@ -20,6 +20,7 @@ public:
 
 	vector<State> getBadStates() const;
 	vector<State> getGoodStates() const;
+	const vector<Move>& getMoves() const;
 
 	void dump() const;
 

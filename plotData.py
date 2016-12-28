@@ -12,8 +12,6 @@ plt.close('all')
 colors=['b','r','y','k']
 
 data = np.loadtxt('winSeries.txt',dtype=float)
-data[data==2.]=0.
-data[data==-1.]=0.5
 
 contractionNumber = min(2500,len(data)//2**4)
 

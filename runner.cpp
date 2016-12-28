@@ -76,3 +76,7 @@ vector<State> Runner::getBadStates() const {
 	}
 	return states;
 }
+
+const vector<Move>& Runner::getMoves() const {
+	return moves;
+}
