@@ -1,19 +1,17 @@
 #include <cstdlib>
 #include <ctime>
-#include <iostream>
 #include <fstream>
+#include <iostream>
 
 #include "ai.h"
 #include "human.h"
+#include "loadingBar.h"
 #include "logicPlayer.h"
 #include "neuralNetwork.h"
 #include "runner.h"
 #include "synapse.h"
 
-using std::ofstream;
-using std::cout;
-using std::cin;
-using std::endl;
+using namespace std;
 
 //TODO organize includes, const
 
@@ -73,15 +71,19 @@ int main() {
 				<< endl;
 		char c;
 		cin >> c;
+		bool logic = false;
+		bool train = false;
 		PlayerPtr p2 = 0;
 		switch (c) {
 		case 'h':
 			p2 = PlayerPtr(new Human());
 			break;
 		case 'l':
+			logic = true;
 			p2 = PlayerPtr(new LogicPlayer());
 			break;
 		case 't':
+			train = true;
 			p2 = PlayerPtr(new AI(nn));
 			break;
 		default:
@@ -94,23 +96,39 @@ int main() {
 		cin >> numSims;
 		if (numSims <= 0)
 			return 0;
-		cout << "|                    |" << endl << " ";
-		int progressCounter = 0;
+		LoadingBar lb("Simulation is running");
+		lb.reset(numSims);
 		for (int i = 0; i < numSims; ++i) {
-			while ((i + 1) * 20 > numSims * progressCounter) {
-				cout << "#" << flush;
-				++progressCounter;
-			}
 			Runner run(ai, p2);
-			if (logic)
-				winSeries << run.getWinner() << endl;
+
+			if (logic) {
+				switch (run.getWinner()) {
+				case 1:
+					winSeries << 1 << endl;
+					break;
+				case 2:
+					winSeries << 0 << endl;
+					break;
+				case -1:
+					winSeries << 0.5 << endl;
+					break;
+				default:
+					winSeries << -100 << endl;
+				}
+			} else if (train) {
+				winSeries
+						<< ((run.isDraw() ? 0 : -1) + run.getMoves().size())
+								/ 9. << endl;
+			}
+
 			// training session
 			vector<vector<double> > inputs;
 			vector<vector<double> > corrections;
 			vector<double> scaling;
+
 			vector<State> goodies = run.getGoodStates();
 			double scale = 1.;
-			double factor = 0.1;
+			double factor = 0.9;
 			for (auto sit = goodies.rbegin(); sit != goodies.rend(); ++sit) {
 				inputs.push_back(getNodeBoard(sit->first));
 				corrections.push_back(getNodeMove(sit->second));
@@ -121,39 +139,23 @@ int main() {
 			scale = 1.;
 			for (auto sit = baddies.rbegin(); sit != baddies.rend(); ++sit) {
 				inputs.push_back(getNodeBoard(sit->first));
-				vector<double> outs = nn->evalInput(inputs.back());
-				vector<double> correct;
-				if (!run.isDraw()) {
-					vector<double> multiply = getNodeMove(sit->second, true);
-					for (unsigned j = 0; j < outs.size(); ++j)
-						multiply[j] *= outs[j];
-					correct = multiply;
-				} else {
-					vector<double> target = getNodeMove(sit->second);
-					double max = 0.;
-					double targetval = 0.;
-					for (unsigned j = 0; j < outs.size(); ++j) {
-						if (outs[j] > max)
-							max = outs[j];
-						targetval += outs[j] * target[j];
-					}
-					if (max == 0.)
-						correct = target;
-					else {
-						for (unsigned j = 0; j < outs.size(); ++j) {
-							correct.push_back(
-									outs[j]
-											+ (targetval - outs[j]) * outs[j]
-													* targetval / max / max);
-						}
-					}
+				nn->feedForward(inputs.back());
+				vector<double> outs = nn->getOutput();
+				vector<double> multiply = getNodeMove(sit->second, true);
+				double sum = 0;
+				for (unsigned j = 0; j < outs.size(); ++j) {
+					multiply[j] *= outs[j];
+					sum += multiply[j];
 				}
-				corrections.push_back(norm(correct));
+				for (unsigned j = 0; j < outs.size(); ++j)
+					multiply[j] /= sum;
+				corrections.push_back(multiply);
 				scaling.push_back(scale);
 				scale *= factor;
 			}
 			nn->backProp(inputs, corrections, scaling);
 			//end training session
+			++lb;
 			if (i == numSims - 1) {
 				cout << endl;
 				run.dump();

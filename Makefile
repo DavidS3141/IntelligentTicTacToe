@@ -13,6 +13,10 @@ all: $(OBJ)
 clean:
 	rm bin/*.o
 
+.PHONY: longrun
+longrun: $(OBJ)
+	g++ -o longRun/IntelligentTicTacToe $^ $(CFLAGS)
+
 user:
 	g++ -std=c++14 -g \
 		ai.cpp \

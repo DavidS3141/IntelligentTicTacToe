@@ -155,14 +155,14 @@ void NeuralNetwork::simpleBackProp(vector<double> correctOutput, double scale) {
 				hidden[neuronIdx]->getNetInput()) * tempSum;
 	}
 	for (SynapsePtr cur : synapses) {
-		cur->weight += Synapse::learningRate * cur->getIn()->getActivity()
+		cur->weightChange += Synapse::learningRate * cur->getIn()->getActivity()
 				* cur->getOut()->delta;
 	}
 }
 
 void NeuralNetwork::backProp(vector<vector<double> > inputs,
 		vector<vector<double> > correctOutputs, vector<double> scaling) {
-	for (Synapse* cur : synapses)
+	for (SynapsePtr cur : synapses)
 		cur->weightChange = 0.;
 #ifdef DEBUG
 	assert(inputs.size()==correctOutputs.size());
@@ -172,7 +172,7 @@ void NeuralNetwork::backProp(vector<vector<double> > inputs,
 		feedForward(inputs[i]);
 		simpleBackProp(correctOutputs[i], scaling[i]);
 	}
-	for (Synapse* cur : synapses) {
+	for (SynapsePtr cur : synapses) {
 		cur->weight += cur->weightChange;
 		cur->weightChange = 0.;
 	}
