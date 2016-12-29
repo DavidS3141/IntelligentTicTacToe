@@ -97,7 +97,7 @@ int main() {
 		if (numSims <= 0)
 			return 0;
 		LoadingBar lb("Simulation is running");
-		lb.reset(numSims);
+		lb.set(numSims);
 		for (int i = 0; i < numSims; ++i) {
 			Runner run(ai, p2);
 			if (logic) {

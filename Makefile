@@ -15,7 +15,7 @@ clean:
 
 .PHONY: longrun
 longrun: $(OBJ)
-	g++ -o longRun/IntelligentTicTacToe $^ $(CFLAGS)
+	g++ -o longRun/LR_IntelligentTicTacToe $^ $(CFLAGS)
 
 user:
 	g++ -std=c++14 -g \

@@ -11,7 +11,10 @@ plt.close('all')
 
 colors=['b','r','y','k']
 
-data = np.loadtxt('winSeries.txt',dtype=float)
+folder='longRun/'
+#folder=''
+
+data = np.loadtxt(folder+'winSeries.txt',dtype=float)
 
 contractionNumber = min(2500,len(data)//2**4)
 
