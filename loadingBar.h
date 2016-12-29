@@ -8,6 +8,7 @@
 #ifndef LOADINGBAR_H_
 #define LOADINGBAR_H_
 
+#include <chrono>
 #include <string>
 using std::string;
 
@@ -15,17 +16,21 @@ class LoadingBar {
 public:
 	LoadingBar(string desc_ = "Progressing");
 
-	void reset(unsigned length_);
+	void set(unsigned length_);
+	void reset();
 	void operator++();
 private:
 	string desc;
 	unsigned length;
 	unsigned counter;
 	unsigned block;
-	double delT;
+	unsigned bcounter;
+	std::chrono::time_point<std::chrono::high_resolution_clock> start;
 
 	static unsigned minBlockNbr;
-	static unsigned maxBlockT;
+	static unsigned maxBlockNbr;
+	static float maxBlockT;
+	static float maxDisplayT;
 };
 
 #endif /* LOADINGBAR_H_ */
