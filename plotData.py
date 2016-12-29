@@ -14,6 +14,7 @@ colors=['b','r','y','k']
 data = np.loadtxt('winSeries.txt',dtype=float)
 
 contractionNumber = min(2500,len(data)//2**4)
+#contractionNumber = 1
 
 for i in range(4):
 	contracted = data[0:len(data)+1-contractionNumber]

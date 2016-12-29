@@ -146,7 +146,7 @@ void NeuralNetwork::simpleBackProp(vector<double> correctOutput, double scale) {
 						* (correctOutput[neuronIdx]
 								- outputs[neuronIdx]->getActivity());
 	}
-	for (int neuronIdx = hidden.size() - 1; neuronIdx >= 0; --neuronIdx) {
+	for (int neuronIdx = hidden.size() - 1; neuronIdx >= 0; neuronIdx--) {
 		double tempSum = 0;
 		for (SynapsePtr curOut : hidden[neuronIdx]->getChilds()) {
 			tempSum += curOut->weight * curOut->getOut()->delta;
@@ -155,8 +155,8 @@ void NeuralNetwork::simpleBackProp(vector<double> correctOutput, double scale) {
 				hidden[neuronIdx]->getNetInput()) * tempSum;
 	}
 	for (SynapsePtr cur : synapses) {
-		cur->weightChange += Synapse::learningRate * cur->getIn()->getActivity()
-				* cur->getOut()->delta;
+		cur->weightChange += scale * Synapse::learningRate
+				* cur->getIn()->getActivity() * cur->getOut()->delta;
 	}
 }
 
