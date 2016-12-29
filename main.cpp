@@ -5,6 +5,7 @@
 
 #include "ai.h"
 #include "human.h"
+#include "loadingBar.h"
 #include "logicPlayer.h"
 #include "neuralNetwork.h"
 #include "runner.h"
@@ -95,13 +96,9 @@ int main() {
 		cin >> numSims;
 		if (numSims <= 0)
 			return 0;
-		cout << "|                    |" << endl << " ";
-		int progressCounter = 0;
+		LoadingBar lb("Simulation is running");
+		lb.reset(numSims);
 		for (int i = 0; i < numSims; ++i) {
-			while ((i + 1) * 20 > numSims * progressCounter) {
-				cout << "#" << flush;
-				++progressCounter;
-			}
 			Runner run(ai, p2);
 			if (logic) {
 				switch (run.getWinner()) {
@@ -130,6 +127,7 @@ int main() {
 				nn->feedForward(getNodeBoard(state.first));
 				nn->backProp(getNodeMove(state.second), false);
 			}
+			++lb;
 			if (i == numSims - 1) {
 				cout << endl;
 				run.dump();
