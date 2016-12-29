@@ -33,10 +33,27 @@ void LoadingBar::operator++() {
 	if (counter == 1) {
 		delT = clock() - delT;
 		delT /= CLOCKS_PER_SEC;
+		double approx = delT * (length - 1);
+		unsigned hours = approx / 3600;
+		unsigned minutes = (approx - 3600 * hours) / 60;
 		//block*delT<=maxBlockT and length>=minBlockNbr*block
 		//=> block<=length/minBlockNbr and block<=maxBlockT/delT
 		block = std::min(length / minBlockNbr, (unsigned) (maxBlockT / delT));
 		cout << desc << " ..." << endl;
+		cout << "Approximated duration: ";
+		if (hours > 0)
+			cout << hours << "h ";
+		if (minutes > 0)
+			cout << minutes << "m" << endl;
+		else {
+			if (hours == 0)
+				cout << "<1m" << endl;
+			else
+				cout << endl;
+		}
+		cout << "Expected to be finished: "
+				<< std::asctime(
+						std::localtime(new time_t(std::time(NULL) + approx)));
 		cout << "|" << string(length / block, '-') << "|" << endl;
 		cout << " ";
 	}
@@ -44,6 +61,8 @@ void LoadingBar::operator++() {
 		cout << "#" << flush;
 	if (counter == length) {
 		cout << endl;
+		cout << "Finished: "
+				<< std::asctime(std::localtime(new time_t(std::time(NULL))));
 		reset(0);
 	}
 }
