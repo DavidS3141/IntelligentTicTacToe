@@ -38,7 +38,7 @@ NeuralNetwork::NeuralNetwork(string s) :
 		vector<string> vs;
 		split(s, ';', vs);
 #ifdef DEBUG
-		assert(vs.size()==1+inNodes+hiddenNodes+outNodes);
+		assert(vs.size() == 1 + inNodes + hiddenNodes + outNodes);
 #endif
 		for (unsigned end = 0; end < vs.size(); ++end) {
 			if (vs[end][2] != ' ') {
@@ -139,10 +139,9 @@ void NeuralNetwork::feedForward(vector<double> inp) {
 	}
 }
 
-void NeuralNetwork::backProp(vector<double> correctOutput, bool correct) {
+double NeuralNetwork::backProp(vector<double> correctOutput, bool correct) {
+	double errorSum = calcErrorSum(correctOutput, getOutput());
 	for (int neuronIdx = outputs.size() - 1; neuronIdx >= 0; --neuronIdx) {
-		//double* deltas = new double[neurons.size()];
-		//if(neuronIdx >= outputNeurons) {
 		if (correct) {
 			outputs[neuronIdx]->delta = Neuron::sigmoidPrime(
 					outputs[neuronIdx]->getNetInput())
@@ -157,7 +156,6 @@ void NeuralNetwork::backProp(vector<double> correctOutput, bool correct) {
 											correctOutput[neuronIdx]
 													- outputs[neuronIdx]->getActivity()));
 		}
-		//}
 	}
 	for (int neuronIdx = hidden.size() - 1; neuronIdx >= 0; --neuronIdx) {
 		double tempSum = 0;
@@ -166,12 +164,12 @@ void NeuralNetwork::backProp(vector<double> correctOutput, bool correct) {
 		}
 		hidden[neuronIdx]->delta = Neuron::sigmoidPrime(
 				hidden[neuronIdx]->getNetInput()) * tempSum;
-		//}
 	}
 	for (SynapsePtr cur : synapses) {
 		cur->weight += Synapse::learningRate * cur->getIn()->getActivity()
 				* cur->getOut()->delta;
 	}
+	return errorSum;
 }
 
 vector<double> NeuralNetwork::evalInput(vector<double> inp) {

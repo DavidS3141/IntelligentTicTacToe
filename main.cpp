@@ -64,7 +64,8 @@ int main() {
 	}
 
 	shared_ptr<Player> ai(new AI(nn));
-	ofstream winSeries("winSeries.txt");
+	ofstream winSeries("winSeries.txt", ofstream::app);
+	ofstream esStream("errorSums.txt", ofstream::app);
 
 	while (true) {
 		cout << "Human Player (h), Logic Player (l) or against itself (t):"
@@ -117,16 +118,21 @@ int main() {
 			} else if (train) {
 				winSeries << run.getMoves().size() / 9. << endl;
 			}
+			vector<double> es;
 			vector<State> goodies = run.getGoodStates();
 			for (auto state : goodies) {
 				nn->feedForward(getNodeBoard(state.first));
-				nn->backProp(getNodeMove(state.second), true);
+				es.push_back(nn->backProp(getNodeMove(state.second), true));
 			}
 			vector<State> baddies = run.getBadStates();
 			for (auto state : baddies) {
 				nn->feedForward(getNodeBoard(state.first));
-				nn->backProp(getNodeMove(state.second), false);
+				es.push_back(nn->backProp(getNodeMove(state.second), false));
 			}
+			esStream << es;
+			for (unsigned j = 0; j < 9 - es.size(); ++j)
+				esStream << ";0.0";
+			esStream << endl;
 			++lb;
 			if (i == numSims - 1) {
 				cout << endl;
@@ -144,5 +150,6 @@ int main() {
 		nn->saveNetwork("network.nn");
 	}
 	winSeries.close();
+	esStream.close();
 	return 0;
 }
