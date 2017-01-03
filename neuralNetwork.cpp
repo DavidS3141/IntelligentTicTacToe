@@ -38,7 +38,7 @@ NeuralNetwork::NeuralNetwork(string s) :
 		vector<string> vs;
 		split(s, ';', vs);
 #ifdef DEBUG
-		assert(vs.size()==1+inNodes+hiddenNodes+outNodes);
+		assert(vs.size() == 1 + inNodes + hiddenNodes + outNodes);
 #endif
 		for (unsigned end = 0; end < vs.size(); ++end) {
 			if (vs[end][2] != ' ') {
@@ -160,22 +160,25 @@ void NeuralNetwork::simpleBackProp(vector<double> correctOutput, double scale) {
 	}
 }
 
-void NeuralNetwork::backProp(vector<vector<double> > inputs,
+vector<double> NeuralNetwork::backProp(vector<vector<double> > inputs,
 		vector<vector<double> > correctOutputs, vector<double> scaling) {
+	vector<double> errorSum;
 	for (SynapsePtr cur : synapses)
 		cur->weightChange = 0.;
 #ifdef DEBUG
-	assert(inputs.size()==correctOutputs.size());
-	assert(inputs.size()==scaling.size());
+	assert(inputs.size() == correctOutputs.size());
+	assert(inputs.size() == scaling.size());
 #endif
 	for (unsigned i = 0; i < inputs.size(); ++i) {
 		feedForward(inputs[i]);
+		errorSum.push_back(calcErrorSum(correctOutputs[i], getOutput()));
 		simpleBackProp(correctOutputs[i], scaling[i]);
 	}
 	for (SynapsePtr cur : synapses) {
 		cur->weight += cur->weightChange;
 		cur->weightChange = 0.;
 	}
+	return errorSum;
 }
 
 vector<double> NeuralNetwork::evalInput(vector<double> inp) {

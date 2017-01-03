@@ -19,6 +19,7 @@ public:
 	void set(unsigned length_);
 	void reset();
 	void operator++();
+	void reprint();
 private:
 	string desc;
 	unsigned length;
@@ -26,11 +27,12 @@ private:
 	unsigned block;
 	unsigned bcounter;
 	std::chrono::time_point<std::chrono::high_resolution_clock> start;
+	double approxEnd;
 
 	static unsigned minBlockNbr;
 	static unsigned maxBlockNbr;
 	static float maxBlockT;
-	static float maxDisplayT;
+	static float resolutionT;
 };
 
 #endif /* LOADINGBAR_H_ */

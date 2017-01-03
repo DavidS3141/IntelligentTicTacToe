@@ -28,7 +28,7 @@ public:
 	void saveNetwork(string s) const;
 
 	void feedForward(vector<double> input);
-	void backProp(vector<vector<double> > inputs,
+	vector<double> backProp(vector<vector<double> > inputs,
 			vector<vector<double> > correctOutputs, vector<double> scaling);
 
 	vector<double> getOutput() const;
