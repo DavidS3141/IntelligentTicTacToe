@@ -149,3 +149,21 @@ void split(const std::string &s, char delim, std::vector<std::string> &elems) {
 		elems.push_back(item);
 	}
 }
+
+double calcErrorSum(vector<double> a, vector<double> b) {
+	double result = 0;
+#ifdef DEBUG
+	assert(a.size() == b.size());
+#endif
+	for (unsigned i = 0; i < a.size(); ++i)
+		result += (a[i] - b[i]) * (a[i] - b[i]);
+	return result;
+}
+
+ostream& operator<<(ostream& os, vector<double> v) {
+	os << v[0];
+	for (unsigned i = 1; i < v.size(); ++i) {
+		os << ";" << v[i];
+	}
+	return os;
+}

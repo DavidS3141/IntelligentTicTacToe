@@ -64,7 +64,8 @@ int main() {
 	}
 
 	shared_ptr<Player> ai(new AI(nn));
-	ofstream winSeries("winSeries.txt");
+	ofstream winSeries("winSeries.txt", ofstream::app);
+	ofstream esStream("errorSums.txt", ofstream::app);
 
 	while (true) {
 		cout << "Human Player (h), Logic Player (l) or against itself (t):"
@@ -97,7 +98,7 @@ int main() {
 		if (numSims <= 0)
 			return 0;
 		LoadingBar lb("Simulation is running");
-		lb.reset(numSims);
+		lb.set(numSims);
 		for (int i = 0; i < numSims; ++i) {
 			Runner run(ai, p2);
 
@@ -153,8 +154,13 @@ int main() {
 				scaling.push_back(scale);
 				scale *= factor;
 			}
-			nn->backProp(inputs, corrections, scaling);
+			vector<double> es = nn->backProp(inputs, corrections, scaling);
+			esStream << es;
+			for (unsigned j = 0; j < 9 - es.size(); ++j)
+				esStream << ";0.0";
+			esStream << endl;
 			//end training session
+
 			++lb;
 			if (i == numSims - 1) {
 				cout << endl;
@@ -172,5 +178,6 @@ int main() {
 		nn->saveNetwork("network.nn");
 	}
 	winSeries.close();
+	esStream.close();
 	return 0;
 }

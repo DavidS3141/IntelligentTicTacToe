@@ -6,6 +6,11 @@
 #include <tuple>
 #include <utility>
 
+#define DEBUG
+#ifdef DEBUG
+#include <cassert>
+#endif
+
 struct Move;
 
 using std::vector;
@@ -58,5 +63,9 @@ vector<double>& norm(vector<double>& v);
 void printBoard(Board &b);
 
 void split(const std::string &s, char delim, std::vector<std::string> &elems);
+
+double calcErrorSum(vector<double> a, vector<double> b);
+
+ostream& operator<<(ostream& os, vector<double> v);
 
 #endif // CONSTANTS_H
