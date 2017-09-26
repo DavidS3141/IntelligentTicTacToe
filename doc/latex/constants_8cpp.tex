@@ -1,0 +1,226 @@
+\hypertarget{constants_8cpp}{}\section{constants.\+cpp File Reference}
+\label{constants_8cpp}\index{constants.\+cpp@{constants.\+cpp}}
+{\ttfamily \#include \char`\"{}constants.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+Include dependency graph for constants.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{constants_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+const char \hyperlink{constants_8cpp_abafaee18c3d094a7c2927d803c996937}{print\+Symbol} (int i)
+\item 
+void \hyperlink{constants_8cpp_af42f206903df0bc41dfc1d82426bf911}{print\+Move} (\hyperlink{constants_8h_af901d0acc1572fb0c779f84ddd2c6ce8}{Board} \&b, \hyperlink{struct_move}{Move} \&m)
+\item 
+vector$<$ double $>$ \hyperlink{constants_8cpp_a3bf3485465974fb9c6e137559a43391b}{get\+Node\+Board} (\hyperlink{constants_8h_af901d0acc1572fb0c779f84ddd2c6ce8}{Board} board)
+\item 
+vector$<$ double $>$ \hyperlink{constants_8cpp_aabbd0f026adcc6f737fe9d2642de970e}{get\+Node\+Move} (\hyperlink{struct_move}{Move} move, bool reverse)
+\item 
+\hyperlink{struct_move}{Move} \hyperlink{constants_8cpp_a003e3a1a534af97e5d1e75c25ff3be28}{get\+Move\+Node} (vector$<$ double $>$ nodes)
+\item 
+\hyperlink{struct_move}{Move} \hyperlink{constants_8cpp_a107022faba013a74ef065399a00867af}{get\+Probable\+Move\+From\+Node} (vector$<$ double $>$ nodes)
+\item 
+vector$<$ double $>$ \& \hyperlink{constants_8cpp_ad17af02b26c5701fec9583eac5a21c3b}{norm} (vector$<$ double $>$ \&v)
+\item 
+void \hyperlink{constants_8cpp_a0dc3a0d3881d88542de17697bfe32a27}{print\+Board} (\hyperlink{constants_8h_af901d0acc1572fb0c779f84ddd2c6ce8}{Board} \&b)
+\item 
+void \hyperlink{constants_8cpp_a7fdeaad11fab6949d565928655753fe8}{split} (const std\+::string \&s, char delim, std\+::vector$<$ std\+::string $>$ \&elems)
+\item 
+double \hyperlink{constants_8cpp_ad29abeca332a1c0701cec6d0204fdc04}{calc\+Error\+Sum} (vector$<$ double $>$ a, vector$<$ double $>$ b)
+\item 
+ostream \& \hyperlink{constants_8cpp_a500e4d3762c59c6bc5db8783fb6ae952}{operator$<$$<$} (ostream \&os, vector$<$ double $>$ v)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{constants_8cpp_ad29abeca332a1c0701cec6d0204fdc04}\label{constants_8cpp_ad29abeca332a1c0701cec6d0204fdc04}} 
+\index{constants.\+cpp@{constants.\+cpp}!calc\+Error\+Sum@{calc\+Error\+Sum}}
+\index{calc\+Error\+Sum@{calc\+Error\+Sum}!constants.\+cpp@{constants.\+cpp}}
+\subsubsection{\texorpdfstring{calc\+Error\+Sum()}{calcErrorSum()}}
+{\footnotesize\ttfamily double calc\+Error\+Sum (\begin{DoxyParamCaption}\item[{vector$<$ double $>$}]{a,  }\item[{vector$<$ double $>$}]{b }\end{DoxyParamCaption})}
+
+
+
+Definition at line 153 of file constants.\+cpp.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=323pt]{constants_8cpp_ad29abeca332a1c0701cec6d0204fdc04_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{constants_8cpp_a003e3a1a534af97e5d1e75c25ff3be28}\label{constants_8cpp_a003e3a1a534af97e5d1e75c25ff3be28}} 
+\index{constants.\+cpp@{constants.\+cpp}!get\+Move\+Node@{get\+Move\+Node}}
+\index{get\+Move\+Node@{get\+Move\+Node}!constants.\+cpp@{constants.\+cpp}}
+\subsubsection{\texorpdfstring{get\+Move\+Node()}{getMoveNode()}}
+{\footnotesize\ttfamily \hyperlink{struct_move}{Move} get\+Move\+Node (\begin{DoxyParamCaption}\item[{vector$<$ double $>$}]{nodes }\end{DoxyParamCaption})}
+
+
+
+Definition at line 89 of file constants.\+cpp.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=320pt]{constants_8cpp_a003e3a1a534af97e5d1e75c25ff3be28_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{constants_8cpp_a3bf3485465974fb9c6e137559a43391b}\label{constants_8cpp_a3bf3485465974fb9c6e137559a43391b}} 
+\index{constants.\+cpp@{constants.\+cpp}!get\+Node\+Board@{get\+Node\+Board}}
+\index{get\+Node\+Board@{get\+Node\+Board}!constants.\+cpp@{constants.\+cpp}}
+\subsubsection{\texorpdfstring{get\+Node\+Board()}{getNodeBoard()}}
+{\footnotesize\ttfamily vector$<$double$>$ get\+Node\+Board (\begin{DoxyParamCaption}\item[{\hyperlink{constants_8h_af901d0acc1572fb0c779f84ddd2c6ce8}{Board}}]{board }\end{DoxyParamCaption})}
+
+
+
+Definition at line 54 of file constants.\+cpp.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{constants_8cpp_a3bf3485465974fb9c6e137559a43391b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{constants_8cpp_aabbd0f026adcc6f737fe9d2642de970e}\label{constants_8cpp_aabbd0f026adcc6f737fe9d2642de970e}} 
+\index{constants.\+cpp@{constants.\+cpp}!get\+Node\+Move@{get\+Node\+Move}}
+\index{get\+Node\+Move@{get\+Node\+Move}!constants.\+cpp@{constants.\+cpp}}
+\subsubsection{\texorpdfstring{get\+Node\+Move()}{getNodeMove()}}
+{\footnotesize\ttfamily vector$<$double$>$ get\+Node\+Move (\begin{DoxyParamCaption}\item[{\hyperlink{struct_move}{Move}}]{move,  }\item[{bool}]{reverse }\end{DoxyParamCaption})}
+
+
+
+Definition at line 64 of file constants.\+cpp.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{constants_8cpp_aabbd0f026adcc6f737fe9d2642de970e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{constants_8cpp_a107022faba013a74ef065399a00867af}\label{constants_8cpp_a107022faba013a74ef065399a00867af}} 
+\index{constants.\+cpp@{constants.\+cpp}!get\+Probable\+Move\+From\+Node@{get\+Probable\+Move\+From\+Node}}
+\index{get\+Probable\+Move\+From\+Node@{get\+Probable\+Move\+From\+Node}!constants.\+cpp@{constants.\+cpp}}
+\subsubsection{\texorpdfstring{get\+Probable\+Move\+From\+Node()}{getProbableMoveFromNode()}}
+{\footnotesize\ttfamily \hyperlink{struct_move}{Move} get\+Probable\+Move\+From\+Node (\begin{DoxyParamCaption}\item[{vector$<$ double $>$}]{nodes }\end{DoxyParamCaption})}
+
+
+
+Definition at line 103 of file constants.\+cpp.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{constants_8cpp_a107022faba013a74ef065399a00867af_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{constants_8cpp_ad17af02b26c5701fec9583eac5a21c3b}\label{constants_8cpp_ad17af02b26c5701fec9583eac5a21c3b}} 
+\index{constants.\+cpp@{constants.\+cpp}!norm@{norm}}
+\index{norm@{norm}!constants.\+cpp@{constants.\+cpp}}
+\subsubsection{\texorpdfstring{norm()}{norm()}}
+{\footnotesize\ttfamily vector$<$double$>$\& norm (\begin{DoxyParamCaption}\item[{vector$<$ double $>$ \&}]{v }\end{DoxyParamCaption})}
+
+
+
+Definition at line 124 of file constants.\+cpp.
+
+\mbox{\Hypertarget{constants_8cpp_a500e4d3762c59c6bc5db8783fb6ae952}\label{constants_8cpp_a500e4d3762c59c6bc5db8783fb6ae952}} 
+\index{constants.\+cpp@{constants.\+cpp}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!constants.\+cpp@{constants.\+cpp}}
+\subsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}}
+{\footnotesize\ttfamily ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{ostream \&}]{os,  }\item[{vector$<$ double $>$}]{v }\end{DoxyParamCaption})}
+
+
+
+Definition at line 163 of file constants.\+cpp.
+
+\mbox{\Hypertarget{constants_8cpp_a0dc3a0d3881d88542de17697bfe32a27}\label{constants_8cpp_a0dc3a0d3881d88542de17697bfe32a27}} 
+\index{constants.\+cpp@{constants.\+cpp}!print\+Board@{print\+Board}}
+\index{print\+Board@{print\+Board}!constants.\+cpp@{constants.\+cpp}}
+\subsubsection{\texorpdfstring{print\+Board()}{printBoard()}}
+{\footnotesize\ttfamily void print\+Board (\begin{DoxyParamCaption}\item[{\hyperlink{constants_8h_af901d0acc1572fb0c779f84ddd2c6ce8}{Board} \&}]{b }\end{DoxyParamCaption})}
+
+
+
+Definition at line 133 of file constants.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=247pt]{constants_8cpp_a0dc3a0d3881d88542de17697bfe32a27_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=270pt]{constants_8cpp_a0dc3a0d3881d88542de17697bfe32a27_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{constants_8cpp_af42f206903df0bc41dfc1d82426bf911}\label{constants_8cpp_af42f206903df0bc41dfc1d82426bf911}} 
+\index{constants.\+cpp@{constants.\+cpp}!print\+Move@{print\+Move}}
+\index{print\+Move@{print\+Move}!constants.\+cpp@{constants.\+cpp}}
+\subsubsection{\texorpdfstring{print\+Move()}{printMove()}}
+{\footnotesize\ttfamily void print\+Move (\begin{DoxyParamCaption}\item[{\hyperlink{constants_8h_af901d0acc1572fb0c779f84ddd2c6ce8}{Board} \&}]{b,  }\item[{\hyperlink{struct_move}{Move} \&}]{m }\end{DoxyParamCaption})}
+
+
+
+Definition at line 30 of file constants.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=245pt]{constants_8cpp_af42f206903df0bc41dfc1d82426bf911_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{constants_8cpp_af42f206903df0bc41dfc1d82426bf911_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{constants_8cpp_abafaee18c3d094a7c2927d803c996937}\label{constants_8cpp_abafaee18c3d094a7c2927d803c996937}} 
+\index{constants.\+cpp@{constants.\+cpp}!print\+Symbol@{print\+Symbol}}
+\index{print\+Symbol@{print\+Symbol}!constants.\+cpp@{constants.\+cpp}}
+\subsubsection{\texorpdfstring{print\+Symbol()}{printSymbol()}}
+{\footnotesize\ttfamily const char print\+Symbol (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption})}
+
+
+
+Definition at line 17 of file constants.\+cpp.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{constants_8cpp_abafaee18c3d094a7c2927d803c996937_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{constants_8cpp_a7fdeaad11fab6949d565928655753fe8}\label{constants_8cpp_a7fdeaad11fab6949d565928655753fe8}} 
+\index{constants.\+cpp@{constants.\+cpp}!split@{split}}
+\index{split@{split}!constants.\+cpp@{constants.\+cpp}}
+\subsubsection{\texorpdfstring{split()}{split()}}
+{\footnotesize\ttfamily void split (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{s,  }\item[{char}]{delim,  }\item[{std\+::vector$<$ std\+::string $>$ \&}]{elems }\end{DoxyParamCaption})}
+
+
+
+Definition at line 144 of file constants.\+cpp.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=304pt]{constants_8cpp_a7fdeaad11fab6949d565928655753fe8_icgraph}
+\end{center}
+\end{figure}

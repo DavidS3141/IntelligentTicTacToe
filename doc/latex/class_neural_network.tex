@@ -1,0 +1,274 @@
+\hypertarget{class_neural_network}{}\section{Neural\+Network Class Reference}
+\label{class_neural_network}\index{Neural\+Network@{Neural\+Network}}
+
+
+{\ttfamily \#include $<$neural\+Network.\+h$>$}
+
+
+
+Collaboration diagram for Neural\+Network\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{class_neural_network__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_neural_network_ac46a25af2f5a1706adf9e798970939bb}{Neural\+Network} (string s)
+\item 
+\hyperlink{class_neural_network_aed4b8a61c6cf3e0af6ff9976bf9c4190}{Neural\+Network} (unsigned in\+Nodes, unsigned out\+Nodes, unsigned hidden\+Nodes)
+\item 
+\hyperlink{class_neural_network_a4cdce541dada0debf1022e3951b8d8cb}{Neural\+Network} (unsigned in\+Nodes, unsigned out\+Nodes, unsigned layers, unsigned layer\+Nodes)
+\item 
+void \hyperlink{class_neural_network_adf3230528dd4c37960464557c690cbae}{save\+Network} (string s) const
+\item 
+void \hyperlink{class_neural_network_a7ebe119117046615958557e820b90c67}{feed\+Forward} (vector$<$ double $>$ input)
+\item 
+vector$<$ double $>$ \hyperlink{class_neural_network_a4416dadd62ac5ec1b645ae1378e21335}{back\+Prop} (vector$<$ vector$<$ double $>$ $>$ \hyperlink{class_neural_network_ae9ab96e97eef53bf8080001cf90075b8}{inputs}, vector$<$ vector$<$ double $>$ $>$ correct\+Outputs, vector$<$ double $>$ scaling)
+\item 
+vector$<$ double $>$ \hyperlink{class_neural_network_a73d030bfbf3efe8edb0bfd8a7e94ed53}{get\+Output} () const
+\item 
+vector$<$ double $>$ \hyperlink{class_neural_network_a7566cd3df29d6ed6d8134d2c52c1460a}{eval\+Input} (vector$<$ double $>$ input)
+\item 
+\hyperlink{struct_move}{Move} \hyperlink{class_neural_network_af773d118844a6dc42c8a4edc05652893}{get\+Move} (\hyperlink{constants_8h_af901d0acc1572fb0c779f84ddd2c6ce8}{Board} board)
+\item 
+\hyperlink{struct_move}{Move} \hyperlink{class_neural_network_abaeb2ec4b31b2a69985cacec5fd1d685}{get\+Probable\+Move} (\hyperlink{constants_8h_af901d0acc1572fb0c779f84ddd2c6ce8}{Board} board)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ \hyperlink{neural_network_8h_af4884b0194f2598e689c894b76d0d92c}{Neuron\+Ptr} $>$ \hyperlink{class_neural_network_ae9ab96e97eef53bf8080001cf90075b8}{inputs}
+\item 
+vector$<$ \hyperlink{neural_network_8h_af4884b0194f2598e689c894b76d0d92c}{Neuron\+Ptr} $>$ \hyperlink{class_neural_network_a34c4927691004c6a9a637e82f9351d28}{hidden}
+\item 
+vector$<$ \hyperlink{neural_network_8h_af4884b0194f2598e689c894b76d0d92c}{Neuron\+Ptr} $>$ \hyperlink{class_neural_network_aa921b31f56ca042113bf250d603dabcd}{outputs}
+\item 
+vector$<$ \hyperlink{neural_network_8h_ac587b5c69519c070958c5cb318ddc50f}{Synapse\+Ptr} $>$ \hyperlink{class_neural_network_aa22ab04ac7e5b3bb8f291ff524e04ee3}{synapses}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 21 of file neural\+Network.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_neural_network_ac46a25af2f5a1706adf9e798970939bb}\label{class_neural_network_ac46a25af2f5a1706adf9e798970939bb}} 
+\index{Neural\+Network@{Neural\+Network}!Neural\+Network@{Neural\+Network}}
+\index{Neural\+Network@{Neural\+Network}!Neural\+Network@{Neural\+Network}}
+\subsubsection{\texorpdfstring{Neural\+Network()}{NeuralNetwork()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Neural\+Network\+::\+Neural\+Network (\begin{DoxyParamCaption}\item[{string}]{s }\end{DoxyParamCaption})}
+
+
+
+Definition at line 19 of file neural\+Network.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=304pt]{class_neural_network_ac46a25af2f5a1706adf9e798970939bb_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_neural_network_aed4b8a61c6cf3e0af6ff9976bf9c4190}\label{class_neural_network_aed4b8a61c6cf3e0af6ff9976bf9c4190}} 
+\index{Neural\+Network@{Neural\+Network}!Neural\+Network@{Neural\+Network}}
+\index{Neural\+Network@{Neural\+Network}!Neural\+Network@{Neural\+Network}}
+\subsubsection{\texorpdfstring{Neural\+Network()}{NeuralNetwork()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Neural\+Network\+::\+Neural\+Network (\begin{DoxyParamCaption}\item[{unsigned}]{in\+Nodes,  }\item[{unsigned}]{out\+Nodes,  }\item[{unsigned}]{hidden\+Nodes }\end{DoxyParamCaption})}
+
+
+
+Definition at line 57 of file neural\+Network.\+cpp.
+
+\mbox{\Hypertarget{class_neural_network_a4cdce541dada0debf1022e3951b8d8cb}\label{class_neural_network_a4cdce541dada0debf1022e3951b8d8cb}} 
+\index{Neural\+Network@{Neural\+Network}!Neural\+Network@{Neural\+Network}}
+\index{Neural\+Network@{Neural\+Network}!Neural\+Network@{Neural\+Network}}
+\subsubsection{\texorpdfstring{Neural\+Network()}{NeuralNetwork()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Neural\+Network\+::\+Neural\+Network (\begin{DoxyParamCaption}\item[{unsigned}]{in\+Nodes,  }\item[{unsigned}]{out\+Nodes,  }\item[{unsigned}]{layers,  }\item[{unsigned}]{layer\+Nodes }\end{DoxyParamCaption})}
+
+
+
+Definition at line 87 of file neural\+Network.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_neural_network_a4416dadd62ac5ec1b645ae1378e21335}\label{class_neural_network_a4416dadd62ac5ec1b645ae1378e21335}} 
+\index{Neural\+Network@{Neural\+Network}!back\+Prop@{back\+Prop}}
+\index{back\+Prop@{back\+Prop}!Neural\+Network@{Neural\+Network}}
+\subsubsection{\texorpdfstring{back\+Prop()}{backProp()}}
+{\footnotesize\ttfamily vector$<$ double $>$ Neural\+Network\+::back\+Prop (\begin{DoxyParamCaption}\item[{vector$<$ vector$<$ double $>$ $>$}]{inputs,  }\item[{vector$<$ vector$<$ double $>$ $>$}]{correct\+Outputs,  }\item[{vector$<$ double $>$}]{scaling }\end{DoxyParamCaption})}
+
+
+
+Definition at line 163 of file neural\+Network.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_neural_network_a4416dadd62ac5ec1b645ae1378e21335_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_neural_network_a7566cd3df29d6ed6d8134d2c52c1460a}\label{class_neural_network_a7566cd3df29d6ed6d8134d2c52c1460a}} 
+\index{Neural\+Network@{Neural\+Network}!eval\+Input@{eval\+Input}}
+\index{eval\+Input@{eval\+Input}!Neural\+Network@{Neural\+Network}}
+\subsubsection{\texorpdfstring{eval\+Input()}{evalInput()}}
+{\footnotesize\ttfamily vector$<$ double $>$ Neural\+Network\+::eval\+Input (\begin{DoxyParamCaption}\item[{vector$<$ double $>$}]{input }\end{DoxyParamCaption})}
+
+
+
+Definition at line 184 of file neural\+Network.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_neural_network_a7566cd3df29d6ed6d8134d2c52c1460a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_neural_network_a7566cd3df29d6ed6d8134d2c52c1460a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_neural_network_a7ebe119117046615958557e820b90c67}\label{class_neural_network_a7ebe119117046615958557e820b90c67}} 
+\index{Neural\+Network@{Neural\+Network}!feed\+Forward@{feed\+Forward}}
+\index{feed\+Forward@{feed\+Forward}!Neural\+Network@{Neural\+Network}}
+\subsubsection{\texorpdfstring{feed\+Forward()}{feedForward()}}
+{\footnotesize\ttfamily void Neural\+Network\+::feed\+Forward (\begin{DoxyParamCaption}\item[{vector$<$ double $>$}]{input }\end{DoxyParamCaption})}
+
+
+
+Definition at line 130 of file neural\+Network.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_neural_network_a7ebe119117046615958557e820b90c67_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_neural_network_a7ebe119117046615958557e820b90c67_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_neural_network_af773d118844a6dc42c8a4edc05652893}\label{class_neural_network_af773d118844a6dc42c8a4edc05652893}} 
+\index{Neural\+Network@{Neural\+Network}!get\+Move@{get\+Move}}
+\index{get\+Move@{get\+Move}!Neural\+Network@{Neural\+Network}}
+\subsubsection{\texorpdfstring{get\+Move()}{getMove()}}
+{\footnotesize\ttfamily \hyperlink{struct_move}{Move} Neural\+Network\+::get\+Move (\begin{DoxyParamCaption}\item[{\hyperlink{constants_8h_af901d0acc1572fb0c779f84ddd2c6ce8}{Board}}]{board }\end{DoxyParamCaption})}
+
+
+
+Definition at line 189 of file neural\+Network.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_neural_network_af773d118844a6dc42c8a4edc05652893_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_neural_network_a73d030bfbf3efe8edb0bfd8a7e94ed53}\label{class_neural_network_a73d030bfbf3efe8edb0bfd8a7e94ed53}} 
+\index{Neural\+Network@{Neural\+Network}!get\+Output@{get\+Output}}
+\index{get\+Output@{get\+Output}!Neural\+Network@{Neural\+Network}}
+\subsubsection{\texorpdfstring{get\+Output()}{getOutput()}}
+{\footnotesize\ttfamily vector$<$ double $>$ Neural\+Network\+::get\+Output (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 197 of file neural\+Network.\+cpp.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_neural_network_a73d030bfbf3efe8edb0bfd8a7e94ed53_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_neural_network_abaeb2ec4b31b2a69985cacec5fd1d685}\label{class_neural_network_abaeb2ec4b31b2a69985cacec5fd1d685}} 
+\index{Neural\+Network@{Neural\+Network}!get\+Probable\+Move@{get\+Probable\+Move}}
+\index{get\+Probable\+Move@{get\+Probable\+Move}!Neural\+Network@{Neural\+Network}}
+\subsubsection{\texorpdfstring{get\+Probable\+Move()}{getProbableMove()}}
+{\footnotesize\ttfamily \hyperlink{struct_move}{Move} Neural\+Network\+::get\+Probable\+Move (\begin{DoxyParamCaption}\item[{\hyperlink{constants_8h_af901d0acc1572fb0c779f84ddd2c6ce8}{Board}}]{board }\end{DoxyParamCaption})}
+
+
+
+Definition at line 193 of file neural\+Network.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_neural_network_abaeb2ec4b31b2a69985cacec5fd1d685_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_neural_network_adf3230528dd4c37960464557c690cbae}\label{class_neural_network_adf3230528dd4c37960464557c690cbae}} 
+\index{Neural\+Network@{Neural\+Network}!save\+Network@{save\+Network}}
+\index{save\+Network@{save\+Network}!Neural\+Network@{Neural\+Network}}
+\subsubsection{\texorpdfstring{save\+Network()}{saveNetwork()}}
+{\footnotesize\ttfamily void Neural\+Network\+::save\+Network (\begin{DoxyParamCaption}\item[{string}]{s }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 205 of file neural\+Network.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_neural_network_a34c4927691004c6a9a637e82f9351d28}\label{class_neural_network_a34c4927691004c6a9a637e82f9351d28}} 
+\index{Neural\+Network@{Neural\+Network}!hidden@{hidden}}
+\index{hidden@{hidden}!Neural\+Network@{Neural\+Network}}
+\subsubsection{\texorpdfstring{hidden}{hidden}}
+{\footnotesize\ttfamily vector$<$\hyperlink{neural_network_8h_af4884b0194f2598e689c894b76d0d92c}{Neuron\+Ptr}$>$ Neural\+Network\+::hidden}
+
+
+
+Definition at line 40 of file neural\+Network.\+h.
+
+\mbox{\Hypertarget{class_neural_network_ae9ab96e97eef53bf8080001cf90075b8}\label{class_neural_network_ae9ab96e97eef53bf8080001cf90075b8}} 
+\index{Neural\+Network@{Neural\+Network}!inputs@{inputs}}
+\index{inputs@{inputs}!Neural\+Network@{Neural\+Network}}
+\subsubsection{\texorpdfstring{inputs}{inputs}}
+{\footnotesize\ttfamily vector$<$\hyperlink{neural_network_8h_af4884b0194f2598e689c894b76d0d92c}{Neuron\+Ptr}$>$ Neural\+Network\+::inputs}
+
+
+
+Definition at line 39 of file neural\+Network.\+h.
+
+\mbox{\Hypertarget{class_neural_network_aa921b31f56ca042113bf250d603dabcd}\label{class_neural_network_aa921b31f56ca042113bf250d603dabcd}} 
+\index{Neural\+Network@{Neural\+Network}!outputs@{outputs}}
+\index{outputs@{outputs}!Neural\+Network@{Neural\+Network}}
+\subsubsection{\texorpdfstring{outputs}{outputs}}
+{\footnotesize\ttfamily vector$<$\hyperlink{neural_network_8h_af4884b0194f2598e689c894b76d0d92c}{Neuron\+Ptr}$>$ Neural\+Network\+::outputs}
+
+
+
+Definition at line 41 of file neural\+Network.\+h.
+
+\mbox{\Hypertarget{class_neural_network_aa22ab04ac7e5b3bb8f291ff524e04ee3}\label{class_neural_network_aa22ab04ac7e5b3bb8f291ff524e04ee3}} 
+\index{Neural\+Network@{Neural\+Network}!synapses@{synapses}}
+\index{synapses@{synapses}!Neural\+Network@{Neural\+Network}}
+\subsubsection{\texorpdfstring{synapses}{synapses}}
+{\footnotesize\ttfamily vector$<$\hyperlink{neural_network_8h_ac587b5c69519c070958c5cb318ddc50f}{Synapse\+Ptr}$>$ Neural\+Network\+::synapses}
+
+
+
+Definition at line 42 of file neural\+Network.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{neural_network_8h}{neural\+Network.\+h}\item 
+\hyperlink{neural_network_8cpp}{neural\+Network.\+cpp}\end{DoxyCompactItemize}

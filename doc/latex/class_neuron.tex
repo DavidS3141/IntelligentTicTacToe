@@ -1,0 +1,247 @@
+\hypertarget{class_neuron}{}\section{Neuron Class Reference}
+\label{class_neuron}\index{Neuron@{Neuron}}
+
+
+{\ttfamily \#include $<$neuron.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_neuron_a823487d01615fadb8ac19a2768dd9d96}{Neuron} ()
+\item 
+void \hyperlink{class_neuron_a65a5533d21bd589a51a9ad502dfcb331}{feed\+Forward} ()
+\item 
+double \hyperlink{class_neuron_a5a84194bf3f93051d3d9f02e9146f1d4}{get\+Net\+Input} ()
+\item 
+double \hyperlink{class_neuron_a09bc798d5f673efd080092001ac3916c}{get\+Activity} () const
+\item 
+void \hyperlink{class_neuron_a53bda59e2ab1f8342a1af503a1652cdd}{set\+Activity} (double \hyperlink{class_neuron_a4f763f92e820b748629781dc8791ab9d}{activity})
+\item 
+const vector$<$ \hyperlink{neural_network_8h_ac587b5c69519c070958c5cb318ddc50f}{Synapse\+Ptr} $>$ \& \hyperlink{class_neuron_a976fbbfd4fa7332a412901f8f9956967}{get\+Childs} () const
+\item 
+void \hyperlink{class_neuron_a2960eb3ff73bd14d345f2204b2b887a4}{add\+Child} (\hyperlink{neural_network_8h_ac587b5c69519c070958c5cb318ddc50f}{Synapse\+Ptr} syn)
+\item 
+void \hyperlink{class_neuron_aee0e35aff21d424300a314fb0695da2e}{add\+Parent} (\hyperlink{neural_network_8h_ac587b5c69519c070958c5cb318ddc50f}{Synapse\+Ptr} syn)
+\item 
+unsigned \hyperlink{class_neuron_a4844d18cf096e70569b21f0e45670520}{get\+ID} () const
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static double \hyperlink{class_neuron_ab151ba9bdd3e9f2aff01e782b41f92e7}{sum} (vector$<$ double $>$ x)
+\item 
+static double \hyperlink{class_neuron_a24893b0c92f073daae4c697b35e395f5}{sigmoid} (double x)
+\item 
+static double \hyperlink{class_neuron_ad2814c90d74e4400c16a116b023447fa}{sigmoid\+Prime} (double x)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{class_neuron_a4f763f92e820b748629781dc8791ab9d}{activity}
+\item 
+double \hyperlink{class_neuron_aa2823ed0557b8296ed5987601bad30ed}{delta}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 17 of file neuron.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_neuron_a823487d01615fadb8ac19a2768dd9d96}\label{class_neuron_a823487d01615fadb8ac19a2768dd9d96}} 
+\index{Neuron@{Neuron}!Neuron@{Neuron}}
+\index{Neuron@{Neuron}!Neuron@{Neuron}}
+\subsubsection{\texorpdfstring{Neuron()}{Neuron()}}
+{\footnotesize\ttfamily Neuron\+::\+Neuron (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 15 of file neuron.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_neuron_a2960eb3ff73bd14d345f2204b2b887a4}\label{class_neuron_a2960eb3ff73bd14d345f2204b2b887a4}} 
+\index{Neuron@{Neuron}!add\+Child@{add\+Child}}
+\index{add\+Child@{add\+Child}!Neuron@{Neuron}}
+\subsubsection{\texorpdfstring{add\+Child()}{addChild()}}
+{\footnotesize\ttfamily void Neuron\+::add\+Child (\begin{DoxyParamCaption}\item[{\hyperlink{neural_network_8h_ac587b5c69519c070958c5cb318ddc50f}{Synapse\+Ptr}}]{syn }\end{DoxyParamCaption})}
+
+
+
+Definition at line 61 of file neuron.\+cpp.
+
+\mbox{\Hypertarget{class_neuron_aee0e35aff21d424300a314fb0695da2e}\label{class_neuron_aee0e35aff21d424300a314fb0695da2e}} 
+\index{Neuron@{Neuron}!add\+Parent@{add\+Parent}}
+\index{add\+Parent@{add\+Parent}!Neuron@{Neuron}}
+\subsubsection{\texorpdfstring{add\+Parent()}{addParent()}}
+{\footnotesize\ttfamily void Neuron\+::add\+Parent (\begin{DoxyParamCaption}\item[{\hyperlink{neural_network_8h_ac587b5c69519c070958c5cb318ddc50f}{Synapse\+Ptr}}]{syn }\end{DoxyParamCaption})}
+
+
+
+Definition at line 65 of file neuron.\+cpp.
+
+\mbox{\Hypertarget{class_neuron_a65a5533d21bd589a51a9ad502dfcb331}\label{class_neuron_a65a5533d21bd589a51a9ad502dfcb331}} 
+\index{Neuron@{Neuron}!feed\+Forward@{feed\+Forward}}
+\index{feed\+Forward@{feed\+Forward}!Neuron@{Neuron}}
+\subsubsection{\texorpdfstring{feed\+Forward()}{feedForward()}}
+{\footnotesize\ttfamily void Neuron\+::feed\+Forward (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 28 of file neuron.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_neuron_a65a5533d21bd589a51a9ad502dfcb331_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_neuron_a09bc798d5f673efd080092001ac3916c}\label{class_neuron_a09bc798d5f673efd080092001ac3916c}} 
+\index{Neuron@{Neuron}!get\+Activity@{get\+Activity}}
+\index{get\+Activity@{get\+Activity}!Neuron@{Neuron}}
+\subsubsection{\texorpdfstring{get\+Activity()}{getActivity()}}
+{\footnotesize\ttfamily double Neuron\+::get\+Activity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 49 of file neuron.\+cpp.
+
+\mbox{\Hypertarget{class_neuron_a976fbbfd4fa7332a412901f8f9956967}\label{class_neuron_a976fbbfd4fa7332a412901f8f9956967}} 
+\index{Neuron@{Neuron}!get\+Childs@{get\+Childs}}
+\index{get\+Childs@{get\+Childs}!Neuron@{Neuron}}
+\subsubsection{\texorpdfstring{get\+Childs()}{getChilds()}}
+{\footnotesize\ttfamily const vector$<$ \hyperlink{neural_network_8h_ac587b5c69519c070958c5cb318ddc50f}{Synapse\+Ptr} $>$ \& Neuron\+::get\+Childs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 57 of file neuron.\+cpp.
+
+\mbox{\Hypertarget{class_neuron_a4844d18cf096e70569b21f0e45670520}\label{class_neuron_a4844d18cf096e70569b21f0e45670520}} 
+\index{Neuron@{Neuron}!get\+ID@{get\+ID}}
+\index{get\+ID@{get\+ID}!Neuron@{Neuron}}
+\subsubsection{\texorpdfstring{get\+I\+D()}{getID()}}
+{\footnotesize\ttfamily unsigned Neuron\+::get\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 69 of file neuron.\+cpp.
+
+\mbox{\Hypertarget{class_neuron_a5a84194bf3f93051d3d9f02e9146f1d4}\label{class_neuron_a5a84194bf3f93051d3d9f02e9146f1d4}} 
+\index{Neuron@{Neuron}!get\+Net\+Input@{get\+Net\+Input}}
+\index{get\+Net\+Input@{get\+Net\+Input}!Neuron@{Neuron}}
+\subsubsection{\texorpdfstring{get\+Net\+Input()}{getNetInput()}}
+{\footnotesize\ttfamily double Neuron\+::get\+Net\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 33 of file neuron.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=295pt]{class_neuron_a5a84194bf3f93051d3d9f02e9146f1d4_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=333pt]{class_neuron_a5a84194bf3f93051d3d9f02e9146f1d4_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_neuron_a53bda59e2ab1f8342a1af503a1652cdd}\label{class_neuron_a53bda59e2ab1f8342a1af503a1652cdd}} 
+\index{Neuron@{Neuron}!set\+Activity@{set\+Activity}}
+\index{set\+Activity@{set\+Activity}!Neuron@{Neuron}}
+\subsubsection{\texorpdfstring{set\+Activity()}{setActivity()}}
+{\footnotesize\ttfamily void Neuron\+::set\+Activity (\begin{DoxyParamCaption}\item[{double}]{activity }\end{DoxyParamCaption})}
+
+
+
+Definition at line 53 of file neuron.\+cpp.
+
+\mbox{\Hypertarget{class_neuron_a24893b0c92f073daae4c697b35e395f5}\label{class_neuron_a24893b0c92f073daae4c697b35e395f5}} 
+\index{Neuron@{Neuron}!sigmoid@{sigmoid}}
+\index{sigmoid@{sigmoid}!Neuron@{Neuron}}
+\subsubsection{\texorpdfstring{sigmoid()}{sigmoid()}}
+{\footnotesize\ttfamily double Neuron\+::sigmoid (\begin{DoxyParamCaption}\item[{double}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 41 of file neuron.\+cpp.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=315pt]{class_neuron_a24893b0c92f073daae4c697b35e395f5_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_neuron_ad2814c90d74e4400c16a116b023447fa}\label{class_neuron_ad2814c90d74e4400c16a116b023447fa}} 
+\index{Neuron@{Neuron}!sigmoid\+Prime@{sigmoid\+Prime}}
+\index{sigmoid\+Prime@{sigmoid\+Prime}!Neuron@{Neuron}}
+\subsubsection{\texorpdfstring{sigmoid\+Prime()}{sigmoidPrime()}}
+{\footnotesize\ttfamily double Neuron\+::sigmoid\+Prime (\begin{DoxyParamCaption}\item[{double}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 45 of file neuron.\+cpp.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_neuron_ad2814c90d74e4400c16a116b023447fa_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_neuron_ab151ba9bdd3e9f2aff01e782b41f92e7}\label{class_neuron_ab151ba9bdd3e9f2aff01e782b41f92e7}} 
+\index{Neuron@{Neuron}!sum@{sum}}
+\index{sum@{sum}!Neuron@{Neuron}}
+\subsubsection{\texorpdfstring{sum()}{sum()}}
+{\footnotesize\ttfamily double Neuron\+::sum (\begin{DoxyParamCaption}\item[{vector$<$ double $>$}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 20 of file neuron.\+cpp.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_neuron_ab151ba9bdd3e9f2aff01e782b41f92e7_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_neuron_a4f763f92e820b748629781dc8791ab9d}\label{class_neuron_a4f763f92e820b748629781dc8791ab9d}} 
+\index{Neuron@{Neuron}!activity@{activity}}
+\index{activity@{activity}!Neuron@{Neuron}}
+\subsubsection{\texorpdfstring{activity}{activity}}
+{\footnotesize\ttfamily double Neuron\+::activity}
+
+
+
+Definition at line 36 of file neuron.\+h.
+
+\mbox{\Hypertarget{class_neuron_aa2823ed0557b8296ed5987601bad30ed}\label{class_neuron_aa2823ed0557b8296ed5987601bad30ed}} 
+\index{Neuron@{Neuron}!delta@{delta}}
+\index{delta@{delta}!Neuron@{Neuron}}
+\subsubsection{\texorpdfstring{delta}{delta}}
+{\footnotesize\ttfamily double Neuron\+::delta}
+
+
+
+Definition at line 37 of file neuron.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{neuron_8h}{neuron.\+h}\item 
+\hyperlink{neuron_8cpp}{neuron.\+cpp}\end{DoxyCompactItemize}

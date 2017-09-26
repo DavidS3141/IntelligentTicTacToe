@@ -1,0 +1,133 @@
+\hypertarget{class_synapse}{}\section{Synapse Class Reference}
+\label{class_synapse}\index{Synapse@{Synapse}}
+
+
+{\ttfamily \#include $<$synapse.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_synapse_ad7d17e64c370f530debc6755ff39c866}{Synapse} (\hyperlink{neural_network_8h_af4884b0194f2598e689c894b76d0d92c}{Neuron\+Ptr} in, \hyperlink{neural_network_8h_af4884b0194f2598e689c894b76d0d92c}{Neuron\+Ptr} out)
+\item 
+double \hyperlink{class_synapse_af46174272161c65aa44279c92f8e625b}{get\+Signal} ()
+\item 
+const \hyperlink{neural_network_8h_af4884b0194f2598e689c894b76d0d92c}{Neuron\+Ptr} \hyperlink{class_synapse_ac6f0d40b4c56391f6eaf17c062112089}{get\+In} () const
+\item 
+const \hyperlink{neural_network_8h_af4884b0194f2598e689c894b76d0d92c}{Neuron\+Ptr} \hyperlink{class_synapse_a98bb7ae4e2b75edfd07f1366cba6cc80}{get\+Out} () const
+\item 
+unsigned \hyperlink{class_synapse_a82879d96c983b1a788c69f8144bd3095}{get\+ID} () const
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{class_synapse_a44d98296097d0130667a45ee2645fe2b}{weight}
+\item 
+double \hyperlink{class_synapse_a6346dada19b7ff4cd5a20764e07665c3}{weight\+Change}
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static double \hyperlink{class_synapse_a1ea4d11c389bcf1e090c5f74c7c3f9ac}{learning\+Rate} = 0.\+2
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 16 of file synapse.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_synapse_ad7d17e64c370f530debc6755ff39c866}\label{class_synapse_ad7d17e64c370f530debc6755ff39c866}} 
+\index{Synapse@{Synapse}!Synapse@{Synapse}}
+\index{Synapse@{Synapse}!Synapse@{Synapse}}
+\subsubsection{\texorpdfstring{Synapse()}{Synapse()}}
+{\footnotesize\ttfamily Synapse\+::\+Synapse (\begin{DoxyParamCaption}\item[{\hyperlink{neural_network_8h_af4884b0194f2598e689c894b76d0d92c}{Neuron\+Ptr}}]{in,  }\item[{\hyperlink{neural_network_8h_af4884b0194f2598e689c894b76d0d92c}{Neuron\+Ptr}}]{out }\end{DoxyParamCaption})}
+
+
+
+Definition at line 16 of file synapse.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_synapse_a82879d96c983b1a788c69f8144bd3095}\label{class_synapse_a82879d96c983b1a788c69f8144bd3095}} 
+\index{Synapse@{Synapse}!get\+ID@{get\+ID}}
+\index{get\+ID@{get\+ID}!Synapse@{Synapse}}
+\subsubsection{\texorpdfstring{get\+I\+D()}{getID()}}
+{\footnotesize\ttfamily unsigned Synapse\+::get\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 30 of file synapse.\+h.
+
+\mbox{\Hypertarget{class_synapse_ac6f0d40b4c56391f6eaf17c062112089}\label{class_synapse_ac6f0d40b4c56391f6eaf17c062112089}} 
+\index{Synapse@{Synapse}!get\+In@{get\+In}}
+\index{get\+In@{get\+In}!Synapse@{Synapse}}
+\subsubsection{\texorpdfstring{get\+In()}{getIn()}}
+{\footnotesize\ttfamily const \hyperlink{neural_network_8h_af4884b0194f2598e689c894b76d0d92c}{Neuron\+Ptr} Synapse\+::get\+In (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 22 of file synapse.\+h.
+
+\mbox{\Hypertarget{class_synapse_a98bb7ae4e2b75edfd07f1366cba6cc80}\label{class_synapse_a98bb7ae4e2b75edfd07f1366cba6cc80}} 
+\index{Synapse@{Synapse}!get\+Out@{get\+Out}}
+\index{get\+Out@{get\+Out}!Synapse@{Synapse}}
+\subsubsection{\texorpdfstring{get\+Out()}{getOut()}}
+{\footnotesize\ttfamily const \hyperlink{neural_network_8h_af4884b0194f2598e689c894b76d0d92c}{Neuron\+Ptr} Synapse\+::get\+Out (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 26 of file synapse.\+h.
+
+\mbox{\Hypertarget{class_synapse_af46174272161c65aa44279c92f8e625b}\label{class_synapse_af46174272161c65aa44279c92f8e625b}} 
+\index{Synapse@{Synapse}!get\+Signal@{get\+Signal}}
+\index{get\+Signal@{get\+Signal}!Synapse@{Synapse}}
+\subsubsection{\texorpdfstring{get\+Signal()}{getSignal()}}
+{\footnotesize\ttfamily double Synapse\+::get\+Signal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 26 of file synapse.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_synapse_a1ea4d11c389bcf1e090c5f74c7c3f9ac}\label{class_synapse_a1ea4d11c389bcf1e090c5f74c7c3f9ac}} 
+\index{Synapse@{Synapse}!learning\+Rate@{learning\+Rate}}
+\index{learning\+Rate@{learning\+Rate}!Synapse@{Synapse}}
+\subsubsection{\texorpdfstring{learning\+Rate}{learningRate}}
+{\footnotesize\ttfamily double Synapse\+::learning\+Rate = 0.\+2\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 36 of file synapse.\+h.
+
+\mbox{\Hypertarget{class_synapse_a44d98296097d0130667a45ee2645fe2b}\label{class_synapse_a44d98296097d0130667a45ee2645fe2b}} 
+\index{Synapse@{Synapse}!weight@{weight}}
+\index{weight@{weight}!Synapse@{Synapse}}
+\subsubsection{\texorpdfstring{weight}{weight}}
+{\footnotesize\ttfamily double Synapse\+::weight}
+
+
+
+Definition at line 34 of file synapse.\+h.
+
+\mbox{\Hypertarget{class_synapse_a6346dada19b7ff4cd5a20764e07665c3}\label{class_synapse_a6346dada19b7ff4cd5a20764e07665c3}} 
+\index{Synapse@{Synapse}!weight\+Change@{weight\+Change}}
+\index{weight\+Change@{weight\+Change}!Synapse@{Synapse}}
+\subsubsection{\texorpdfstring{weight\+Change}{weightChange}}
+{\footnotesize\ttfamily double Synapse\+::weight\+Change}
+
+
+
+Definition at line 35 of file synapse.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{synapse_8h}{synapse.\+h}\item 
+\hyperlink{synapse_8cpp}{synapse.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,116 @@
+\hypertarget{namespaceplot_data}{}\section{plot\+Data Namespace Reference}
+\label{namespaceplot_data}\index{plot\+Data@{plot\+Data}}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+list \hyperlink{namespaceplot_data_a3973b174067454c6d6fb4a100600574b}{colors} = \mbox{[}\textquotesingle{}b\textquotesingle{},\textquotesingle{}r\textquotesingle{},\textquotesingle{}y\textquotesingle{},\textquotesingle{}k\textquotesingle{}\mbox{]}
+\item 
+string \hyperlink{namespaceplot_data_acefbb49a026077f724500d7c511fb59e}{folder} = \textquotesingle{}long\+Run/\textquotesingle{}
+\item 
+\hyperlink{namespaceplot_data_a44c9f3af3147f385257597dd63d09e3a}{data} = np.\+loadtxt(\hyperlink{namespaceplot_data_acefbb49a026077f724500d7c511fb59e}{folder}+\textquotesingle{}win\+Series.\+txt\textquotesingle{},dtype=float)
+\item 
+\hyperlink{namespaceplot_data_a654ab80d46bf5af451e1ca85b1dcb573}{error} = np.\+loadtxt(\hyperlink{namespaceplot_data_acefbb49a026077f724500d7c511fb59e}{folder}+\textquotesingle{}error\+Sums.\+txt\textquotesingle{},dtype=float,delimiter=\textquotesingle{};\textquotesingle{})
+\item 
+\hyperlink{namespaceplot_data_af459551cfb398cc731a4c51c4d44df41}{contraction\+Number} = min(300,len(\hyperlink{namespaceplot_data_a44c9f3af3147f385257597dd63d09e3a}{data})//2$\ast$$\ast$4)
+\item 
+\hyperlink{namespaceplot_data_a82986c14482fcee60f04f418a09ca49c}{contracted} = \hyperlink{namespaceplot_data_a44c9f3af3147f385257597dd63d09e3a}{data}\mbox{[}0\+:len(\hyperlink{namespaceplot_data_a44c9f3af3147f385257597dd63d09e3a}{data})+1-\/\hyperlink{namespaceplot_data_af459551cfb398cc731a4c51c4d44df41}{contraction\+Number}\mbox{]}
+\item 
+\hyperlink{namespaceplot_data_a0bf3fb4a650e2f9eea6c07f84bfd3745}{color}
+\item 
+\hyperlink{namespaceplot_data_a13e86a1d4baebb88c13b21cf4a6e474f}{label}
+\item 
+\hyperlink{namespaceplot_data_a3bb3a1ce0591a27573ad339091687219}{loc}
+\end{DoxyCompactItemize}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceplot_data_a0bf3fb4a650e2f9eea6c07f84bfd3745}\label{namespaceplot_data_a0bf3fb4a650e2f9eea6c07f84bfd3745}} 
+\index{plot\+Data@{plot\+Data}!color@{color}}
+\index{color@{color}!plot\+Data@{plot\+Data}}
+\subsubsection{\texorpdfstring{color}{color}}
+{\footnotesize\ttfamily plot\+Data.\+color}
+
+
+
+Definition at line 29 of file plot\+Data.\+py.
+
+\mbox{\Hypertarget{namespaceplot_data_a3973b174067454c6d6fb4a100600574b}\label{namespaceplot_data_a3973b174067454c6d6fb4a100600574b}} 
+\index{plot\+Data@{plot\+Data}!colors@{colors}}
+\index{colors@{colors}!plot\+Data@{plot\+Data}}
+\subsubsection{\texorpdfstring{colors}{colors}}
+{\footnotesize\ttfamily list plot\+Data.\+colors = \mbox{[}\textquotesingle{}b\textquotesingle{},\textquotesingle{}r\textquotesingle{},\textquotesingle{}y\textquotesingle{},\textquotesingle{}k\textquotesingle{}\mbox{]}}
+
+
+
+Definition at line 12 of file plot\+Data.\+py.
+
+\mbox{\Hypertarget{namespaceplot_data_a82986c14482fcee60f04f418a09ca49c}\label{namespaceplot_data_a82986c14482fcee60f04f418a09ca49c}} 
+\index{plot\+Data@{plot\+Data}!contracted@{contracted}}
+\index{contracted@{contracted}!plot\+Data@{plot\+Data}}
+\subsubsection{\texorpdfstring{contracted}{contracted}}
+{\footnotesize\ttfamily plot\+Data.\+contracted = \hyperlink{namespaceplot_data_a44c9f3af3147f385257597dd63d09e3a}{data}\mbox{[}0\+:len(\hyperlink{namespaceplot_data_a44c9f3af3147f385257597dd63d09e3a}{data})+1-\/\hyperlink{namespaceplot_data_af459551cfb398cc731a4c51c4d44df41}{contraction\+Number}\mbox{]}}
+
+
+
+Definition at line 24 of file plot\+Data.\+py.
+
+\mbox{\Hypertarget{namespaceplot_data_af459551cfb398cc731a4c51c4d44df41}\label{namespaceplot_data_af459551cfb398cc731a4c51c4d44df41}} 
+\index{plot\+Data@{plot\+Data}!contraction\+Number@{contraction\+Number}}
+\index{contraction\+Number@{contraction\+Number}!plot\+Data@{plot\+Data}}
+\subsubsection{\texorpdfstring{contraction\+Number}{contractionNumber}}
+{\footnotesize\ttfamily plot\+Data.\+contraction\+Number = min(300,len(\hyperlink{namespaceplot_data_a44c9f3af3147f385257597dd63d09e3a}{data})//2$\ast$$\ast$4)}
+
+
+
+Definition at line 20 of file plot\+Data.\+py.
+
+\mbox{\Hypertarget{namespaceplot_data_a44c9f3af3147f385257597dd63d09e3a}\label{namespaceplot_data_a44c9f3af3147f385257597dd63d09e3a}} 
+\index{plot\+Data@{plot\+Data}!data@{data}}
+\index{data@{data}!plot\+Data@{plot\+Data}}
+\subsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily plot\+Data.\+data = np.\+loadtxt(\hyperlink{namespaceplot_data_acefbb49a026077f724500d7c511fb59e}{folder}+\textquotesingle{}win\+Series.\+txt\textquotesingle{},dtype=float)}
+
+
+
+Definition at line 17 of file plot\+Data.\+py.
+
+\mbox{\Hypertarget{namespaceplot_data_a654ab80d46bf5af451e1ca85b1dcb573}\label{namespaceplot_data_a654ab80d46bf5af451e1ca85b1dcb573}} 
+\index{plot\+Data@{plot\+Data}!error@{error}}
+\index{error@{error}!plot\+Data@{plot\+Data}}
+\subsubsection{\texorpdfstring{error}{error}}
+{\footnotesize\ttfamily plot\+Data.\+error = np.\+loadtxt(\hyperlink{namespaceplot_data_acefbb49a026077f724500d7c511fb59e}{folder}+\textquotesingle{}error\+Sums.\+txt\textquotesingle{},dtype=float,delimiter=\textquotesingle{};\textquotesingle{})}
+
+
+
+Definition at line 18 of file plot\+Data.\+py.
+
+\mbox{\Hypertarget{namespaceplot_data_acefbb49a026077f724500d7c511fb59e}\label{namespaceplot_data_acefbb49a026077f724500d7c511fb59e}} 
+\index{plot\+Data@{plot\+Data}!folder@{folder}}
+\index{folder@{folder}!plot\+Data@{plot\+Data}}
+\subsubsection{\texorpdfstring{folder}{folder}}
+{\footnotesize\ttfamily string plot\+Data.\+folder = \textquotesingle{}long\+Run/\textquotesingle{}}
+
+
+
+Definition at line 14 of file plot\+Data.\+py.
+
+\mbox{\Hypertarget{namespaceplot_data_a13e86a1d4baebb88c13b21cf4a6e474f}\label{namespaceplot_data_a13e86a1d4baebb88c13b21cf4a6e474f}} 
+\index{plot\+Data@{plot\+Data}!label@{label}}
+\index{label@{label}!plot\+Data@{plot\+Data}}
+\subsubsection{\texorpdfstring{label}{label}}
+{\footnotesize\ttfamily plot\+Data.\+label}
+
+
+
+Definition at line 29 of file plot\+Data.\+py.
+
+\mbox{\Hypertarget{namespaceplot_data_a3bb3a1ce0591a27573ad339091687219}\label{namespaceplot_data_a3bb3a1ce0591a27573ad339091687219}} 
+\index{plot\+Data@{plot\+Data}!loc@{loc}}
+\index{loc@{loc}!plot\+Data@{plot\+Data}}
+\subsubsection{\texorpdfstring{loc}{loc}}
+{\footnotesize\ttfamily plot\+Data.\+loc}
+
+
+
+Definition at line 35 of file plot\+Data.\+py.
+

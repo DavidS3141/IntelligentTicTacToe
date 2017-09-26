@@ -2,6 +2,12 @@
 
 #include "constants.h"
 
+/**
+ * @class TicTacToe
+ * @brief The game TicTacToe.
+ *
+ * This class represents a playable game of TicTacToe.
+ */
 class TicTacToe {
 public:
 	TicTacToe();
@@ -12,5 +18,10 @@ public:
 	bool boardFull();
 
 private:
+    /**
+     * @brief The TicTacToe board.
+     *
+     * This board represents the current state of the game.
+     */
 	Board board;
 };

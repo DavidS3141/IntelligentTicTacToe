@@ -1,0 +1,6 @@
+<map id="synapse.h" name="synapse.h">
+<area shape="rect" id="node2" href="$main_8cpp.html" title="main.cpp" alt="" coords="5,79,81,104"/>
+<area shape="rect" id="node3" href="$neural_network_8cpp.html" title="neuralNetwork.cpp" alt="" coords="105,79,237,104"/>
+<area shape="rect" id="node4" href="$neuron_8cpp.html" title="neuron.cpp" alt="" coords="262,79,350,104"/>
+<area shape="rect" id="node5" href="$synapse_8cpp.html" title="synapse.cpp" alt="" coords="374,79,470,104"/>
+</map>

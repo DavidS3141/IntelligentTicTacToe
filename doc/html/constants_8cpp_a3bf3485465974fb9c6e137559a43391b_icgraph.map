@@ -1,0 +1,5 @@
+<map id="getNodeBoard" name="getNodeBoard">
+<area shape="rect" id="node2" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="246,5,296,31"/>
+<area shape="rect" id="node3" href="$class_neural_network.html#af773d118844a6dc42c8a4edc05652893" title="NeuralNetwork::getMove" alt="" coords="187,55,355,80"/>
+<area shape="rect" id="node4" href="$class_neural_network.html#abaeb2ec4b31b2a69985cacec5fd1d685" title="NeuralNetwork::getProbableMove" alt="" coords="161,104,382,129"/>
+</map>

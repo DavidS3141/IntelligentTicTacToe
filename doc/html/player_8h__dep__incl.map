@@ -1,0 +1,12 @@
+<map id="player.h" name="player.h">
+<area shape="rect" id="node2" href="$ai_8h.html" title="ai.h" alt="" coords="71,79,114,104"/>
+<area shape="rect" id="node6" href="$human_8h.html" title="human.h" alt="" coords="232,79,305,104"/>
+<area shape="rect" id="node8" href="$logic_player_8h.html" title="logicPlayer.h" alt="" coords="329,79,426,104"/>
+<area shape="rect" id="node10" href="$runner_8h.html" title="runner.h" alt="" coords="137,79,208,104"/>
+<area shape="rect" id="node11" href="$player_8cpp.html" title="player.cpp" alt="" coords="450,79,532,104"/>
+<area shape="rect" id="node3" href="$ai_8cpp.html" title="ai.cpp" alt="" coords="5,152,62,177"/>
+<area shape="rect" id="node4" href="$main_8cpp.html" title="main.cpp" alt="" coords="195,152,270,177"/>
+<area shape="rect" id="node5" href="$runner_8cpp.html" title="runner.cpp" alt="" coords="86,152,171,177"/>
+<area shape="rect" id="node7" href="$human_8cpp.html" title="human.cpp" alt="" coords="294,152,381,177"/>
+<area shape="rect" id="node9" href="$logic_player_8cpp.html" title="logicPlayer.cpp" alt="" coords="405,152,516,177"/>
+</map>

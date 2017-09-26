@@ -1,0 +1,4 @@
+<map id="Human::getMove" name="Human::getMove">
+<area shape="rect" id="node2" href="$constants_8cpp.html#a0dc3a0d3881d88542de17697bfe32a27" title="printBoard" alt="" coords="176,5,259,31"/>
+<area shape="rect" id="node3" href="$constants_8cpp.html#abafaee18c3d094a7c2927d803c996937" title="printSymbol" alt="" coords="307,5,399,31"/>
+</map>

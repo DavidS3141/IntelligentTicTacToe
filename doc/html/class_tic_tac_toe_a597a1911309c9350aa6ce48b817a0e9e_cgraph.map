@@ -1,0 +1,4 @@
+<map id="TicTacToe::makeMove" name="TicTacToe::makeMove">
+<area shape="rect" id="node2" href="$class_tic_tac_toe.html#a0ed1b3b4b699af8e7db79f502cbc9531" title="TicTacToe::gameEnded" alt="" coords="207,5,367,31"/>
+<area shape="rect" id="node3" href="$class_tic_tac_toe.html#a750e26d95ced2dca83c21279ef43def9" title="TicTacToe::boardFull" alt="" coords="415,5,559,31"/>
+</map>
